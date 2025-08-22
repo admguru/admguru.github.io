@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIM G - Sistem Informasi Manajemen dan Jurnal Guru</title>
+    <title>SIM G - Sistem Informasi Manajemen Guru</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -52,8 +52,8 @@
     <!-- Sidebar Navigation -->
     <aside id="sidebar" class="bg-white w-64 min-h-screen flex-shrink-0 p-4 shadow-2xl fixed md:relative transform -translate-x-full md:translate-x-0 sidebar-transition z-30 no-print">
         <div class="text-center mb-10">
-            <h1 class="text-2xl font-bold text-blue-600">SIM G</h1>
-            <p class="text-sm text-gray-500">Sistem Informasi Manajemen dan Jurnal Guru</p>
+            <h1 class="text-2xl font-bold text-blue-600">SIM G - Sistem Informasi Manajemen Jurnal Guru</h1>
+            <p class="text-sm text-gray-500">Sistem Pengelolaan Absensi Nilai dan Jurnal Administrasi Guru</p>
         </div>
         <nav class="flex flex-col gap-2">
             <button onclick="showTab('dashboard')" id="tab-dashboard" class="tab-button flex items-center gap-3 px-4 py-3 rounded-lg font-medium">
@@ -63,10 +63,6 @@
             <button onclick="showTab('absensi')" id="tab-absensi" class="tab-button flex items-center gap-3 px-4 py-3 rounded-lg font-medium">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>
                 <span>Absensi Harian</span>
-            </button>
-            <button onclick="showTab('kelompok')" id="tab-kelompok" class="tab-button flex items-center gap-3 px-4 py-3 rounded-lg font-medium">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-4 4 4 4-4v4z" clip-rule="evenodd" /></svg>
-                <span>Kelompok Belajar</span>
             </button>
             <button onclick="showTab('penilaian')" id="tab-penilaian" class="tab-button flex items-center gap-3 px-4 py-3 rounded-lg font-medium">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
@@ -104,7 +100,7 @@
                 </button>
                 <div class="flex-1 text-center md:text-left">
                      <h1 class="text-xl md:text-2xl font-bold text-gray-800">Selamat Datang!</h1>
-                     <p class="text-sm text-gray-500">Sistem Pengelolaan Absensi Nilai dan Jurnal Administrasi Guru</p>
+                     <p class="text-sm text-gray-500">Sistem Pengelolaan Absensi Nilai dan Juga Administrasi Guru</p>
                 </div>
                 <div class="flex items-center gap-3">
                     <div class="text-right hidden sm:block">
@@ -127,8 +123,6 @@
                             <p class="text-gray-600">Pilih kelas dan lakukan presensi siswa</p>
                         </div>
                         <div class="flex flex-wrap gap-3">
-                            <input type="text" id="namaGuru" placeholder="Nama Guru" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                            <input type="text" id="mataPelajaran" placeholder="Mata Pelajaran" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                             <select id="kelasSelect" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                                 <option value="">Pilih Kelas</option>
                             </select>
@@ -143,13 +137,14 @@
                     </div>
                     <div id="daftarSiswa" class="space-y-3"><div class="text-center text-gray-500 py-8"><div class="text-4xl mb-3">👥</div><p>Pilih kelas untuk menampilkan daftar siswa</p></div></div>
                     <div id="actionButtons" class="mt-6 flex flex-wrap gap-3 justify-center" style="display: none;">
+                        <button onclick="hadirSemua()" class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:from-blue-600 hover:to-indigo-700 transition-all duration-200 shadow-lg">✅ Hadir Semua</button>
                         <button onclick="simpanAbsensi()" class="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-lg font-medium hover:from-green-600 hover:to-green-700 transition-all duration-200 shadow-lg">💾 Simpan Absensi</button>
                         <button onclick="resetAbsensi()" class="bg-gradient-to-r from-gray-500 to-gray-600 text-white px-6 py-3 rounded-lg font-medium hover:from-gray-600 hover:to-gray-700 transition-all duration-200 shadow-lg">🔄 Reset</button>
+                        <button onclick="showTab('dashboard')" class="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-medium hover:bg-gray-300 transition-all duration-200 shadow-lg">🏠 Check Dashboard</button>
                     </div>
                 </div>
             </div>
             
-            <div id="content-kelompok" class="tab-content hidden"></div>
             <div id="content-penilaian" class="tab-content hidden">
                 <div class="bg-white rounded-2xl shadow-xl p-6 mb-6">
                     <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
@@ -185,63 +180,6 @@
     </main>
 
     <script>
-        // --- Fungsi yang ditambahkan untuk menonaktifkan klik kanan dan menampilkan pesan ---
-        window.onload = function() {
-            // Menonaktifkan klik kanan pada seluruh dokumen
-            document.addEventListener('contextmenu', function(e) {
-                e.preventDefault();
-                showCustomWarning();
-            });
-            // Menonaktifkan shortcut keyboard untuk Inspect Element (F12, Ctrl+Shift+I, dll.)
-            document.addEventListener('keydown', function(e) {
-                if ((e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i')) || // Ctrl+Shift+I
-                    (e.key === 'F12') || // F12
-                    (e.ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j')) || // Ctrl+Shift+J
-                    (e.ctrlKey && e.key === 'U')) // Ctrl+U (view source)
-                {
-                    e.preventDefault();
-                    showCustomWarning();
-                }
-            });
-            
-            // Memastikan semua data diinisialisasi di awal jika localStorage kosong
-            if (!localStorage.getItem('dataSiswa')) localStorage.setItem('dataSiswa', JSON.stringify(initialDataSiswa));
-            
-            setInitialDates();
-            updateSelectOptions();
-            showTab('dashboard'); 
-            // Fix: Event listeners for other tabs are now attached dynamically inside loadTabContent
-            document.getElementById('kelasSelect').addEventListener('change', (e) => tampilkanDaftarSiswa(e.target.value));
-            document.getElementById('tanggalAbsen').addEventListener('change', () => tampilkanDaftarSiswa(document.getElementById('kelasSelect').value));
-            document.getElementById('penilaianKelas').addEventListener('change', (e) => tampilkanDaftarNilai(e.target.value));
-            document.getElementById('tanggalNilai').addEventListener('change', () => tampilkanDaftarNilai(document.getElementById('penilaianKelas').value));
-        };
-        
-        // Fungsi untuk menampilkan modal peringatan kustom
-        function showCustomWarning() {
-            const message = "Maaf tidak bisa Melakukan Aktivitas Copy Paste atau Inspect Kode Silakan hub pembuat system ini";
-            const title = "Akses Terlarang!";
-            const existingModal = document.getElementById('customModal');
-            if (existingModal) existingModal.remove();
-
-            let modalHtml = `<div id="customModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 h-full w-full z-[100] flex items-center justify-center p-4">
-                <div class="relative mx-auto p-5 border w-full max-w-md shadow-lg rounded-2xl bg-white">
-                    <div class="mt-3 text-center">
-                        <h3 class="text-lg font-medium text-red-600">${title}</h3>
-                        <div class="mt-2 px-7 py-3">
-                            <p class="text-sm text-gray-800">${message}</p>
-                        </div>
-                        <div class="items-center px-4 py-3 flex gap-3 mt-4">
-                            <button id="okBtn" class="p-2 bg-blue-500 text-white rounded-md w-full">OK</button>
-                        </div>
-                    </div>
-                </div>
-            </div>`;
-            document.body.insertAdjacentHTML('beforeend', modalHtml);
-            const closeModal = () => document.getElementById('customModal').remove();
-            document.getElementById('okBtn').onclick = closeModal;
-        }
-
         // Data Awal Siswa, digunakan jika localStorage kosong.
         const initialDataSiswa = {
             "12 LP": [{nis: "2324.10.1264", nama: "Alma Alini Saputri", jk: "P"}, {nis: "2324.10.1265", nama: "Amelia Putri M.D", jk: "P"}, {nis: "2324.10.1268", nama: "Dahlia", jk: "P"}, {nis: "2324.10.1269", nama: "Decha Destiani", jk: "P"}, {nis: "2324.10.1270", nama: "Diana", jk: "P"}, {nis: "2324.10.1271", nama: "Dimas Saputra", jk: "L"}, {nis: "2023.10.1273", nama: "Intan Riskawati", jk: "P"}, {nis: "2023.10.1274", nama: "Isqilah Khoerul Umah", jk: "P"}, {nis: "2023.10.1275", nama: "Laisa Apriyanti", jk: "P"}, {nis: "2023.10.1276", nama: "Lanlan", jk: "L"}, {nis: "2023.10.1277", nama: "Leni Astuti", jk: "P"}, {nis: "2023.10.1279", nama: "Moch.Reihan", jk: "L"}, {nis: "2023.10.1280", nama: "Naila Apriliani", jk: "P"}, {nis: "2023.10.1281", nama: "Nasya Herdiana Putri", jk: "P"}, {nis: "2023.10.1282", nama: "Nesa Alya Safitri", jk: "P"}, {nis: "2023.10.1283", nama: "Nila Nurmala", jk: "P"}, {nis: "2023.10.1288", nama: "Resiawati", jk: "P"}, {nis: "2023.10.1289", nama: "Riani Nurfadilah", jk: "P"}, {nis: "2023.10.1290", nama: "Riski Aulia", jk: "P"}, {nis: "2023.10.1291", nama: "Rizky Andri Maulana", jk: "L"}, {nis: "2023.10.1292", nama: "Seni Meylani", jk: "P"}, {nis: "2023.10.1293", nama: "Serli", jk: "P"}, {nis: "2324.11.1486", nama: "Siti Fatimah Syifa", jk: "P"}, {nis: "2023.10.1294", nama: "Siti Humaira Risma Wati", jk: "P"}, {nis: "2023.10.1295", nama: "Tasya Kamila", jk: "P"}, {nis: "2023.10.1296", nama: "Windi", jk: "P"}],
@@ -282,16 +220,11 @@
                 bidang: "Pendidikan Pancasila"
             }
         };
-
-        // Data baru untuk agenda, catatan murid, dan kelompok
         let dataAgenda = JSON.parse(localStorage.getItem('dataAgenda')) || [];
-        let dataCatatan = JSON.parse(localStorage.getItem('dataCatatan')) || {};
-        let dataKelompok = JSON.parse(localStorage.getItem('dataKelompok')) || {};
-        let dataNilaiKelompok = JSON.parse(localStorage.getItem('dataNilaiKelompok')) || {};
+        let dataCatatanSiswa = JSON.parse(localStorage.getItem('dataCatatanSiswa')) || {};
 
         let kehadiranChart;
-        let currentAdministrasiSubMenu = 'rpp';
-        let currentKelompokSubMenu = 'manajemen';
+        let currentAdministrasiSubMenu = 'jadwal';
         let jadwalHistory = []; // For undo functionality
 
         // --- Sidebar and Navigation ---
@@ -312,9 +245,9 @@
             
             const activeContent = document.getElementById(`content-${tabName}`);
             const activeButton = document.getElementById(`tab-${tabName}`);
-            if (activeContent) activeContent.classList.remove('hidden');
-            if (activeButton) activeButton.classList.add('bg-blue-600', 'text-white', 'shadow-md');
-            if (activeContent) activeContent.classList.add('fade-in');
+            activeContent.classList.remove('hidden');
+            activeButton.classList.add('bg-blue-600', 'text-white', 'shadow-md');
+            activeContent.classList.add('fade-in');
 
             loadTabContent(tabName);
 
@@ -323,16 +256,15 @@
             }
         }
 
-        // Fungsi pemuatan konten tab
+        // --- Perbaikan Utama: Logika pemuatan konten tab diperbaiki ---
         function loadTabContent(tabName) {
             const container = document.getElementById(`content-${tabName}`);
-            if (!container) return; // FIX: Prevents error if container is null
-
+            
+            // Cek apakah konten sudah ada. Jika sudah ada dan BUKAN tab dinamis, lewati pemuatan ulang.
             const isContentLoaded = container.innerHTML.trim() !== '';
-            // Tambahkan menu baru ke dynamicTabs agar selalu di-reload
-            const dynamicTabs = ['dashboard', 'manajemen', 'rekap', 'administrasi', 'setting', 'kelompok'];
+            const dynamicTabs = ['dashboard', 'manajemen', 'rekap', 'administrasi', 'setting'];
             if (isContentLoaded && !dynamicTabs.includes(tabName)) {
-                 return;
+                 return; // Hanya keluar untuk tab statis seperti Absensi dan Penilaian
             }
 
             let html = '';
@@ -340,15 +272,6 @@
             switch(tabName) {
                 case 'dashboard':
                     html = `<div class="bg-white rounded-2xl shadow-xl p-6 mb-6"><div class="flex items-center justify-between flex-wrap gap-4 mb-6"><div><h2 class="text-2xl font-bold text-gray-800 mb-2">Dashboard Statistik</h2><p class="text-gray-600">Ringkasan visual kehadiran dan nilai</p></div><select id="dashboardKelas" class="px-4 py-2 border rounded-lg"><option value="">Pilih Kelas</option></select></div><div id="dashboardContent" class="space-y-6"><div class="text-center text-gray-500 py-8"><div class="text-4xl mb-3">📈</div><p>Pilih kelas untuk menampilkan statistik</p></div></div></div>`;
-                    break;
-                case 'absensi':
-                    // Absensi tab content
-                    break;
-                case 'kelompok':
-                    loadKelompokTabContent(currentKelompokSubMenu);
-                    return; // Fungsi kelompok akan menangani HTML-nya sendiri
-                case 'penilaian':
-                    // Penilaian tab content
                     break;
                 case 'rekap':
                     html = `<div class="bg-white rounded-2xl shadow-xl p-6">
@@ -454,8 +377,9 @@
                     </div>`;
                     break;
                 case 'administrasi':
+                    // Memuat konten sub-menu administrasi secara dinamis
                     loadAdministrasiTabContent(currentAdministrasiSubMenu);
-                    return; // Fungsi administrasi akan menangani HTML-nya sendiri
+                    return; 
                 case 'setting':
                     html = `<div class="bg-white rounded-2xl shadow-xl p-6 mb-6">
                         <h2 class="text-2xl font-bold text-gray-800 mb-4">Pengaturan Sistem</h2>
@@ -510,500 +434,36 @@
             
             // Lampirkan event listener SETELAH HTML dimuat
             if (tabName === 'dashboard') {
-                const dashboardKelasEl = document.getElementById('dashboardKelas');
-                if (dashboardKelasEl) dashboardKelasEl.addEventListener('change', updateDashboard);
-                updateSelectOptions();
-                updateDashboard();
+                 document.getElementById('dashboardKelas').addEventListener('change', updateDashboard);
+                 updateSelectOptions();
+                 updateDashboard();
             } else if (tabName === 'rekap') {
-                const rekapKelasEl = document.getElementById('rekapKelas');
-                const rekapStartDateEl = document.getElementById('rekapStartDate');
-                const rekapEndDateEl = document.getElementById('rekapEndDate');
-                const rekapSearchEl = document.getElementById('rekapSearch');
-
-                if (rekapKelasEl) rekapKelasEl.addEventListener('input', updateRekap);
-                if (rekapStartDateEl) rekapStartDateEl.addEventListener('input', updateRekap);
-                if (rekapEndDateEl) rekapEndDateEl.addEventListener('input', updateRekap);
-                if (rekapSearchEl) rekapSearchEl.addEventListener('input', updateRekap);
-                
+                ['rekapKelas', 'rekapStartDate', 'rekapEndDate', 'rekapSearch'].forEach(id => document.getElementById(id).addEventListener('input', updateRekap));
                 setInitialDates(); 
                 updateSelectOptions(); 
                 updateRekap();
             } else if (tabName === 'manajemen') {
-                const addStudentFormEl = document.getElementById('addStudentForm');
-                const manajemenKelasEl = document.getElementById('manajemenKelas');
-                if(addStudentFormEl) addStudentFormEl.addEventListener('submit', addStudent);
-                if(manajemenKelasEl) manajemenKelasEl.addEventListener('change', (e) => updateManajemenTable(e.target.value));
+                document.getElementById('addStudentForm').addEventListener('submit', addStudent);
+                document.getElementById('manajemenKelas').addEventListener('change', (e) => updateManajemenTable(e.target.value));
                 updateSelectOptions();
             } else if (tabName === 'setting') {
-                const importFileEl = document.getElementById('importFile');
-                if(importFileEl) importFileEl.addEventListener('change', (e) => {
-                    const fileNameEl = document.getElementById('fileName');
-                    if (fileNameEl) fileNameEl.textContent = e.target.files.length > 0 ? e.target.files[0].name : '';
+                document.getElementById('importFile').addEventListener('change', (e) => {
+                    document.getElementById('fileName').textContent = e.target.files.length > 0 ? e.target.files[0].name : '';
                 });
             }
         }
-        
-        // --- KODE BARU UNTUK KELOMPOK BELAJAR ---
-        
-        function loadKelompokTabContent(subMenuName) {
-            const container = document.getElementById('content-kelompok');
-            if (!container) return;
-            let html = `
-                <div class="bg-white rounded-2xl shadow-xl p-6 mb-6">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Kelompok Belajar</h2>
-                    <nav class="flex flex-wrap gap-2 border-b-2 border-gray-100 mb-6">
-                        <button onclick="switchKelompokSubMenu('daftar')" id="sub-daftar" class="px-4 py-2 rounded-t-lg font-medium">Daftar Kelompok</button>
-                        <button onclick="switchKelompokSubMenu('nilai')" id="sub-nilai" class="px-4 py-2 rounded-t-lg font-medium">Input Nilai</button>
-                        <button onclick="switchKelompokSubMenu('manajemen')" id="sub-manajemen" class="px-4 py-2 rounded-t-lg font-medium">Manajemen Kelompok</button>
-                    </nav>
-                    <div id="kelompok-content"></div>
-                </div>
-            `;
-            container.innerHTML = html;
-            switchKelompokSubMenu(subMenuName);
-        }
-
-        function switchKelompokSubMenu(subMenuName) {
-            currentKelompokSubMenu = subMenuName;
-            document.querySelectorAll('#content-kelompok .rounded-t-lg').forEach(button => {
-                button.classList.remove('bg-blue-600', 'text-white');
-                button.classList.add('text-gray-600', 'hover:bg-gray-100');
-            });
-            const activeButton = document.getElementById(`sub-${subMenuName}`);
-            if (activeButton) {
-                activeButton.classList.add('bg-blue-600', 'text-white');
-                activeButton.classList.remove('text-gray-600', 'hover:bg-gray-100');
-            }
-
-            const subContainer = document.getElementById('kelompok-content');
-            if (subContainer) subContainer.innerHTML = '';
-            if (subContainer) subContainer.classList.add('fade-in');
-
-            switch(subMenuName) {
-                case 'daftar':
-                    renderDaftarKelompok();
-                    break;
-                case 'nilai':
-                    renderInputNilaiKelompok();
-                    break;
-                case 'manajemen':
-                    renderManajemenKelompok();
-                    break;
-            }
-        }
-        
-        function renderManajemenKelompok() {
-            const subContainer = document.getElementById('kelompok-content');
-            const kelasOptions = Object.keys(dataSiswa).sort().map(k => `<option value="${k}">${k}</option>`).join('');
-            
-            let html = `
-                <div class="bg-gray-50 p-6 rounded-xl border mb-6">
-                    <h3 class="text-xl font-semibold mb-4">Buat Kelompok Baru</h3>
-                    <form id="kelompokForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label for="kelompokKelas" class="block text-sm font-medium">Pilih Kelas</label>
-                            <select id="kelompokKelas" name="kelas" class="mt-1 block w-full p-2 border rounded-md" required>
-                                <option value="">Pilih Kelas</option>
-                                ${kelasOptions}
-                            </select>
-                        </div>
-                        <div>
-                            <label for="namaKelompok" class="block text-sm font-medium">Nama Kelompok</label>
-                            <input type="text" id="namaKelompok" name="nama" placeholder="Contoh: Kelompok 1 - Diskusi" class="mt-1 block w-full p-2 border rounded-md" required>
-                        </div>
-                        <div class="md:col-span-2 mt-4">
-                            <label class="block text-sm font-medium mb-2">Pilih Anggota Kelompok</label>
-                            <div id="kelompokSiswaList" class="max-h-60 overflow-y-auto bg-white p-4 border rounded-md space-y-2">
-                                <p class="text-gray-500 text-center">Pilih kelas terlebih dahulu</p>
-                            </div>
-                        </div>
-                        <div class="md:col-span-2 flex justify-center mt-4">
-                            <button type="submit" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">💾 Simpan Kelompok</button>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="mt-8">
-                    <h3 class="text-xl font-semibold mb-4">Daftar Kelompok Tersimpan</h3>
-                    <div id="daftarKelompok" class="space-y-4">
-                        <p class="text-gray-500 text-center">Belum ada kelompok yang disimpan.</p>
-                    </div>
-                </div>
-            `;
-            if (subContainer) subContainer.innerHTML = html;
-            
-            // Attach event listeners for the new elements
-            const kelompokKelasEl = document.getElementById('kelompokKelas');
-            const kelompokFormEl = document.getElementById('kelompokForm');
-            if (kelompokKelasEl) kelompokKelasEl.addEventListener('change', updateKelompokSiswaList);
-            if (kelompokFormEl) kelompokFormEl.addEventListener('submit', saveKelompok);
-            
-            updateKelompokList();
-        }
-
-        // Fungsi untuk memperbarui daftar siswa saat kelas dipilih
-        function updateKelompokSiswaList() {
-            const kelas = document.getElementById('kelompokKelas').value;
-            const siswaListContainer = document.getElementById('kelompokSiswaList');
-            if (!siswaListContainer) return;
-            siswaListContainer.innerHTML = '';
-
-            if (!kelas || !dataSiswa[kelas]) {
-                siswaListContainer.innerHTML = `<p class="text-gray-500 text-center">Pilih kelas terlebih dahulu</p>`;
-                return;
-            }
-
-            // Dapatkan NIS siswa yang sudah ada di kelompok di kelas ini
-            const siswaInKelompok = new Set();
-            if (dataKelompok[kelas]) {
-                dataKelompok[kelas].forEach(kelompok => {
-                    kelompok.anggota.forEach(siswa => siswaInKelompok.add(siswa.nis));
-                });
-            }
-
-            const siswaList = dataSiswa[kelas];
-            const siswaHtml = siswaList.map(siswa => {
-                const isChecked = siswaInKelompok.has(siswa.nis);
-                const disabled = isChecked ? 'disabled' : '';
-                return `
-                    <label class="flex items-center gap-2 p-2 rounded-md hover:bg-gray-100 cursor-pointer ${disabled ? 'opacity-50 cursor-not-allowed' : ''}">
-                        <input type="checkbox" name="siswaKelompok" value="${siswa.nis}" class="rounded text-blue-600 focus:ring-blue-500" ${disabled}>
-                        <span class="text-sm">${siswa.nama} ${disabled ? '(Sudah di kelompok lain)' : ''}</span>
-                    </label>
-                `;
-            }).join('');
-            siswaListContainer.innerHTML = siswaHtml;
-        }
-
-        // Fungsi untuk menyimpan kelompok baru
-        function saveKelompok(event) {
-            event.preventDefault();
-            const kelas = document.getElementById('kelompokKelas').value;
-            const namaKelompok = document.getElementById('namaKelompok').value;
-            const selectedStudents = Array.from(document.querySelectorAll('#kelompokSiswaList input[name="siswaKelompok"]:checked'))
-                .map(checkbox => {
-                    const nis = checkbox.value;
-                    const siswa = dataSiswa[kelas].find(s => s.nis === nis);
-                    return { nis: siswa.nis, nama: siswa.nama };
-                });
-
-            if (!kelas || !namaKelompok || selectedStudents.length === 0) {
-                showNotification('⚠️ Harap pilih kelas, berikan nama kelompok, dan pilih minimal satu siswa!', 'warning');
-                return;
-            }
-
-            const newKelompok = {
-                id: Date.now(),
-                kelas: kelas,
-                nama: namaKelompok,
-                anggota: selectedStudents
-            };
-
-            // Simpan data
-            if (!dataKelompok[kelas]) {
-                dataKelompok[kelas] = [];
-            }
-            dataKelompok[kelas].push(newKelompok);
-            localStorage.setItem('dataKelompok', JSON.stringify(dataKelompok));
-
-            showNotification('✅ Kelompok berhasil disimpan!', 'success');
-            const formEl = document.getElementById('kelompokForm');
-            if (formEl) formEl.reset();
-            updateKelompokSiswaList();
-            updateKelompokList();
-        }
-
-        // Fungsi untuk menampilkan daftar kelompok yang sudah disimpan
-        function updateKelompokList() {
-            const listContainer = document.getElementById('daftarKelompok');
-            if (!listContainer) return;
-            let totalKelompok = 0;
-            let html = '';
-
-            for (const kelas in dataKelompok) {
-                if (dataKelompok[kelas].length > 0) {
-                    totalKelompok += dataKelompok[kelas].length;
-                    html += `<div class="bg-gray-100 p-4 rounded-xl border mt-4">
-                        <h4 class="font-bold text-lg mb-2">Kelas ${kelas}</h4>
-                        <div class="space-y-2">`;
-                    
-                    dataKelompok[kelas].forEach(kelompok => {
-                        html += `
-                            <div class="bg-white p-3 rounded-md shadow-sm border flex justify-between items-start flex-wrap gap-2">
-                                <div>
-                                    <p class="font-semibold text-gray-800">${kelompok.nama}</p>
-                                    <p class="text-sm text-gray-600">Anggota: ${kelompok.anggota.map(a => a.nama).join(', ')}</p>
-                                </div>
-                                <button onclick="deleteKelompok(${kelompok.id}, '${kelas}')" class="p-2 rounded-md bg-red-500 text-white hover:bg-red-600 transition-colors shrink-0">🗑️ Hapus</button>
-                            </div>
-                        `;
-                    });
-
-                    html += `</div></div>`;
-                }
-            }
-
-            if (totalKelompok === 0) {
-                listContainer.innerHTML = `<p class="text-gray-500 text-center">Belum ada kelompok yang disimpan.</p>`;
-            } else {
-                listContainer.innerHTML = html;
-            }
-        }
-
-        // Fungsi untuk menghapus kelompok
-        function deleteKelompok(id, kelas) {
-            showModal('Konfirmasi Hapus', 'Yakin ingin menghapus kelompok ini?', () => {
-                if (dataKelompok[kelas]) {
-                    dataKelompok[kelas] = dataKelompok[kelas].filter(k => k.id !== id);
-                    if (dataKelompok[kelas].length === 0) {
-                        delete dataKelompok[kelas];
-                    }
-                    localStorage.setItem('dataKelompok', JSON.stringify(dataKelompok));
-                    showNotification('🗑️ Kelompok berhasil dihapus!', 'info');
-                    updateKelompokList();
-                }
-            });
-        }
-        
-        // Fungsi untuk menampilkan Daftar Kelompok
-        function renderDaftarKelompok() {
-            const subContainer = document.getElementById('kelompok-content');
-            let kelasOptions = Object.keys(dataSiswa).sort().map(k => `<option value="${k}">${k}</option>`).join('');
-            
-            let html = `
-                <div class="bg-gray-50 p-6 rounded-xl border mb-6">
-                    <h3 class="text-xl font-semibold mb-4">Daftar Kelompok Per Kelas</h3>
-                    <div class="flex flex-wrap gap-3">
-                        <select id="daftarKelompokKelas" class="px-4 py-2 border rounded-lg">
-                            <option value="">Semua Kelas</option>
-                            ${kelasOptions}
-                        </select>
-                    </div>
-                </div>
-                <div id="daftarKelompokCard" class="space-y-4">
-                    <p class="text-gray-500 text-center py-8">Pilih kelas untuk menampilkan kelompok.</p>
-                </div>
-            `;
-            if (subContainer) subContainer.innerHTML = html;
-            const daftarKelompokKelasEl = document.getElementById('daftarKelompokKelas');
-            if (daftarKelompokKelasEl) daftarKelompokKelasEl.addEventListener('change', updateDaftarKelompokCard);
-            updateDaftarKelompokCard();
-        }
-
-        function updateDaftarKelompokCard() {
-            const kelasEl = document.getElementById('daftarKelompokKelas');
-            const kelas = kelasEl ? kelasEl.value : '';
-            const container = document.getElementById('daftarKelompokCard');
-            if (!container) return;
-            container.innerHTML = '';
-            
-            let classesToShow = kelas ? [kelas] : Object.keys(dataKelompok);
-
-            if (classesToShow.length === 0) {
-                container.innerHTML = `<p class="text-gray-500 text-center py-8">Tidak ada kelompok yang ditemukan.</p>`;
-                return;
-            }
-
-            let html = '';
-            classesToShow.forEach(cls => {
-                if (dataKelompok[cls] && dataKelompok[cls].length > 0) {
-                    html += `<div class="bg-white rounded-xl shadow-md p-6 border">
-                        <h4 class="text-lg font-bold mb-4">Kelas ${cls}</h4>
-                        <div class="space-y-4">`;
-                    
-                    dataKelompok[cls].forEach(kelompok => {
-                        html += `
-                            <div class="bg-gray-50 p-4 rounded-lg border">
-                                <p class="font-semibold text-blue-600 text-lg">${kelompok.nama}</p>
-                                <ul class="list-disc list-inside mt-2 text-sm text-gray-700">
-                                    ${kelompok.anggota.map(anggota => `<li>${anggota.nama}</li>`).join('')}
-                                </ul>
-                            </div>
-                        `;
-                    });
-                    
-                    html += `</div></div>`;
-                }
-            });
-            
-            container.innerHTML = html || `<p class="text-gray-500 text-center py-8">Tidak ada kelompok yang ditemukan.</p>`;
-        }
-
-        // Fungsi untuk menampilkan Input Nilai Kelompok
-        function renderInputNilaiKelompok() {
-            const subContainer = document.getElementById('kelompok-content');
-            let kelasOptions = Object.keys(dataSiswa).sort().map(k => `<option value="${k}">${k}</option>`).join('');
-            
-            let html = `
-                <div class="bg-gray-50 p-6 rounded-xl border mb-6">
-                    <h3 class="text-xl font-semibold mb-4">Input Nilai Proyek Kelompok</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <div>
-                            <label for="nilaiKelompokKelas" class="block text-sm font-medium">Pilih Kelas</label>
-                            <select id="nilaiKelompokKelas" class="mt-1 block w-full p-2 border rounded-md" required>
-                                <option value="">Pilih Kelas</option>
-                                ${kelasOptions}
-                            </select>
-                        </div>
-                        <div>
-                            <label for="nilaiKelompokPilih" class="block text-sm font-medium">Pilih Kelompok</label>
-                            <select id="nilaiKelompokPilih" class="mt-1 block w-full p-2 border rounded-md" required disabled>
-                                <option value="">Pilih Kelompok</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="nilaiKelompokTanggal" class="block text-sm font-medium">Tanggal Penilaian</label>
-                            <input type="date" id="nilaiKelompokTanggal" class="mt-1 block w-full p-2 border rounded-md" required>
-                        </div>
-                        <div class="md:col-span-2 lg:col-span-3">
-                            <label for="nilaiKelompokInput" class="block text-sm font-medium">Nilai Kelompok (0-100)</label>
-                            <input type="number" id="nilaiKelompokInput" min="0" max="100" class="mt-1 block w-full p-2 border rounded-md" placeholder="Masukkan nilai" required>
-                        </div>
-                        <div class="md:col-span-2 lg:col-span-3">
-                            <label for="materiNilaiKelompok" class="block text-sm font-medium">Materi Penilaian</label>
-                            <input type="text" id="materiNilaiKelompok" class="mt-1 block w-full p-2 border rounded-md" placeholder="Contoh: Proyek Web Sederhana">
-                        </div>
-                        <div class="md:col-span-2 lg:col-span-3 flex justify-center mt-4">
-                            <button onclick="simpanNilaiKelompok()" class="bg-green-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors">💾 Simpan Nilai</button>
-                        </div>
-                    </div>
-                </div>
-                <div id="nilaiKelompokHasil" class="mt-8 space-y-4">
-                    <p class="text-gray-500 text-center">Pilih kelompok untuk melihat dan menginput nilai.</p>
-                </div>
-            `;
-            if (subContainer) subContainer.innerHTML = html;
-            const nilaiKelompokKelasEl = document.getElementById('nilaiKelompokKelas');
-            const nilaiKelompokPilihEl = document.getElementById('nilaiKelompokPilih');
-            if (nilaiKelompokKelasEl) nilaiKelompokKelasEl.addEventListener('change', populateKelompokDropdown);
-            if (nilaiKelompokPilihEl) nilaiKelompokPilihEl.addEventListener('change', displayKelompokNilai);
-        }
-
-        function populateKelompokDropdown() {
-            const kelas = document.getElementById('nilaiKelompokKelas').value;
-            const kelompokSelect = document.getElementById('nilaiKelompokPilih');
-            if (!kelompokSelect) return;
-            kelompokSelect.innerHTML = `<option value="">Pilih Kelompok</option>`;
-            kelompokSelect.disabled = true;
-
-            if (kelas && dataKelompok[kelas]) {
-                const kelompokList = dataKelompok[kelas];
-                const optionsHtml = kelompokList.map(kelompok => `<option value="${kelompok.id}">${kelompok.nama}</option>`).join('');
-                kelompokSelect.innerHTML += optionsHtml;
-                kelompokSelect.disabled = false;
-            }
-        }
-        
-        function displayKelompokNilai() {
-            const kelompokId = document.getElementById('nilaiKelompokPilih').value;
-            const kelas = document.getElementById('nilaiKelompokKelas').value;
-            const container = document.getElementById('nilaiKelompokHasil');
-            if (!container) return;
-            container.innerHTML = '';
-            
-            if (!kelompokId || !kelas) return;
-            
-            const kelompok = dataKelompok[kelas].find(k => k.id == kelompokId);
-            if (!kelompok) return;
-
-            const tanggal = document.getElementById('nilaiKelompokTanggal').value;
-            const nilaiTersimpan = (tanggal && dataNilaiKelompok[`${kelompokId}_${tanggal}`]) ? dataNilaiKelompok[`${kelompokId}_${tanggal}`].nilai : '';
-            const materiTersimpan = (tanggal && dataNilaiKelompok[`${kelompokId}_${tanggal}`]) ? dataNilaiKelompok[`${kelompokId}_${tanggal}`].materi : '';
-
-            let html = `
-                <div class="bg-white rounded-xl shadow-md p-6 border">
-                    <p class="text-lg font-bold">Anggota Kelompok ${kelompok.nama}</p>
-                    <ul class="list-disc list-inside mt-2 text-sm text-gray-700">
-                        ${kelompok.anggota.map(anggota => `<li>${anggota.nama}</li>`).join('')}
-                    </ul>
-                </div>
-                <div class="bg-white rounded-xl shadow-md p-6 border mt-4">
-                    <label for="nilaiKelompokInput" class="block text-sm font-medium">Nilai Proyek Kelompok (0-100)</label>
-                    <input type="number" id="nilaiKelompokInput" min="0" max="100" class="mt-1 block w-full p-2 border rounded-md" value="${nilaiTersimpan}" placeholder="Masukkan nilai" required>
-                    <label for="materiNilaiKelompok" class="block text-sm font-medium mt-4">Materi Penilaian</label>
-                    <input type="text" id="materiNilaiKelompok" class="mt-1 block w-full p-2 border rounded-md" value="${materiTersimpan}" placeholder="Contoh: Proyek Web Sederhana">
-                </div>
-                <div class="flex justify-center mt-4">
-                    <button onclick="simpanNilaiKelompok()" class="bg-green-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors">💾 Simpan Nilai</button>
-                </div>
-            `;
-            container.innerHTML = html;
-        }
-
-        function simpanNilaiKelompok() {
-            const kelas = document.getElementById('nilaiKelompokKelas').value;
-            const kelompokId = document.getElementById('nilaiKelompokPilih').value;
-            const tanggal = document.getElementById('nilaiKelompokTanggal').value;
-            const nilai = document.getElementById('nilaiKelompokInput').value;
-            const materi = document.getElementById('materiNilaiKelompok').value;
-
-            if (!kelas || !kelompokId || !tanggal || nilai === '' || materi === '') {
-                showNotification('⚠️ Harap lengkapi semua input!', 'warning');
-                return;
-            }
-
-            const parsedNilai = parseInt(nilai, 10);
-            if (isNaN(parsedNilai) || parsedNilai < 0 || parsedNilai > 100) {
-                showNotification('❌ Nilai harus antara 0-100!', 'error');
-                return;
-            }
-
-            const kelompok = dataKelompok[kelas].find(k => k.id == kelompokId);
-            if (!kelompok) return;
-
-            // Simpan nilai kelompok
-            const nilaiKelompokKey = `${kelompokId}_${tanggal}`;
-            dataNilaiKelompok[nilaiKelompokKey] = {
-                kelas: kelas,
-                nama: kelompok.nama,
-                nilai: parsedNilai,
-                materi: materi
-            };
-            localStorage.setItem('dataNilaiKelompok', JSON.stringify(dataNilaiKelompok));
-            
-            // Distribusikan nilai ke setiap siswa di kelompok
-            kelompok.anggota.forEach(siswa => {
-                const nilaiIndividuKey = `${kelas}_${siswa.nis}_tugas_kelompok_${tanggal}_${kelompokId}`;
-                dataNilai[nilaiIndividuKey] = parsedNilai;
-            });
-            localStorage.setItem('dataNilai', JSON.stringify(dataNilai));
-
-            showNotification(`✅ Nilai kelompok ${kelompok.nama} berhasil disimpan dan didistribusikan!`, 'success');
-            // Reset form setelah simpan
-            const nilaiKelompokKelasEl = document.getElementById('nilaiKelompokKelas');
-            const nilaiKelompokPilihEl = document.getElementById('nilaiKelompokPilih');
-            const nilaiKelompokTanggalEl = document.getElementById('nilaiKelompokTanggal');
-            const nilaiKelompokInputEl = document.getElementById('nilaiKelompokInput');
-            const materiNilaiKelompokEl = document.getElementById('materiNilaiKelompok');
-            const hasilEl = document.getElementById('nilaiKelompokHasil');
-
-            if (nilaiKelompokKelasEl) nilaiKelompokKelasEl.value = '';
-            if (nilaiKelompokPilihEl) {
-                nilaiKelompokPilihEl.innerHTML = '<option value="">Pilih Kelompok</option>';
-                nilaiKelompokPilihEl.disabled = true;
-            }
-            if (nilaiKelompokTanggalEl) nilaiKelompokTanggalEl.value = '';
-            if (nilaiKelompokInputEl) nilaiKelompokInputEl.value = '';
-            if (materiNilaiKelompokEl) materiNilaiKelompokEl.value = '';
-            if (hasilEl) hasilEl.innerHTML = '<p class="text-gray-500 text-center">Pilih kelompok untuk melihat dan menginput nilai.</p>';
-        }
-
-
-        // --- End of new code for Kelompok Belajar ---
 
         // Fungsi untuk memuat konten sub-menu Administrasi
         function loadAdministrasiTabContent(subMenuName) {
             const container = document.getElementById('content-administrasi');
-            if (!container) return;
             let html = `
                 <div class="bg-white rounded-2xl shadow-xl p-6 mb-6">
                     <h2 class="text-2xl font-bold text-gray-800 mb-4">Administrasi Guru</h2>
                     <nav class="flex flex-wrap gap-2 border-b-2 border-gray-100 mb-6">
-                        <button onclick="switchAdministrasiSubMenu('rpp')" id="sub-rpp" class="px-4 py-2 rounded-t-lg font-medium">Manajemen RPP</button>
                         <button onclick="switchAdministrasiSubMenu('jadwal')" id="sub-jadwal" class="px-4 py-2 rounded-t-lg font-medium">Jadwal & Kalender</button>
-                        <button onclick="switchAdministrasiSubMenu('arsip')" id="sub-arsip" class="px-4 py-2 rounded-t-lg font-medium">Arsip & Dokumentasi</button>
                         <button onclick="switchAdministrasiSubMenu('agenda')" id="sub-agenda" class="px-4 py-2 rounded-t-lg font-medium">Agenda Guru</button>
-                        <button onclick="switchAdministrasiSubMenu('catatan')" id="sub-catatan" class="px-4 py-2 rounded-t-lg font-medium">Catatan Murid</button>
+                        <button onclick="switchAdministrasiSubMenu('catatan')" id="sub-catatan" class="px-4 py-2 rounded-t-lg font-medium">Catatan Siswa</button>
+                        <button onclick="switchAdministrasiSubMenu('arsip')" id="sub-arsip" class="px-4 py-2 rounded-t-lg font-medium">Arsip & Dokumentasi</button>
                         <button onclick="switchAdministrasiSubMenu('biodata')" id="sub-biodata" class="px-4 py-2 rounded-t-lg font-medium">Biodata & Profil</button>
                     </nav>
                     <div id="administrasi-content"></div>
@@ -1020,31 +480,30 @@
                 button.classList.remove('bg-blue-600', 'text-white');
                 button.classList.add('text-gray-600', 'hover:bg-gray-100');
             });
-            const activeButton = document.getElementById(`sub-${subMenuName}`);
-            if (activeButton) {
-                activeButton.classList.add('bg-blue-600', 'text-white');
-                activeButton.classList.remove('text-gray-600', 'hover:bg-gray-100');
+            const selectedButton = document.getElementById(`sub-${subMenuName}`);
+            if (selectedButton) {
+                selectedButton.classList.add('bg-blue-600', 'text-white');
+                selectedButton.classList.remove('text-gray-600', 'hover:bg-gray-100');
             }
 
             const subContainer = document.getElementById('administrasi-content');
-            if(subContainer) subContainer.innerHTML = '';
-            if(subContainer) subContainer.classList.add('fade-in');
+            if (subContainer) {
+                subContainer.innerHTML = '';
+                subContainer.classList.add('fade-in');
+            }
 
             switch(subMenuName) {
-                case 'rpp':
-                    renderRppManagement();
-                    break;
                 case 'jadwal':
                     renderJadwalKalender();
-                    break;
-                case 'arsip':
-                    renderArsipDokumentasi();
                     break;
                 case 'agenda':
                     renderAgendaGuru();
                     break;
                 case 'catatan':
-                    renderCatatanMurid();
+                    renderCatatanSiswa();
+                    break;
+                case 'arsip':
+                    renderArsipDokumentasi();
                     break;
                 case 'biodata':
                     renderBiodataProfile();
@@ -1057,79 +516,58 @@
             const subContainer = document.getElementById('administrasi-content');
             if (!subContainer) return;
             let html = `
-                <h3 class="text-xl font-semibold mb-4">Agenda Guru</h3>
-                <p class="text-gray-600 mb-4">Catat kegiatan harian Anda dan tambahkan foto jika diperlukan.</p>
+                <h3 class="text-xl font-semibold mb-4">Agenda Kegiatan Guru</h3>
+                <p class="text-gray-600 mb-4">Catat semua kegiatan penting Anda di sini.</p>
                 <div class="bg-gray-50 p-6 rounded-xl border mb-6">
                     <h4 class="text-lg font-medium mb-4">Tambah Agenda Baru</h4>
-                    <form id="agendaForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label for="agendaTanggal" class="block text-sm font-medium">Tanggal</label>
-                            <input type="date" id="agendaTanggal" class="mt-1 block w-full p-2 border rounded-md" required>
+                    <form id="agendaForm" class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+                        <div class="md:col-span-1">
+                            <label for="agendaDate" class="block text-sm font-medium">Tanggal</label>
+                            <input type="date" id="agendaDate" class="mt-1 block w-full p-2 border rounded-md" required>
                         </div>
-                        <div>
+                        <div class="md:col-span-1">
+                            <label for="agendaTime" class="block text-sm font-medium">Waktu</label>
+                            <input type="time" id="agendaTime" class="mt-1 block w-full p-2 border rounded-md" required>
+                        </div>
+                        <div class="md:col-span-2">
                             <label for="agendaKegiatan" class="block text-sm font-medium">Kegiatan</label>
                             <input type="text" id="agendaKegiatan" placeholder="Contoh: Rapat Wali Kelas" class="mt-1 block w-full p-2 border rounded-md" required>
                         </div>
-                        <div class="md:col-span-2">
-                            <label for="agendaFoto" class="block text-sm font-medium">Unggah Foto (Opsional)</label>
-                            <input type="file" id="agendaFoto" accept="image/*" class="mt-1 block w-full p-2 border rounded-md">
-                        </div>
-                        <div class="md:col-span-2 flex flex-wrap gap-4 mt-4">
-                            <button type="submit" class="bg-blue-600 text-white px-6 py-2.5 rounded-lg font-medium">💾 Simpan Agenda</button>
-                        </div>
+                        <button type="submit" class="bg-blue-600 text-white px-6 py-2.5 rounded-lg font-medium col-span-full">➕ Simpan Agenda</button>
                     </form>
                 </div>
                 <div class="mt-6">
-                    <h4 class="text-xl font-semibold mb-4">Daftar Agenda Tersimpan</h4>
+                    <h4 class="text-xl font-semibold mb-4">Daftar Agenda</h4>
                     <div id="agendaList" class="space-y-4"></div>
                 </div>
             `;
             subContainer.innerHTML = html;
-            const agendaFormEl = document.getElementById('agendaForm');
-            if (agendaFormEl) agendaFormEl.addEventListener('submit', saveAgenda);
+            document.getElementById('agendaForm').addEventListener('submit', saveAgenda);
             updateAgendaList();
         }
 
-        // Fungsi untuk menyimpan agenda baru
+        // Fungsi untuk menyimpan agenda
         function saveAgenda(event) {
             event.preventDefault();
             const form = event.target;
-            const tanggal = form.agendaTanggal.value;
-            const kegiatan = form.agendaKegiatan.value;
-            const fotoFile = form.agendaFoto.files[0];
-
-            if (!tanggal || !kegiatan) {
-                showNotification('⚠️ Harap isi tanggal dan kegiatan!', 'warning');
-                return;
-            }
-
             const newAgenda = {
                 id: Date.now(),
-                tanggal: tanggal,
-                kegiatan: kegiatan,
-                foto: null
+                date: form.agendaDate.value,
+                time: form.agendaTime.value,
+                kegiatan: form.agendaKegiatan.value
             };
 
-            if (fotoFile) {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    newAgenda.foto = e.target.result; // Simpan sebagai Base64
-                    dataAgenda.push(newAgenda);
-                    localStorage.setItem('dataAgenda', JSON.stringify(dataAgenda));
-                    showNotification('✅ Agenda berhasil disimpan!', 'success');
-                    form.reset();
-                    updateAgendaList();
-                };
-                reader.readAsDataURL(fotoFile);
-            } else {
+            if (newAgenda.date && newAgenda.time && newAgenda.kegiatan) {
                 dataAgenda.push(newAgenda);
                 localStorage.setItem('dataAgenda', JSON.stringify(dataAgenda));
                 showNotification('✅ Agenda berhasil disimpan!', 'success');
                 form.reset();
                 updateAgendaList();
+            } else {
+                showNotification('⚠️ Harap lengkapi semua data!', 'warning');
             }
         }
-
+        
         // Fungsi untuk memperbarui daftar agenda
         function updateAgendaList() {
             const listContainer = document.getElementById('agendaList');
@@ -1138,34 +576,54 @@
                 listContainer.innerHTML = `<p class="text-center text-gray-500 py-8">Belum ada agenda tersimpan.</p>`;
                 return;
             }
-            const sortedAgenda = [...dataAgenda].sort((a, b) => new Date(b.tanggal) - new Date(a.tanggal));
+            const sortedAgenda = [...dataAgenda].sort((a, b) => {
+                const dateA = new Date(`${a.date}T${a.time}`);
+                const dateB = new Date(`${b.date}T${b.time}`);
+                return dateA - dateB;
+            });
+
             listContainer.innerHTML = sortedAgenda.map(agenda => `
-                <div class="bg-gray-100 p-4 rounded-xl border flex items-center justify-between flex-wrap gap-4">
-                    <div class="flex-1">
-                        <p class="font-semibold text-gray-800">${new Date(agenda.tanggal).toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
-                        <p class="text-sm text-gray-600 mt-1">${agenda.kegiatan}</p>
-                        ${agenda.foto ? `<img src="${agenda.foto}" alt="Foto Kegiatan" class="mt-2 w-24 h-24 object-cover rounded-md cursor-pointer" onclick="showImageInModal('${agenda.foto}')">` : ''}
+                <div class="bg-gray-100 p-4 rounded-xl border flex items-center justify-between flex-wrap gap-2">
+                    <div>
+                        <p class="font-semibold text-gray-800">${agenda.kegiatan}</p>
+                        <p class="text-sm text-gray-500">Tanggal: ${new Date(agenda.date).toLocaleDateString('id-ID')}, Waktu: ${agenda.time}</p>
                     </div>
-                    <button onclick="deleteAgenda(${agenda.id})" class="p-2 rounded-md bg-red-500 text-white hover:bg-red-600 transition-colors shrink-0">🗑️ Hapus</button>
+                    <div class="flex gap-2 shrink-0">
+                        <button onclick="promptEditAgenda(${agenda.id})" class="p-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 transition-colors">✏️ Edit</button>
+                        <button onclick="deleteAgenda(${agenda.id})" class="p-2 rounded-md bg-red-500 text-white hover:bg-red-600 transition-colors">🗑️ Hapus</button>
+                    </div>
                 </div>
             `).join('');
         }
 
-        // Fungsi untuk menampilkan gambar dalam modal
-        function showImageInModal(src) {
-             // Menggunakan fungsi modal baru yang khusus untuk menampilkan gambar
-             showImageModal('Foto Kegiatan', src);
-        }
-        
-        // Fungsi baru untuk menampilkan modal dengan hanya gambar dan tombol tutup
-        function showImageModal(title, src) {
-            const existingModal = document.getElementById('customModal');
-            if (existingModal) existingModal.remove();
-
-            let modalHtml = `<div id="customModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 h-full w-full z-[100] flex items-center justify-center p-4"><div class="relative mx-auto p-5 border w-full max-w-2xl shadow-lg rounded-2xl bg-white"><div class="mt-3"><h3 class="text-lg font-medium text-center">${title}</h3><div class="mt-4 px-4 py-3 text-left space-y-4"><img src="${src}" alt="Foto Kegiatan" class="w-full h-auto object-contain"></div><div class="items-center px-4 py-3 flex gap-3 mt-4"><button id="cancelBtn" class="p-2 bg-gray-200 rounded-md w-full">Tutup</button></div></div></div></div>`;
-            document.body.insertAdjacentHTML('beforeend', modalHtml);
-            const closeModal = () => document.getElementById('customModal').remove();
-            document.getElementById('cancelBtn').onclick = closeModal;
+        // Fungsi untuk menampilkan modal edit agenda
+        function promptEditAgenda(id) {
+            const agenda = dataAgenda.find(a => a.id === id);
+            if (!agenda) return;
+            const bodyHtml = `
+                <label class="block text-sm font-medium">Tanggal</label>
+                <input type="date" id="modal-agenda-date" class="mt-1 block w-full p-2 border rounded-md" value="${agenda.date}">
+                <label class="block text-sm font-medium mt-4">Waktu</label>
+                <input type="time" id="modal-agenda-time" class="mt-1 block w-full p-2 border rounded-md" value="${agenda.time}">
+                <label class="block text-sm font-medium mt-4">Kegiatan</label>
+                <input type="text" id="modal-agenda-kegiatan" class="mt-1 block w-full p-2 border rounded-md" value="${agenda.kegiatan}">
+            `;
+            showModalWithInputs('Edit Agenda', bodyHtml, () => {
+                const newDate = document.getElementById('modal-agenda-date').value;
+                const newTime = document.getElementById('modal-agenda-time').value;
+                const newKegiatan = document.getElementById('modal-agenda-kegiatan').value;
+                if (newDate && newTime && newKegiatan) {
+                    const agendaIndex = dataAgenda.findIndex(a => a.id === id);
+                    if (agendaIndex !== -1) {
+                        dataAgenda[agendaIndex] = { ...agenda, date: newDate, time: newTime, kegiatan: newKegiatan };
+                        localStorage.setItem('dataAgenda', JSON.stringify(dataAgenda));
+                        showNotification('✅ Agenda berhasil diperbarui!', 'success');
+                        updateAgendaList();
+                    }
+                } else {
+                    showNotification('⚠️ Harap lengkapi semua data!', 'warning');
+                }
+            });
         }
 
         // Fungsi untuk menghapus agenda
@@ -1177,363 +635,175 @@
                 updateAgendaList();
             });
         }
-
-        // Fungsi untuk menampilkan konten Catatan Murid
-        function renderCatatanMurid() {
+        
+        // Fungsi untuk menampilkan konten Catatan Siswa
+        function renderCatatanSiswa() {
             const subContainer = document.getElementById('administrasi-content');
             if (!subContainer) return;
+
             let kelasOptions = Object.keys(dataSiswa).sort().map(k => `<option value="${k}">${k}</option>`).join('');
+
             let html = `
-                <h3 class="text-xl font-semibold mb-4">Catatan Murid</h3>
-                <p class="text-gray-600 mb-4">Buat dan kelola catatan untuk siswa.</p>
+                <h3 class="text-xl font-semibold mb-4">Catatan Siswa</h3>
+                <p class="text-gray-600 mb-4">Buat catatan khusus untuk siswa tertentu.</p>
                 <div class="bg-gray-50 p-6 rounded-xl border mb-6">
-                    <h4 class="text-lg font-medium mb-4">Tambah Catatan Baru</h4>
-                    <form id="catatanForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
+                    <h4 class="text-lg font-medium mb-4">Formulir Catatan</h4>
+                    <form id="catatanForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
+                        <div class="md:col-span-1">
                             <label for="catatanKelas" class="block text-sm font-medium">Pilih Kelas</label>
                             <select id="catatanKelas" class="mt-1 block w-full p-2 border rounded-md" required>
                                 <option value="">Pilih Kelas</option>
                                 ${kelasOptions}
                             </select>
                         </div>
-                        <div>
+                        <div class="md:col-span-1">
                             <label for="catatanSiswa" class="block text-sm font-medium">Pilih Siswa</label>
                             <select id="catatanSiswa" class="mt-1 block w-full p-2 border rounded-md" required disabled>
                                 <option value="">Pilih Siswa</option>
                             </select>
                         </div>
-                        <div class="md:col-span-2">
-                            <label for="catatanText" class="block text-sm font-medium">Catatan</label>
-                            <textarea id="catatanText" rows="4" placeholder="Masukkan catatan tentang siswa..." class="mt-1 block w-full p-2 border rounded-md" required></textarea>
+                        <div class="lg:col-span-2 md:col-span-2">
+                             <label for="catatanText" class="block text-sm font-medium">Isi Catatan</label>
+                             <textarea id="catatanText" rows="3" class="mt-1 block w-full p-2 border rounded-md" placeholder="Tulis catatan di sini..." required></textarea>
                         </div>
-                        <div class="md:col-span-2 flex flex-wrap gap-4 mt-4">
+                        <div class="col-span-full flex gap-3">
                             <button type="submit" class="bg-blue-600 text-white px-6 py-2.5 rounded-lg font-medium">💾 Simpan Catatan</button>
+                            <button type="button" onclick="resetCatatanForm()" class="bg-gray-200 text-gray-800 px-6 py-2.5 rounded-lg font-medium">🔄 Reset</button>
                         </div>
                     </form>
                 </div>
                 <div class="mt-6">
-                    <h4 class="text-xl font-semibold mb-4">Daftar Catatan Tersimpan</h4>
+                    <h4 class="text-xl font-semibold mb-4">Daftar Catatan Siswa</h4>
                     <div id="catatanList" class="space-y-4"></div>
                 </div>
             `;
             subContainer.innerHTML = html;
-            
-            // Event listener untuk memuat siswa saat kelas dipilih
-            const catatanKelasEl = document.getElementById('catatanKelas');
-            const catatanFormEl = document.getElementById('catatanForm');
-            if(catatanKelasEl) catatanKelasEl.addEventListener('change', populateSiswaDropdown);
-            if(catatanFormEl) catatanFormEl.addEventListener('submit', saveCatatan);
-            updateCatatanList();
+            document.getElementById('catatanKelas').addEventListener('change', updateSiswaDropdown);
+            document.getElementById('catatanSiswa').addEventListener('change', updateCatatanList);
+            document.getElementById('catatanForm').addEventListener('submit', saveCatatan);
         }
 
-        // Fungsi untuk mengisi dropdown siswa
-        function populateSiswaDropdown() {
+        // Fungsi untuk memperbarui dropdown siswa berdasarkan kelas
+        function updateSiswaDropdown() {
             const kelas = document.getElementById('catatanKelas').value;
             const siswaSelect = document.getElementById('catatanSiswa');
-            if (!siswaSelect) return;
             siswaSelect.innerHTML = `<option value="">Pilih Siswa</option>`;
-            siswaSelect.disabled = true;
-
             if (kelas && dataSiswa[kelas]) {
-                const siswaList = dataSiswa[kelas].sort((a,b) => a.nama.localeCompare(b.nama));
-                const optionsHtml = siswaList.map(siswa => `<option value="${siswa.nis}">${siswa.nama}</option>`).join('');
-                siswaSelect.innerHTML += optionsHtml;
+                dataSiswa[kelas].sort((a,b) => a.nama.localeCompare(b.nama)).forEach(siswa => {
+                    siswaSelect.innerHTML += `<option value="${siswa.nis}">${siswa.nama}</option>`;
+                });
                 siswaSelect.disabled = false;
+            } else {
+                siswaSelect.disabled = true;
             }
             updateCatatanList();
         }
 
-        // Fungsi untuk menyimpan catatan murid
+        // Fungsi untuk menyimpan catatan siswa
         function saveCatatan(event) {
             event.preventDefault();
-            const form = event.target;
-            const kelas = form.catatanKelas.value;
-            const nis = form.catatanSiswa.value;
-            const catatan = form.catatanText.value;
+            const kelas = document.getElementById('catatanKelas').value;
+            const nis = document.getElementById('catatanSiswa').value;
+            const catatan = document.getElementById('catatanText').value.trim();
 
-            if (!kelas || !nis || !catatan) {
+            if (kelas && nis && catatan) {
+                const key = `${kelas}_${nis}`;
+                if (!dataCatatanSiswa[key]) {
+                    dataCatatanSiswa[key] = [];
+                }
+                dataCatatanSiswa[key].push({
+                    id: Date.now(),
+                    text: catatan,
+                    timestamp: new Date().toISOString()
+                });
+                localStorage.setItem('dataCatatanSiswa', JSON.stringify(dataCatatanSiswa));
+                showNotification('✅ Catatan berhasil disimpan!', 'success');
+                resetCatatanForm();
+                updateCatatanList();
+            } else {
                 showNotification('⚠️ Harap lengkapi semua kolom!', 'warning');
-                return;
             }
-
-            const siswa = dataSiswa[kelas].find(s => s.nis === nis);
-            if (!siswa) {
-                showNotification('❌ Siswa tidak ditemukan!', 'error');
-                return;
-            }
-
-            const newCatatan = {
-                id: Date.now(),
-                tanggal: new Date().toISOString().split('T')[0],
-                kelas: kelas,
-                nama: siswa.nama,
-                catatan: catatan
-            };
-
-            // Kelompokkan catatan berdasarkan siswa
-            const siswaKey = `${kelas}_${nis}`;
-            if (!dataCatatan[siswaKey]) {
-                dataCatatan[siswaKey] = [];
-            }
-            dataCatatan[siswaKey].push(newCatatan);
-            
-            localStorage.setItem('dataCatatan', JSON.stringify(dataCatatan));
-            showNotification('✅ Catatan berhasil disimpan!', 'success');
-            form.reset();
-            populateSiswaDropdown();
-            updateCatatanList();
+        }
+        
+        // Fungsi untuk mereset formulir catatan
+        function resetCatatanForm() {
+            document.getElementById('catatanForm').reset();
+            const siswaSelect = document.getElementById('catatanSiswa');
+            siswaSelect.innerHTML = `<option value="">Pilih Siswa</option>`;
+            siswaSelect.disabled = true;
+            document.getElementById('catatanList').innerHTML = '';
         }
 
-        // Fungsi untuk memperbarui daftar catatan
+        // Fungsi untuk memperbarui daftar catatan siswa
         function updateCatatanList() {
             const listContainer = document.getElementById('catatanList');
-            if (!listContainer) return;
-            let html = '';
-            const allCatatan = Object.values(dataCatatan).flat();
+            const kelas = document.getElementById('catatanKelas').value;
+            const nis = document.getElementById('catatanSiswa').value;
 
-            if (allCatatan.length === 0) {
-                listContainer.innerHTML = `<p class="text-center text-gray-500 py-8">Belum ada catatan tersimpan.</p>`;
+            if (!listContainer) return;
+
+            if (!kelas || !nis || !dataCatatanSiswa[`${kelas}_${nis}`]) {
+                listContainer.innerHTML = `<p class="text-center text-gray-500 py-8">Belum ada catatan untuk siswa ini.</p>`;
                 return;
             }
+            const catatanSiswa = dataCatatanSiswa[`${kelas}_${nis}`];
 
-            // Urutkan catatan dari yang terbaru
-            allCatatan.sort((a, b) => b.id - a.id);
+            const sortedCatatan = [...catatanSiswa].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
-            // Tampilkan catatan
-            listContainer.innerHTML = allCatatan.map(note => `
-                <div class="bg-gray-100 p-4 rounded-xl border flex items-start justify-between gap-4">
-                    <div class="flex-1">
-                        <p class="font-semibold text-gray-800">${note.nama} <span class="text-sm font-normal text-gray-500">(${note.kelas})</span></p>
-                        <p class="text-sm text-gray-600 mt-1">${note.catatan}</p>
-                        <p class="text-xs text-gray-400 mt-2">Dibuat pada: ${new Date(note.tanggal).toLocaleDateString('id-ID')}</p>
+            listContainer.innerHTML = sortedCatatan.map(catatan => `
+                <div class="bg-gray-100 p-4 rounded-xl border flex items-start justify-between flex-wrap gap-2">
+                    <div>
+                        <p class="text-gray-800">${catatan.text}</p>
+                        <p class="text-sm text-gray-500 mt-1">Dibuat pada: ${new Date(catatan.timestamp).toLocaleString('id-ID')}</p>
                     </div>
-                    <button onclick="deleteCatatan(${note.id})" class="p-2 rounded-md bg-red-500 text-white hover:bg-red-600 transition-colors shrink-0">🗑️ Hapus</button>
+                    <div class="flex gap-2 shrink-0">
+                        <button onclick="promptEditCatatan('${kelas}', '${nis}', ${catatan.id})" class="p-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 transition-colors">✏️ Edit</button>
+                        <button onclick="deleteCatatan('${kelas}', '${nis}', ${catatan.id})" class="p-2 rounded-md bg-red-500 text-white hover:bg-red-600 transition-colors">🗑️ Hapus</button>
+                    </div>
                 </div>
             `).join('');
         }
 
-        // Fungsi untuk menghapus catatan
-        function deleteCatatan(id) {
-            showModal('Konfirmasi Hapus', 'Yakin ingin menghapus catatan ini?', () => {
-                let foundAndDeleted = false;
-                for (const siswaKey in dataCatatan) {
-                    const originalLength = dataCatatan[siswaKey].length;
-                    dataCatatan[siswaKey] = dataCatatan[siswaKey].filter(note => note.id !== id);
-                    if (dataCatatan[siswaKey].length < originalLength) {
-                        foundAndDeleted = true;
-                    }
-                    // Hapus key jika array kosong
-                    if (dataCatatan[siswaKey].length === 0) {
-                        delete dataCatatan[siswaKey];
-                    }
-                }
+        // Fungsi untuk mengedit catatan siswa
+        function promptEditCatatan(kelas, nis, id) {
+            const catatan = dataCatatanSiswa[`${kelas}_${nis}`].find(c => c.id === id);
+            if (!catatan) return;
 
-                if (foundAndDeleted) {
-                    localStorage.setItem('dataCatatan', JSON.stringify(dataCatatan));
-                    showNotification('🗑️ Catatan berhasil dihapus!', 'info');
-                    updateCatatanList();
+            const bodyHtml = `
+                <p>Edit catatan untuk siswa ini:</p>
+                <textarea id="modal-catatan-edit" rows="4" class="w-full p-2 border rounded-md mt-2">${catatan.text}</textarea>
+            `;
+            showModalWithInputs('Edit Catatan', bodyHtml, () => {
+                const newText = document.getElementById('modal-catatan-edit').value.trim();
+                if (newText) {
+                    const catatanIndex = dataCatatanSiswa[`${kelas}_${nis}`].findIndex(c => c.id === id);
+                    if (catatanIndex !== -1) {
+                        dataCatatanSiswa[`${kelas}_${nis}`][catatanIndex].text = newText;
+                        dataCatatanSiswa[`${kelas}_${nis}`][catatanIndex].timestamp = new Date().toISOString(); // Update timestamp
+                        localStorage.setItem('dataCatatanSiswa', JSON.stringify(dataCatatanSiswa));
+                        showNotification('✅ Catatan berhasil diperbarui!', 'success');
+                        updateCatatanList();
+                    }
                 } else {
-                    showNotification('❌ Catatan tidak ditemukan.', 'error');
+                    showNotification('⚠️ Catatan tidak boleh kosong!', 'warning');
                 }
             });
         }
         
-        // Fungsi untuk menampilkan konten Manajemen RPP
-        function renderRppManagement() {
-            const subContainer = document.getElementById('administrasi-content');
-            let kelasOptions = Object.keys(dataSiswa).sort().map(k => `<option value="${k}">${k}</option>`).join('');
-            let html = `
-                <h3 class="text-xl font-semibold mb-4">Manajemen Rencana Pelaksanaan Pembelajaran (RPP)</h3>
-                <div class="bg-gray-50 p-6 rounded-xl border mb-6">
-                    <h4 class="text-lg font-medium mb-4">Formulir RPP Digital</h4>
-                    <form id="rppForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label for="rppKelas" class="block text-sm font-medium">Kelas</label>
-                            <select id="rppKelas" name="kelas" class="mt-1 block w-full p-2 border rounded-md">
-                                <option value="">Pilih Kelas</option>
-                                ${kelasOptions}
-                            </select>
-                        </div>
-                        <div>
-                            <label for="rppMataPelajaran" class="block text-sm font-medium">Mata Pelajaran</label>
-                            <input type="text" id="rppMataPelajaran" name="mataPelajaran" class="mt-1 block w-full p-2 border rounded-md" required>
-                        </div>
-                        <div>
-                            <label for="rppKompetensi" class="block text-sm font-medium">Kompetensi Dasar</label>
-                            <textarea id="rppKompetensi" name="kompetensi" rows="3" class="mt-1 block w-full p-2 border rounded-md" required></textarea>
-                        </div>
-                        <div>
-                            <label for="rppTujuan" class="block text-sm font-medium">Tujuan Pembelajaran</label>
-                            <textarea id="rppTujuan" name="tujuan" rows="3" class="mt-1 block w-full p-2 border rounded-md" required></textarea>
-                        </div>
-                        <div>
-                            <label for="rppMateri" class="block text-sm font-medium">Materi Pembelajaran</label>
-                            <textarea id="rppMateri" name="materi" rows="3" class="mt-1 block w-full p-2 border rounded-md" required></textarea>
-                        </div>
-                        <div>
-                            <label for="rppMetode" class="block text-sm font-medium">Metode Pembelajaran</label>
-                            <textarea id="rppMetode" name="metode" rows="3" class="mt-1 block w-full p-2 border rounded-md" required></textarea>
-                        </div>
-                        <div class="md:col-span-2">
-                            <label for="rppPenilaian" class="block text-sm font-medium">Penilaian</label>
-                            <textarea id="rppPenilaian" name="penilaian" rows="3" class="mt-1 block w-full p-2 border rounded-md" required></textarea>
-                        </div>
-                        <div class="md:col-span-2 flex flex-wrap gap-4 mt-4">
-                            <button type="submit" class="bg-blue-600 text-white px-6 py-2.5 rounded-lg font-medium">💾 Simpan RPP</button>
-                            <button type="button" onclick="loadRppTemplate()" class="bg-purple-600 text-white px-6 py-2.5 rounded-lg font-medium">📄 Gunakan Template</button>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="mt-6">
-                    <h4 class="text-xl font-semibold mb-4">Daftar RPP Tersimpan</h4>
-                    <div id="rppList" class="space-y-4"></div>
-                </div>
-            `;
-            subContainer.innerHTML = html;
-            const rppFormEl = document.getElementById('rppForm');
-            if (rppFormEl) rppFormEl.addEventListener('submit', saveRpp);
-            updateRppList();
-        }
-
-        // Fungsi untuk memuat template RPP
-        function loadRppTemplate() {
-            const rppMataPelajaranEl = document.getElementById('rppMataPelajaran');
-            const rppKompetensiEl = document.getElementById('rppKompetensi');
-            const rppTujuanEl = document.getElementById('rppTujuan');
-            const rppMateriEl = document.getElementById('rppMateri');
-            const rppMetodeEl = document.getElementById('rppMetode');
-            const rppPenilaianEl = document.getElementById('rppPenilaian');
-
-            if(rppMataPelajaranEl) rppMataPelajaranEl.value = "Informatika";
-            if(rppKompetensiEl) rppKompetensiEl.value = "Memahami konsep algoritma dan pemrograman dasar.";
-            if(rppTujuanEl) rppTujuanEl.value = "Setelah kegiatan pembelajaran, siswa dapat menjelaskan konsep algoritma, mengidentifikasi struktur dasar program, dan membuat program sederhana menggunakan bahasa pemrograman.";
-            if(rppMateriEl) rppMateriEl.value = "Pengenalan Algoritma, Struktur Program (Sekuensial, Percabangan, Perulangan), Sintaks Dasar Python.";
-            if(rppMetodeEl) rppMetodeEl.value = "Diskusi, studi kasus, dan praktik lab.";
-            if(rppPenilaianEl) rppPenilaianEl.value = "Penilaian formatif: partisipasi diskusi dan kuis singkat. Penilaian sumatif: proyek akhir membuat program sederhana.";
-        }
-
-        // Fungsi untuk menyimpan data RPP
-        function saveRpp(event) {
-            event.preventDefault();
-            const form = event.target;
-            const newRpp = {
-                id: Date.now(),
-                kelas: form.rppKelas.value,
-                mataPelajaran: form.rppMataPelajaran.value,
-                kompetensi: form.rppKompetensi.value,
-                tujuan: form.rppTujuan.value,
-                materi: form.rppMateri.value,
-                metode: form.rppMetode.value,
-                penilaian: form.rppPenilaian.value,
-                tanggal: new Date().toISOString().split('T')[0]
-            };
-            if (!newRpp.kelas || !newRpp.mataPelajaran) {
-                showNotification('⚠️ Harap lengkapi semua data wajib!', 'warning');
-                return;
-            }
-            dataRpp.push(newRpp);
-            localStorage.setItem('dataRpp', JSON.stringify(dataRpp));
-            showNotification('✅ RPP berhasil disimpan!', 'success');
-            form.reset();
-            updateRppList();
-        }
-
-        // Fungsi untuk memperbarui daftar RPP
-        function updateRppList() {
-            const listContainer = document.getElementById('rppList');
-            if (!listContainer) return;
-            if (dataRpp.length === 0) {
-                listContainer.innerHTML = `<p class="text-center text-gray-500 py-8">Belum ada RPP tersimpan.</p>`;
-                return;
-            }
-            const sortedRpp = [...dataRpp].sort((a, b) => new Date(b.tanggal) - new Date(a.tanggal));
-            listContainer.innerHTML = sortedRpp.map(rpp => `
-                <div class="bg-gray-100 p-4 rounded-xl border flex items-center justify-between flex-wrap gap-2">
-                    <div>
-                        <p class="font-semibold text-gray-800">${rpp.mataPelajaran} - Kelas ${rpp.kelas}</p>
-                        <p class="text-sm text-gray-500">Disimpan pada: ${new Date(rpp.tanggal).toLocaleDateString('id-ID')}</p>
-                    </div>
-                    <div class="flex gap-2">
-                        <button onclick="exportRppPdf(${rpp.id})" class="text-red-500 hover:text-red-700 font-medium">📥 PDF</button>
-                        <button onclick="exportRppExcel(${rpp.id})" class="text-green-500 hover:text-green-700 font-medium">📥 Excel</button>
-                        <button onclick="deleteRpp(${rpp.id})" class="p-2 rounded-md bg-red-500 text-white hover:bg-red-600 transition-colors">🗑️ Hapus</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Fungsi untuk menghapus RPP
-        function deleteRpp(id) {
-            showModal('Konfirmasi Hapus', 'Yakin ingin menghapus RPP ini?', () => {
-                dataRpp = dataRpp.filter(r => r.id !== id);
-                localStorage.setItem('dataRpp', JSON.stringify(dataRpp));
-                showNotification('🗑️ RPP berhasil dihapus!', 'info');
-                updateRppList();
+        // Fungsi untuk menghapus catatan siswa
+        function deleteCatatan(kelas, nis, id) {
+            showModal('Konfirmasi Hapus', 'Yakin ingin menghapus catatan ini?', () => {
+                if (dataCatatanSiswa[`${kelas}_${nis}`]) {
+                    dataCatatanSiswa[`${kelas}_${nis}`] = dataCatatanSiswa[`${kelas}_${nis}`].filter(c => c.id !== id);
+                    if (dataCatatanSiswa[`${kelas}_${nis}`].length === 0) {
+                        delete dataCatatanSiswa[`${kelas}_${nis}`];
+                    }
+                    localStorage.setItem('dataCatatanSiswa', JSON.stringify(dataCatatanSiswa));
+                    showNotification('🗑️ Catatan berhasil dihapus!', 'info');
+                    updateCatatanList();
+                }
             });
         }
-
-        // Fungsi untuk ekspor RPP ke PDF
-        function exportRppPdf(id) {
-            const rpp = dataRpp.find(r => r.id === id);
-            if (!rpp) { showNotification('❌ RPP tidak ditemukan.', 'error'); return; }
-
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-            doc.setFontSize(18);
-            doc.text(`Rencana Pelaksanaan Pembelajaran (RPP)`, 105, 20, null, null, "center");
-            doc.setFontSize(12);
-            doc.text(`Mata Pelajaran: ${rpp.mataPelajaran}`, 14, 35);
-            doc.text(`Kelas: ${rpp.kelas}`, 14, 45);
-            doc.text(`Tanggal: ${new Date(rpp.tanggal).toLocaleDateString('id-ID')}`, 14, 55);
-
-            const content = [
-                { title: "Kompetensi Dasar", text: rpp.kompetensi },
-                { title: "Tujuan Pembelajaran", text: rpp.tujuan },
-                { title: "Materi Pembelajaran", text: rpp.materi },
-                { title: "Metode Pembelajaran", text: rpp.metode },
-                { title: "Penilaian", text: rpp.penilaian }
-            ];
-
-            let y = 65;
-            content.forEach(item => {
-                doc.setFontSize(14);
-                doc.text(item.title, 14, y);
-                y += 7;
-                doc.setFontSize(12);
-                const splitText = doc.splitTextToSize(item.text, 180);
-                doc.text(splitText, 14, y);
-                y += (splitText.length * 7) + 5;
-            });
-
-            doc.save(`RPP_${rpp.mataPelajaran}_${rpp.kelas}.pdf`);
-            showNotification(`📥 RPP berhasil diekspor ke PDF!`, 'success');
-        }
-
-        // Fungsi untuk ekspor RPP ke Excel
-        function exportRppExcel(id) {
-            const rpp = dataRpp.find(r => r.id === id);
-            if (!rpp) { showNotification('❌ RPP tidak ditemukan.', 'error'); return; }
-            
-            const ws_data = [
-                ["Rencana Pelaksanaan Pembelajaran (RPP)"],
-                ["Mata Pelajaran", rpp.mataPelajaran],
-                ["Kelas", rpp.kelas],
-                ["Tanggal", new Date(rpp.tanggal).toLocaleDateString('id-ID')],
-                [],
-                ["Kompetensi Dasar", rpp.kompetensi],
-                ["Tujuan Pembelajaran", rpp.tujuan],
-                ["Materi Pembelajaran", rpp.materi],
-                ["Metode Pembelajaran", rpp.metode],
-                ["Penilaian", rpp.penilaian]
-            ];
-            const ws = XLSX.utils.aoa_to_sheet(ws_data);
-            const wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, "RPP");
-            XLSX.writeFile(wb, `RPP_${rpp.mataPelajaran}_${rpp.kelas}.xlsx`);
-            showNotification(`📥 RPP berhasil diekspor ke Excel!`, 'success');
-        }
-
 
         // Fungsi untuk menampilkan konten Jadwal & Kalender
         function renderJadwalKalender() {
@@ -1543,10 +813,13 @@
             const jadwalList = jadwalDays.map(day => {
                 const dayTitle = day.charAt(0).toUpperCase() + day.slice(1);
                 const scheduleItems = dataJadwal[day] || [];
-                const schedule = scheduleItems.map(item => `
-                    <div class="bg-white p-3 rounded-lg border">
-                        <p class="font-semibold">${item.time}</p>
-                        <p class="text-sm text-gray-600">${item.subject} - ${item.kelas}</p>
+                const schedule = scheduleItems.map((item, index) => `
+                    <div class="bg-white p-3 rounded-lg border flex justify-between items-center gap-2">
+                        <div>
+                            <p class="font-semibold">${item.time}</p>
+                            <p class="text-sm text-gray-600">${item.subject} - ${item.kelas}</p>
+                        </div>
+                        <button onclick="deleteJadwal('${day}', ${index})" class="text-red-600 hover:text-red-800 shrink-0">🗑️ Hapus</button>
                     </div>
                 `).join('');
                 return `
@@ -1598,9 +871,8 @@
                     <div id="calendarGrid" class="grid grid-cols-7 gap-1"></div>
                 </div>
             `;
-            if (subContainer) subContainer.innerHTML = html;
-            const jadwalFormEl = document.getElementById('jadwalForm');
-            if(jadwalFormEl) jadwalFormEl.addEventListener('submit', saveJadwal);
+            subContainer.innerHTML = html;
+            document.getElementById('jadwalForm').addEventListener('submit', saveJadwal);
             updateJadwalUndoButton();
             renderCalendar();
         }
@@ -1628,6 +900,20 @@
             showNotification('✅ Jadwal berhasil disimpan!', 'success');
             form.reset();
             renderJadwalKalender();
+        }
+
+        // Fungsi untuk menghapus jadwal
+        function deleteJadwal(day, index) {
+            showModal('Konfirmasi Hapus', 'Yakin ingin menghapus jadwal ini?', () => {
+                if (dataJadwal[day] && dataJadwal[day][index]) {
+                    // Simpan state sebelum diubah untuk fitur undo
+                    jadwalHistory.push(JSON.parse(JSON.stringify(dataJadwal)));
+                    dataJadwal[day].splice(index, 1);
+                    localStorage.setItem('dataJadwal', JSON.stringify(dataJadwal));
+                    showNotification('🗑️ Jadwal berhasil dihapus!', 'info');
+                    renderJadwalKalender();
+                }
+            });
         }
 
         // Fungsi untuk membatalkan entri jadwal terakhir
@@ -1685,8 +971,7 @@
                 <textarea id="modal-note" rows="4" class="w-full p-2 border rounded-md mt-2">${existingNote}</textarea>
             `;
             showModalWithInputs(`Catatan Kalender`, bodyHtml, () => {
-                const modalNoteEl = document.getElementById('modal-note');
-                const note = modalNoteEl ? modalNoteEl.value : '';
+                const note = document.getElementById('modal-note').value;
                 if (note.trim() !== '') {
                     dataKalender[dateKey] = note;
                     showNotification('✅ Catatan disimpan!', 'success');
@@ -1727,8 +1012,7 @@
                 </div>
             `;
             subContainer.innerHTML = html;
-            const arsipFormEl = document.getElementById('arsipForm');
-            if (arsipFormEl) arsipFormEl.addEventListener('submit', saveDriveLink);
+            document.getElementById('arsipForm').addEventListener('submit', saveDriveLink);
             updateArsipList();
         }
         
@@ -1768,7 +1052,7 @@
                     </div>
                     <div class="flex gap-2 shrink-0">
                         <a href="${doc.link}" target="_blank" class="p-2 rounded-md bg-green-500 text-white hover:bg-green-600 transition-colors">Buka</a>
-                        <button onclick="deleteDriveLink(${doc.id})" class="p-2 rounded-md bg-red-500 text-white hover:bg-red-600 transition-colors">🗑️ Hapus</button>
+                        <button onclick="deleteDriveLink(${doc.id})" class="p-2 rounded-md bg-red-500 text-white hover:bg-red-600 transition-colors">Hapus</button>
                     </div>
                 </div>
             `).join('');
@@ -1840,22 +1124,13 @@
         // Fungsi untuk menyimpan data profil
         function saveProfile(type) {
             if (type === 'sekolah') {
-                const sekolahNamaEl = document.getElementById('sekolahNama');
-                const sekolahAlamatEl = document.getElementById('sekolahAlamat');
-                const sekolahKepsekEl = document.getElementById('sekolahKepsek');
-
-                if (sekolahNamaEl) dataProfil.sekolah.nama = sekolahNamaEl.value;
-                if (sekolahAlamatEl) dataProfil.sekolah.alamat = sekolahAlamatEl.value;
-                if (sekolahKepsekEl) dataProfil.sekolah.kepsek = sekolahKepsekEl.value;
-
+                dataProfil.sekolah.nama = document.getElementById('sekolahNama').value;
+                dataProfil.sekolah.alamat = document.getElementById('sekolahAlamat').value;
+                dataProfil.sekolah.kepsek = document.getElementById('sekolahKepsek').value;
             } else if (type === 'guru') {
-                const guruNamaEl = document.getElementById('guruNama');
-                const guruNipEl = document.getElementById('guruNip');
-                const guruBidangEl = document.getElementById('guruBidang');
-                
-                if (guruNamaEl) dataProfil.guru.nama = guruNamaEl.value;
-                if (guruNipEl) dataProfil.guru.nip = guruNipEl.value;
-                if (guruBidangEl) dataProfil.guru.bidang = guruBidangEl.value;
+                dataProfil.guru.nama = document.getElementById('guruNama').value;
+                dataProfil.guru.nip = document.getElementById('guruNip').value;
+                dataProfil.guru.bidang = document.getElementById('guruBidang').value;
             }
             localStorage.setItem('dataProfil', JSON.stringify(dataProfil));
             showNotification('✅ Profil berhasil diperbarui!', 'success');
@@ -1873,7 +1148,7 @@
             `;
             showModalWithInputs('Hapus Semua Data', bodyHtml, () => {
                 const checkbox = document.getElementById('confirmResetCheckbox');
-                if (checkbox && checkbox.checked) {
+                if (checkbox.checked) {
                     resetAllData();
                 } else {
                     showNotification('⚠️ Operasi dibatalkan. Anda harus mencentang kotak konfirmasi.', 'warning');
@@ -1890,6 +1165,19 @@
 
         // --- Manajemen Data & Logika Inti ---
         
+        document.addEventListener('DOMContentLoaded', function() {
+            // Perbaikan: Pastikan semua data diinisialisasi di awal jika localStorage kosong
+            if (!localStorage.getItem('dataSiswa')) localStorage.setItem('dataSiswa', JSON.stringify(initialDataSiswa));
+            // Tambahkan inisialisasi untuk objek data lainnya di sini jika perlu
+            
+            setInitialDates();
+            updateSelectOptions();
+            showTab('dashboard'); 
+            document.getElementById('kelasSelect').addEventListener('change', (e) => tampilkanDaftarSiswa(e.target.value));
+            document.getElementById('tanggalAbsen').addEventListener('change', () => tampilkanDaftarSiswa(document.getElementById('kelasSelect').value));
+            document.getElementById('penilaianKelas').addEventListener('change', (e) => tampilkanDaftarNilai(e.target.value));
+            document.getElementById('tanggalNilai').addEventListener('change', () => tampilkanDaftarNilai(document.getElementById('penilaianKelas').value));
+        });
         
         // Fungsi untuk menambah siswa baru
         function addStudent(event) {
@@ -1920,13 +1208,21 @@
         function setInitialDates() {
             const today = new Date();
             const todayISO = today.toISOString().split('T')[0];
-            const currentDateEl = document.getElementById('currentDate');
-            if (currentDateEl) currentDateEl.textContent = today.toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            document.getElementById('currentDate').textContent = today.toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
             
-            ['tanggalAbsen', 'tanggalNilai'].forEach(id => {
+            ['tanggalAbsen', 'tanggalNilai', 'agendaDate'].forEach(id => {
                 const el = document.getElementById(id);
                 if (el) el.value = todayISO;
             });
+            
+            // Set waktu saat ini untuk agenda
+            const now = new Date();
+            const timeString = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+            const agendaTimeEl = document.getElementById('agendaTime');
+            if (agendaTimeEl) {
+                agendaTimeEl.value = timeString;
+            }
+
 
             // Set tanggal untuk rekap jika elemen ada
             const rekapEndDateEl = document.getElementById('rekapEndDate');
@@ -1941,7 +1237,7 @@
         // Fungsi untuk memperbarui semua pilihan kelas
         function updateSelectOptions() {
             const classList = Object.keys(dataSiswa).sort();
-            const selectsToUpdate = ['kelasSelect', 'penilaianKelas', 'rekapKelas', 'manajemenKelas', 'newKelas', 'dashboardKelas', 'catatanKelas', 'jadwalKelas', 'kelompokKelas', 'nilaiKelompokKelas', 'daftarKelompokKelas'];
+            const selectsToUpdate = ['kelasSelect', 'penilaianKelas', 'rekapKelas', 'manajemenKelas', 'newKelas', 'dashboardKelas', 'catatanKelas'];
             selectsToUpdate.forEach(selectId => {
                 const selectElement = document.getElementById(selectId);
                 if (!selectElement) return;
@@ -1978,8 +1274,8 @@
             const container = document.getElementById('daftarSiswa');
             const actionButtons = document.getElementById('actionButtons');
             if (!kelas || !dataSiswa[kelas]) {
-                if (container) container.innerHTML = `<div class="text-center text-gray-500 py-8"><div class="text-4xl mb-3">👥</div><p>Pilih kelas untuk menampilkan daftar siswa</p></div>`;
-                if (actionButtons) actionButtons.style.display = 'none';
+                container.innerHTML = `<div class="text-center text-gray-500 py-8"><div class="text-4xl mb-3">👥</div><p>Pilih kelas untuk menampilkan daftar siswa</p></div>`;
+                actionButtons.style.display = 'none';
                 return;
             }
             const siswaList = dataSiswa[kelas];
@@ -1988,10 +1284,10 @@
             siswaList.forEach((siswa, index) => {
                 const key = `${kelas}_${siswa.nis}_${tanggal}`;
                 const currentStatus = dataAbsensi[key];
-                html += `<div class="bg-white border rounded-xl p-3 lg:p-4 hover:shadow-md transition-all fade-in mobile-card"><div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3"><div class="flex items-center gap-4"><div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold shrink-0">${index + 1}</div><div><h3 class="font-semibold text-gray-800">${siswa.nama}</h3><p class="text-sm text-gray-600">${siswa.jk === 'L' ? 'Laki-laki' : 'Perempuan'}</p></div></div><div class="mobile-grid lg:flex lg:gap-2"><button onclick="setStatus(this, '${key}', 'hadir')" class="status-btn status-btn-mobile p-2 rounded-lg text-sm font-medium ${currentStatus === 'hadir' ? 'bg-green-500 text-white shadow-lg' : 'bg-gray-100 text-gray-600 hover:bg-green-100'}">✅<span class="hidden lg:inline"> Hadir</span></button><button onclick="setStatus(this, '${key}', 'sakit')" class="status-btn status-btn-mobile p-2 rounded-lg text-sm font-medium ${currentStatus === 'sakit' ? 'bg-yellow-500 text-white shadow-lg' : 'bg-gray-100 text-gray-600 hover:bg-yellow-100'}">🤒<span class="hidden lg:inline"> Sakit</span></button><button onclick="setStatus(this, '${key}', 'izin')" class="status-btn status-btn-mobile p-2 rounded-lg text-sm font-medium ${currentStatus === 'izin' ? 'bg-blue-500 text-white shadow-lg' : 'bg-gray-100 text-gray-600 hover:bg-blue-100'}">📝<span class="hidden lg:inline"> Izin</span></button><button onclick="setStatus(this, '${key}', 'alpa')" class="status-btn status-btn-mobile p-2 rounded-lg text-sm font-medium ${currentStatus === 'alpa' ? 'bg-red-500 text-white shadow-lg' : 'bg-gray-100 text-gray-600 hover:bg-red-100'}">❌<span class="hidden lg:inline"> Alpa</span></button></div></div></div>`;
+                html += `<div class="bg-white border rounded-xl p-3 lg:p-4 hover:shadow-md transition-all fade-in mobile-card"><div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3"><div class="flex items-center gap-4"><div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold shrink-0">${index + 1}</div><div><h3 class="font-semibold text-gray-800">${siswa.nama}</h3><p class="text-sm text-gray-600">${siswa.jk === 'L' ? 'Laki-laki' : 'Perempuan'}</p></div></div><div class="mobile-grid lg:flex lg:gap-2" id="status-group-${siswa.nis}"><button onclick="setStatus(this, '${key}', 'hadir')" class="status-btn status-btn-mobile p-2 rounded-lg text-sm font-medium ${currentStatus === 'hadir' ? 'bg-green-500 text-white shadow-lg' : 'bg-gray-100 text-gray-600 hover:bg-green-100'}">✅<span class="hidden lg:inline"> Hadir</span></button><button onclick="setStatus(this, '${key}', 'sakit')" class="status-btn status-btn-mobile p-2 rounded-lg text-sm font-medium ${currentStatus === 'sakit' ? 'bg-yellow-500 text-white shadow-lg' : 'bg-gray-100 text-gray-600 hover:bg-yellow-100'}">🤒<span class="hidden lg:inline"> Sakit</span></button><button onclick="setStatus(this, '${key}', 'izin')" class="status-btn status-btn-mobile p-2 rounded-lg text-sm font-medium ${currentStatus === 'izin' ? 'bg-blue-500 text-white shadow-lg' : 'bg-gray-100 text-gray-600 hover:bg-blue-100'}">📝<span class="hidden lg:inline"> Izin</span></button><button onclick="setStatus(this, '${key}', 'alpa')" class="status-btn status-btn-mobile p-2 rounded-lg text-sm font-medium ${currentStatus === 'alpa' ? 'bg-red-500 text-white shadow-lg' : 'bg-gray-100 text-gray-600 hover:bg-red-100'}">❌<span class="hidden lg:inline"> Alpa</span></button></div></div></div>`;
             });
-            if (container) container.innerHTML = html;
-            if (actionButtons) actionButtons.style.display = 'flex';
+            container.innerHTML = html;
+            actionButtons.style.display = 'flex';
         }
 
         function setStatus(buttonElement, key, status) {
@@ -2005,6 +1301,38 @@
             const statusClasses = {hadir: 'bg-green-500', sakit: 'bg-yellow-500', izin: 'bg-blue-500', alpa: 'bg-red-500'};
             buttonElement.classList.add('text-white', 'shadow-lg', statusClasses[status]);
         }
+
+        // Fungsi baru untuk menandai semua siswa sebagai "Hadir"
+        function hadirSemua() {
+            const kelas = document.getElementById('kelasSelect').value;
+            const tanggal = document.getElementById('tanggalAbsen').value;
+            if (!kelas || !dataSiswa[kelas] || !tanggal) {
+                 showNotification('⚠️ Pilih kelas dan tanggal terlebih dahulu!', 'warning');
+                 return;
+            }
+
+            dataSiswa[kelas].forEach(siswa => {
+                const key = `${kelas}_${siswa.nis}_${tanggal}`;
+                dataAbsensi[key] = 'hadir';
+            });
+            
+            // Perbarui tampilan di halaman secara manual
+            const siswaList = document.querySelectorAll('#daftarSiswa .mobile-card');
+            siswaList.forEach(card => {
+                const hadirButton = card.querySelector('.status-btn:first-child');
+                const otherButtons = card.querySelectorAll('.status-btn:not(:first-child)');
+                
+                hadirButton.classList.remove('bg-gray-100', 'text-gray-600');
+                hadirButton.classList.add('bg-green-500', 'text-white', 'shadow-lg');
+                
+                otherButtons.forEach(btn => {
+                    btn.classList.remove('bg-yellow-500', 'bg-blue-500', 'bg-red-500', 'text-white', 'shadow-lg');
+                    btn.classList.add('bg-gray-100', 'text-gray-600');
+                });
+            });
+            
+            showNotification('✅ Semua siswa berhasil disetel "Hadir"!', 'success');
+        }
         
         function simpanAbsensi() {
             localStorage.setItem('dataAbsensi', JSON.stringify(dataAbsensi));
@@ -2012,17 +1340,12 @@
         }
 
         function resetAbsensi() {
-            const kelasEl = document.getElementById('kelasSelect');
-            const tanggalEl = document.getElementById('tanggalAbsen');
-            if (!kelasEl || !tanggalEl) return;
-            const kelas = kelasEl.value;
-            const tanggal = tanggalEl.value;
+            const kelas = document.getElementById('kelasSelect').value;
+            const tanggal = document.getElementById('tanggalAbsen').value;
             if (kelas && tanggal) {
-                if(dataSiswa[kelas]) {
-                    dataSiswa[kelas].forEach(siswa => {
-                        delete dataAbsensi[`${kelas}_${siswa.nis}_${tanggal}`];
-                    });
-                }
+                dataSiswa[kelas].forEach(siswa => {
+                    delete dataAbsensi[`${kelas}_${siswa.nis}_${tanggal}`];
+                });
                 tampilkanDaftarSiswa(kelas);
                 showNotification('🔄 Absensi hari ini telah direset', 'info');
             }
@@ -2033,23 +1356,23 @@
             const actionButtons = document.getElementById('actionNilaiButtons');
             const materiInput = document.getElementById('materiNilai');
             if (!kelas || !dataSiswa[kelas]) {
-                if (container) container.innerHTML = `<div class="text-center text-gray-500 py-8"><div class="text-4xl mb-3">📝</div><p>Pilih kelas untuk memasukkan nilai</p></div>`;
-                if (actionButtons) actionButtons.style.display = 'none'; return;
+                container.innerHTML = `<div class="text-center text-gray-500 py-8"><div class="text-4xl mb-3">📝</div><p>Pilih kelas untuk memasukkan nilai</p></div>`;
+                actionButtons.style.display = 'none'; return;
             }
             const tanggal = document.getElementById('tanggalNilai').value;
             if (!tanggal) {
-                if (container) container.innerHTML = `<div class="text-center text-gray-500 py-8"><div class="text-4xl mb-3">📅</div><p>Pilih tanggal untuk memasukkan nilai</p></div>`;
-                if (actionButtons) actionButtons.style.display = 'none'; return;
+                container.innerHTML = `<div class="text-center text-gray-500 py-8"><div class="text-4xl mb-3">📅</div><p>Pilih tanggal untuk memasukkan nilai</p></div>`;
+                actionButtons.style.display = 'none'; return;
             }
-            if(materiInput) materiInput.value = dataMateri[`${kelas}_${tanggal}`] || '';
+            materiInput.value = dataMateri[`${kelas}_${tanggal}`] || '';
             let html = `<table class="w-full border-collapse bg-white rounded-lg overflow-hidden shadow-sm"><thead class="bg-gray-50"><tr><th class="p-3 text-left text-sm font-medium">No</th><th class="p-3 text-left text-sm font-medium">Nama Siswa</th><th class="p-3 text-center text-sm font-medium">Nilai Harian</th><th class="p-3 text-center text-sm font-medium">Nilai Tugas</th></tr></thead><tbody>`;
             dataSiswa[kelas].forEach((siswa, index) => {
                 const keyHarian = `${kelas}_${siswa.nis}_harian_${tanggal}`;
                 const keyTugas = `${kelas}_${siswa.nis}_tugas_${tanggal}`;
                 html += `<tr class="hover:bg-gray-50"><td class="p-3 border-b">${index + 1}</td><td class="p-3 border-b font-medium">${siswa.nama}</td><td class="p-3 border-b text-center"><input type="number" oninput="updateNilai('${keyHarian}', this.value)" value="${dataNilai[keyHarian] || ''}" min="0" max="100" class="w-20 text-center border rounded-md"></td><td class="p-3 border-b text-center"><input type="number" oninput="updateNilai('${keyTugas}', this.value)" value="${dataNilai[keyTugas] || ''}" min="0" max="100" class="w-20 text-center border rounded-md"></td></tr>`;
             });
-            if (container) container.innerHTML = html + `</tbody></table>`;
-            if (actionButtons) actionButtons.style.display = 'flex';
+            container.innerHTML = html + `</tbody></table>`;
+            actionButtons.style.display = 'flex';
         }
         
         function updateNilai(key, value) {
@@ -2062,14 +1385,9 @@
         }
 
         function simpanNilai() {
-            const kelasEl = document.getElementById('penilaianKelas');
-            const tanggalEl = document.getElementById('tanggalNilai');
-            const materiEl = document.getElementById('materiNilai');
-            if (!kelasEl || !tanggalEl || !materiEl) return;
-
-            const kelas = kelasEl.value;
-            const tanggal = tanggalEl.value;
-            const materi = materiEl.value;
+            const kelas = document.getElementById('penilaianKelas').value;
+            const tanggal = document.getElementById('tanggalNilai').value;
+            const materi = document.getElementById('materiNilai').value;
             if (kelas && tanggal) {
                 const materiKey = `${kelas}_${tanggal}`;
                 if (materi) dataMateri[materiKey] = materi;
@@ -2133,18 +1451,7 @@
                 for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
                     const dateStr = d.toISOString().split('T')[0];
                     if (dataNilai[`${kelas}_${siswa.nis}_harian_${dateStr}`] !== undefined) { totalHarian += dataNilai[`${kelas}_${siswa.nis}_harian_${dateStr}`]; countHarian++; }
-                    // Gabungkan nilai dari tugas individu dan kelompok
-                    for (const key in dataNilai) {
-                        if (key.startsWith(`${kelas}_${siswa.nis}_tugas_`)) {
-                            // Cek apakah tanggal penilaian ada dalam rentang
-                            const parts = key.split('_');
-                            const datePart = parts.slice(-2)[0]; // Extract the date part
-                            if (new Date(datePart) >= startDate && new Date(datePart) <= endDate) {
-                                totalTugas += dataNilai[key];
-                                countTugas++;
-                            }
-                        }
-                    }
+                    if (dataNilai[`${kelas}_${siswa.nis}_tugas_${dateStr}`] !== undefined) { totalTugas += dataNilai[`${kelas}_${siswa.nis}_tugas_${dateStr}`]; countTugas++; }
                 }
                 const rataRataHarian = countHarian > 0 ? (totalHarian / countHarian).toFixed(2) : '0.00';
                 const rataRataTugas = countTugas > 0 ? (totalTugas / countTugas).toFixed(2) : '0.00';
@@ -2156,15 +1463,10 @@
 
         // Fungsi utama untuk menangani rekap dan laporan
         function updateRekap() {
-            const kelasEl = document.getElementById('rekapKelas');
-            const startDateEl = document.getElementById('rekapStartDate');
-            const endDateEl = document.getElementById('rekapEndDate');
-            const searchQueryEl = document.getElementById('rekapSearch');
-
-            const kelas = kelasEl ? kelasEl.value : '';
-            const startDateStr = startDateEl ? startDateEl.value : '';
-            const endDateStr = endDateEl ? endDateEl.value : '';
-            const searchQuery = searchQueryEl ? searchQueryEl.value : '';
+            const kelas = document.getElementById('rekapKelas').value;
+            const startDateStr = document.getElementById('rekapStartDate').value;
+            const endDateStr = document.getElementById('rekapEndDate').value;
+            const searchQuery = document.getElementById('rekapSearch').value;
 
             const recapTableBody = document.getElementById('rekapTable');
             const laporanPreviewContainer = document.getElementById('laporanPreview');
@@ -2211,23 +1513,16 @@
 
         // Fungsi cetak laporan yang sudah diperbaiki
         function cetakLaporan() {
-            const rekapKelasEl = document.getElementById('rekapKelas');
-            if (rekapKelasEl && !rekapKelasEl.value) { showNotification('⚠️ Pilih kelas terlebih dahulu!', 'warning'); return; }
+            if (!document.getElementById('rekapKelas').value) { showNotification('⚠️ Pilih kelas terlebih dahulu!', 'warning'); return; }
             window.print();
         }
 
 
         // Fungsi export Excel yang sudah diperbaiki
         function exportToExcel() {
-            const kelasEl = document.getElementById('rekapKelas');
-            const startDateEl = document.getElementById('rekapStartDate');
-            const endDateEl = document.getElementById('rekapEndDate');
-
-            if (!kelasEl || !startDateEl || !endDateEl) return;
-
-            const kelas = kelasEl.value;
-            const startDateStr = startDateEl.value;
-            const endDateStr = endDateEl.value;
+            const kelas = document.getElementById('rekapKelas').value;
+            const startDateStr = document.getElementById('rekapStartDate').value;
+            const endDateStr = document.getElementById('rekapEndDate').value;
             if (!kelas || !startDateStr || !endDateStr) { showNotification('⚠️ Pilih kelas dan rentang tanggal!', 'warning'); return; }
             const reportData = generateReportData(kelas, startDateStr, endDateStr, document.getElementById('rekapSearch').value);
             if (reportData.absensi.students.length === 0) { showNotification(`⚠️ Tidak ada siswa untuk diekspor!`, 'warning'); return; }
@@ -2249,7 +1544,7 @@
         }
 
         function exportData() {
-            const dataToExport = { dataSiswa, dataAbsensi, dataNilai, dataMateri, dataRpp, dataJadwal, dataArsip, dataProfil, dataKalender, dataAgenda, dataCatatan, dataKelompok, dataNilaiKelompok };
+            const dataToExport = { dataSiswa, dataAbsensi, dataNilai, dataMateri, dataRpp, dataJadwal, dataArsip, dataProfil, dataKalender, dataAgenda, dataCatatanSiswa };
             const dataStr = JSON.stringify(dataToExport, null, 2);
             const blob = new Blob([dataStr], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
@@ -2259,8 +1554,7 @@
         }
 
         function importData() {
-            const fileEl = document.getElementById('importFile');
-            const file = fileEl ? fileEl.files[0] : null;
+            const file = document.getElementById('importFile').files[0];
             if (!file) { showNotification('⚠️ Pilih file JSON!', 'warning'); return; }
             const reader = new FileReader();
             reader.onload = function(event) {
@@ -2278,9 +1572,7 @@
                         dataKalender = importedData.dataKalender || {};
                         dataProfil = importedData.dataProfil || {};
                         dataAgenda = importedData.dataAgenda || [];
-                        dataCatatan = importedData.dataCatatan || {};
-                        dataKelompok = importedData.dataKelompok || {};
-                        dataNilaiKelompok = importedData.dataNilaiKelompok || {};
+                        dataCatatanSiswa = importedData.dataCatatanSiswa || {};
                         
                         localStorage.setItem('dataSiswa', JSON.stringify(dataSiswa));
                         localStorage.setItem('dataAbsensi', JSON.stringify(dataAbsensi));
@@ -2292,9 +1584,7 @@
                         localStorage.setItem('dataKalender', JSON.stringify(dataKalender));
                         localStorage.setItem('dataProfil', JSON.stringify(dataProfil));
                         localStorage.setItem('dataAgenda', JSON.stringify(dataAgenda));
-                        localStorage.setItem('dataCatatan', JSON.stringify(dataCatatan));
-                        localStorage.setItem('dataKelompok', JSON.stringify(dataKelompok));
-                        localStorage.setItem('dataNilaiKelompok', JSON.stringify(dataNilaiKelompok));
+                        localStorage.setItem('dataCatatanSiswa', JSON.stringify(dataCatatanSiswa));
 
                         showNotification('✅ Data berhasil diimpor!', 'success');
                         setTimeout(() => window.location.reload(), 1500);
@@ -2305,11 +1595,10 @@
         }
 
         function updateDashboard() {
-            const kelasEl = document.getElementById('dashboardKelas');
-            const dashboardContentEl = document.getElementById('dashboardContent');
-            if (!kelasEl || !dashboardContentEl) return;
-            const kelas = kelasEl.value;
-            if (!kelas) { dashboardContentEl.innerHTML = `<div class="text-center text-gray-500 py-8"><div class="text-4xl mb-3">📈</div><p>Pilih kelas untuk menampilkan statistik</p></div>`; return; }
+            const kelas = document.getElementById('dashboardKelas').value;
+            const dashboardContent = document.getElementById('dashboardContent');
+            if (!dashboardContent) return;
+            if (!kelas) { dashboardContent.innerHTML = `<div class="text-center text-gray-500 py-8"><div class="text-4xl mb-3">📈</div><p>Pilih kelas untuk menampilkan statistik</p></div>`; return; }
             
             const today = new Date();
             const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1).toISOString().split('T')[0];
@@ -2324,7 +1613,7 @@
                 rataRataNilaiKelas = (totalNilai / reportData.nilai.students.length).toFixed(2);
             }
 
-            dashboardContentEl.innerHTML = `<h3 class="text-xl font-semibold mb-4">Ringkasan Kelas ${kelas} (Bulan Ini)</h3><div class="grid md:grid-cols-2 gap-6"><div class="bg-gray-50 p-4 rounded-xl border"><h4 class="text-lg font-medium mb-2">Statistik Kehadiran</h4>${totalKehadiran > 0 ? '<canvas id="kehadiranChart"></canvas>' : '<p class="text-center text-gray-500 py-10">Belum ada data kehadiran bulan ini.</p>'}</div><div class="bg-gray-50 p-4 rounded-xl border flex flex-col justify-center"><h4 class="text-lg font-medium mb-2">Performa Nilai</h4><div class="text-center py-8"><p class="text-5xl font-bold text-blue-600">${rataRataNilaiKelas}</p><p class="text-gray-500 mt-2">Nilai Akhir Rata-Rata</p></div></div></div>`;
+            dashboardContent.innerHTML = `<h3 class="text-xl font-semibold mb-4">Ringkasan Kelas ${kelas} (Bulan Ini)</h3><div class="grid md:grid-cols-2 gap-6"><div class="bg-gray-50 p-4 rounded-xl border"><h4 class="text-lg font-medium mb-2">Statistik Kehadiran</h4>${totalKehadiran > 0 ? '<canvas id="kehadiranChart"></canvas>' : '<p class="text-center text-gray-500 py-10">Belum ada data kehadiran bulan ini.</p>'}</div><div class="bg-gray-50 p-4 rounded-xl border flex flex-col justify-center"><h4 class="text-lg font-medium mb-2">Performa Nilai</h4><div class="text-center py-8"><p class="text-5xl font-bold text-blue-600">${rataRataNilaiKelas}</p><p class="text-gray-500 mt-2">Nilai Akhir Rata-Rata</p></div></div></div>`;
             
             if (totalKehadiran > 0) {
                 const ctx = document.getElementById('kehadiranChart').getContext('2d');
@@ -2361,30 +1650,20 @@
         function deleteSiswa(kelas, nisToDelete) {
             showModal('Konfirmasi Hapus', `Yakin ingin menghapus siswa ini? Semua data absensi dan nilai terkait akan dihapus permanen.`, () => {
                 dataSiswa[kelas] = dataSiswa[kelas].filter(s => s.nis !== nisToDelete);
-                // Perbaikan: Hapus data absensi dan nilai terkait dengan siswa yang dihapus
+                // Menghapus data absensi terkait siswa
                 Object.keys(dataAbsensi).forEach(key => {
-                    const [keyKelas, keyNis] = key.split('_');
-                    if (keyKelas === kelas && keyNis === nisToDelete) {
+                    const parts = key.split('_');
+                    if (parts.length >= 2 && parts[0] === kelas && parts[1] === nisToDelete) {
                         delete dataAbsensi[key];
                     }
                 });
+                // Menghapus data nilai terkait siswa
                 Object.keys(dataNilai).forEach(key => {
-                    // Penanganan format key yang berbeda ('kelas_nis_tipe_tanggal')
                     const parts = key.split('_');
-                    const keyKelas = parts[0];
-                    const keyNis = parts[1];
-                    if (keyKelas === kelas && keyNis === nisToDelete) {
+                    if (parts.length >= 2 && parts[0] === kelas && parts[1] === nisToDelete) {
                         delete dataNilai[key];
                     }
                 });
-                // Hapus juga siswa dari kelompok
-                if(dataKelompok[kelas]){
-                    dataKelompok[kelas].forEach(kelompok => {
-                        kelompok.anggota = kelompok.anggota.filter(anggota => anggota.nis !== nisToDelete);
-                    });
-                    localStorage.setItem('dataKelompok', JSON.stringify(dataKelompok));
-                }
-
                 localStorage.setItem('dataAbsensi', JSON.stringify(dataAbsensi));
                 localStorage.setItem('dataNilai', JSON.stringify(dataNilai));
                 saveDataSiswa();
@@ -2394,69 +1673,37 @@
         }
 
         function editSiswa(oldKelas, oldNis, newNama, newJk, newKelas) {
-            // Logika untuk memindahkan siswa ke kelas baru
             if (newKelas && newKelas !== oldKelas) {
                 const siswaToMove = dataSiswa[oldKelas].find(s => s.nis === oldNis);
                 if (siswaToMove) {
-                    siswaToMove.nama = newNama;
-                    siswaToMove.jk = newJk;
-                    // Hapus siswa dari kelas lama
+                    siswaToMove.nama = newNama; siswaToMove.jk = newJk;
                     dataSiswa[oldKelas] = dataSiswa[oldKelas].filter(s => s.nis !== oldNis);
                     if (!dataSiswa[newKelas]) dataSiswa[newKelas] = [];
-                    // Tambahkan siswa ke kelas baru
                     dataSiswa[newKelas].push(siswaToMove);
                     
-                    // Pindahkan data absensi
+                    // Pindahkan data absensi dan nilai
                     Object.keys(dataAbsensi).forEach(key => { 
-                        const parts = key.split('_');
-                        if (parts[0] === oldKelas && parts[1] === oldNis) {
-                            const newKey = `${newKelas}_${parts[1]}_${parts[2]}`;
-                            dataAbsensi[newKey] = dataAbsensi[key];
+                        const p = key.split('_');
+                        if (p[0] === oldKelas && p[1] === oldNis) {
+                            dataAbsensi[`${newKelas}_${p[1]}_${p[2]}`] = dataAbsensi[key];
                             delete dataAbsensi[key];
                         }
                     });
-                    // Pindahkan data nilai
                     Object.keys(dataNilai).forEach(key => { 
-                        const parts = key.split('_');
-                        if (parts[0] === oldKelas && parts[1] === oldNis) {
-                            const newKey = `${newKelas}_${parts[1]}_${parts[2]}_${parts[3]}`;
-                             dataNilai[newKey] = dataNilai[key];
+                        const p = key.split('_');
+                        if (p[0] === oldKelas && p[1] === oldNis) {
+                             // Perbaikan: Pastikan format key baru benar
+                             dataNilai[`${newKelas}_${p[1]}_${p[2]}_${p[3]}`] = dataNilai[key];
                              delete dataNilai[key];
                         }
                     });
-                    // Pindahkan data kelompok
-                    if(dataKelompok[oldKelas]){
-                        dataKelompok[oldKelas].forEach(kelompok => {
-                            const siswaIndex = kelompok.anggota.findIndex(s => s.nis === oldNis);
-                            if(siswaIndex !== -1){
-                                kelompok.anggota[siswaIndex].nama = newNama;
-                                // Pindahkan ke kelompok di kelas baru (jika ada) atau buat baru? Logika ini bisa kompleks, untuk saat ini hanya update nama saja.
-                            }
-                        });
-                    }
-
                     localStorage.setItem('dataAbsensi', JSON.stringify(dataAbsensi));
                     localStorage.setItem('dataNilai', JSON.stringify(dataNilai));
-                    localStorage.setItem('dataKelompok', JSON.stringify(dataKelompok));
-
                     showNotification('🔄 Siswa berhasil dipindah kelas!', 'success');
                 }
-            // Logika untuk hanya mengedit data siswa tanpa pindah kelas
             } else {
                 const siswaIndex = dataSiswa[oldKelas].findIndex(s => s.nis === oldNis);
-                if (siswaIndex !== -1) { 
-                    dataSiswa[oldKelas][siswaIndex].nama = newNama; 
-                    dataSiswa[oldKelas][siswaIndex].jk = newJk; 
-                    // Update nama siswa di kelompok juga
-                    if(dataKelompok[oldKelas]){
-                        dataKelompok[oldKelas].forEach(kelompok => {
-                            const siswaInGroup = kelompok.anggota.find(s => s.nis === oldNis);
-                            if(siswaInGroup) siswaInGroup.nama = newNama;
-                        });
-                        localStorage.setItem('dataKelompok', JSON.stringify(dataKelompok));
-                    }
-                    showNotification('✅ Data siswa diperbarui!', 'success'); 
-                }
+                if (siswaIndex !== -1) { dataSiswa[oldKelas][siswaIndex].nama = newNama; dataSiswa[oldKelas][siswaIndex].jk = newJk; showNotification('✅ Data siswa diperbarui!', 'success'); }
             }
             saveDataSiswa();
             updateManajemenTable(newKelas || oldKelas);
@@ -2474,20 +1721,13 @@
             container.innerHTML = `<table class="w-full border-collapse bg-white rounded-lg overflow-hidden shadow-sm"><thead class="bg-gray-50"><tr><th class="p-3 text-left text-sm font-medium">No</th><th class="p-3 text-left text-sm font-medium">Nama Siswa</th><th class="p-3 text-left text-sm font-medium">J/K</th><th class="p-3 text-center text-sm font-medium">Aksi</th></tr></thead><tbody>${bodyHtml}</tbody></table>`;
         }
 
-        // Perbaikan: Mengganti id `modal-kelas` menjadi `modal-kelas-pindah` untuk menghindari duplikasi id
+        // Perbaikan: Ganti id `modal-kelas` di sini menjadi `modal-kelas-pindah` untuk menghindari duplikasi id
         function promptEdit(kelas, oldNis, oldNama, oldJk) {
             const bodyHtml = `<label class="block text-sm font-medium">Nama Siswa</label><input type="text" id="modal-nama" class="mt-1 block w-full p-2 border rounded-md" value="${oldNama}"><label class="block text-sm font-medium mt-4">Jenis Kelamin</label><select id="modal-jk" class="mt-1 block w-full p-2 border rounded-md"><option value="L" ${oldJk === 'L' ? 'selected' : ''}>Laki-laki</option><option value="P" ${oldJk === 'P' ? 'selected' : ''}>Perempuan</option></select><label class="block text-sm font-medium mt-4">Pindah ke Kelas</label><select id="modal-kelas-pindah" class="mt-1 block w-full p-2 border rounded-md"><option value="${kelas}">Jangan Pindah</option>${Object.keys(dataSiswa).sort().filter(k => k !== kelas).map(k => `<option value="${k}">${k}</option>`).join('')}</select>`;
             showModalWithInputs(`Edit Data Siswa`, bodyHtml, () => {
-                const newNamaEl = document.getElementById('modal-nama');
-                const newJkEl = document.getElementById('modal-jk');
-                const newKelasEl = document.getElementById('modal-kelas-pindah');
-                
-                const newNama = newNamaEl ? newNamaEl.value : '';
-                const newJk = newJkEl ? newJkEl.value : '';
-                const newKelas = newKelasEl ? newKelasEl.value : kelas;
-
+                const newNama = document.getElementById('modal-nama').value;
                 if (!newNama) { showNotification('⚠️ Nama harus diisi!', 'warning'); return; }
-                editSiswa(kelas, oldNis, newNama, newJk, newKelas);
+                editSiswa(kelas, oldNis, newNama, document.getElementById('modal-jk').value, document.getElementById('modal-kelas-pindah').value);
             });
         }
         
@@ -2496,14 +1736,9 @@
             if (existingModal) existingModal.remove();
             let modalHtml = `<div id="customModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 h-full w-full z-[100] flex items-center justify-center p-4"><div class="relative mx-auto p-5 border w-full max-w-md shadow-lg rounded-2xl bg-white"><div class="mt-3 text-center"><h3 class="text-lg font-medium">${title}</h3><div class="mt-2 px-7 py-3"><p class="text-sm text-gray-500">${message}</p></div><div class="items-center px-4 py-3 flex gap-3"><button id="cancelBtn" class="p-2 bg-gray-200 rounded-md w-full">Batal</button><button id="confirmBtn" class="p-2 bg-red-500 text-white rounded-md w-full">Hapus</button></div></div></div></div>`;
             document.body.insertAdjacentHTML('beforeend', modalHtml);
-            const closeModal = () => {
-                const modal = document.getElementById('customModal');
-                if (modal) modal.remove();
-            };
-            const confirmBtnEl = document.getElementById('confirmBtn');
-            const cancelBtnEl = document.getElementById('cancelBtn');
-            if(confirmBtnEl) confirmBtnEl.onclick = () => { onConfirm(); closeModal(); };
-            if(cancelBtnEl) cancelBtnEl.onclick = closeModal;
+            const closeModal = () => document.getElementById('customModal').remove();
+            document.getElementById('confirmBtn').onclick = () => { onConfirm(); closeModal(); };
+            document.getElementById('cancelBtn').onclick = closeModal;
         }
 
         function showModalWithInputs(title, bodyHtml, onSave) {
@@ -2511,17 +1746,10 @@
             if (existingModal) existingModal.remove();
             let modalHtml = `<div id="customModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 h-full w-full z-[100] flex items-center justify-center p-4"><div class="relative mx-auto p-5 border w-full max-w-md shadow-lg rounded-2xl bg-white"><div class="mt-3"><h3 class="text-lg font-medium text-center">${title}</h3><div class="mt-4 px-4 py-3 text-left space-y-4">${bodyHtml}</div><div class="items-center px-4 py-3 flex gap-3 mt-4"><button id="cancelBtn" class="p-2 bg-gray-200 rounded-md w-full">Batal</button><button id="saveBtn" class="p-2 bg-blue-500 text-white rounded-md w-full">Simpan</button></div></div></div></div>`;
             document.body.insertAdjacentHTML('beforeend', modalHtml);
-            const closeModal = () => {
-                const modal = document.getElementById('customModal');
-                if (modal) modal.remove();
-            };
-            const saveBtnEl = document.getElementById('saveBtn');
-            const cancelBtnEl = document.getElementById('cancelBtn');
-            if(saveBtnEl) saveBtnEl.onclick = () => { onSave(); closeModal(); };
-            if(cancelBtnEl) cancelBtnEl.onclick = closeModal;
+            const closeModal = () => document.getElementById('customModal').remove();
+            document.getElementById('saveBtn').onclick = () => { onSave(); closeModal(); };
+            document.getElementById('cancelBtn').onclick = closeModal;
         }
     </script>
 </body>
 </html>
-
-
