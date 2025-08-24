@@ -11,31 +11,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <!-- html2canvas for PDF export -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <!-- Firebase Libraries -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc, updateDoc, increment, onSnapshot, collection, query, where, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-        
-        // Expose Firebase modules to the global scope for use in the main script
-        window.firebase = {
-            initializeApp,
-            getAuth,
-            signInAnonymously,
-            signInWithCustomToken,
-            onAuthStateChanged,
-            getFirestore,
-            doc,
-            setDoc,
-            updateDoc,
-            increment,
-            onSnapshot,
-            collection,
-            query,
-            where,
-            serverTimestamp
-        };
-    </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         body { font-family: 'Inter', sans-serif; }
@@ -125,7 +100,7 @@
                 </button>
                 <div class="flex-1 text-center md:text-left">
                      <h1 class="text-xl md:text-2xl font-bold text-gray-800">Salam Hormat Bapak Ibu Guru!</h1>
-                     <p class="text-sm text-gray-500">Sistem Pengelolaan Absensi Nilai dan Jurnal Administrasi Guru ini dibuat oleh D. Ervan Fauzan, S.Sos, Gr.</p>
+                     <p class="text-sm text-gray-500">Sistem Pengelolaan Absensi Nilai dan Jurnal Administrasi Guru</p>
                 </div>
                 <div class="flex items-center gap-3">
                     <div class="text-right hidden sm:block">
@@ -254,116 +229,7 @@
         let kehadiranChart;
         let currentAdministrasiSubMenu = 'jadwal';
         let jadwalHistory = []; // For undo functionality
-        
-        // --- Global Variables for Firebase ---
-        let db;
-        let auth;
-        let userId = null;
-        let isAuthReady = false;
-        
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
 
-        // --- Firebase Functions ---
-        async function setupFirebase() {
-            try {
-                const { initializeApp, getAuth, signInWithCustomToken, signInAnonymously } = window.firebase;
-                const app = initializeApp(firebaseConfig);
-                auth = getAuth(app);
-                db = window.firebase.getFirestore(app);
-
-                if (typeof __initial_auth_token !== 'undefined') {
-                    await signInWithCustomToken(auth, __initial_auth_token);
-                } else {
-                    await signInAnonymously(auth);
-                }
-                
-                auth.onAuthStateChanged(user => {
-                    if (user) {
-                        userId = user.uid;
-                        isAuthReady = true;
-                        initHitCounterAndOnlineUsers();
-                    } else {
-                        userId = null;
-                        isAuthReady = false;
-                    }
-                });
-
-            } catch (error) {
-                console.error("Firebase initialization or authentication failed:", error);
-            }
-        }
-
-        let hitCounterUnsub, onlineUsersUnsub, intervalId;
-        function initHitCounterAndOnlineUsers() {
-            if (!isAuthReady || !userId) {
-                return;
-            }
-            
-            // Clear existing listeners to prevent duplication
-            if (hitCounterUnsub) hitCounterUnsub();
-            if (onlineUsersUnsub) onlineUsersUnsub();
-            if (intervalId) clearInterval(intervalId);
-
-            // --- Hit Counter Logic ---
-            const hitCounterRef = firebase.doc(db, 'artifacts', appId, 'public', 'data', 'hit_counters', 'main');
-
-            firebase.setDoc(hitCounterRef, { count: firebase.increment(1) }, { merge: true })
-                .catch(error => console.error("Error incrementing hit count:", error));
-
-            hitCounterUnsub = firebase.onSnapshot(hitCounterRef, (docSnap) => {
-                if (docSnap.exists()) {
-                    const data = docSnap.data();
-                    document.getElementById('hitCount').textContent = data.count.toLocaleString();
-                } else {
-                    document.getElementById('hitCount').textContent = '0';
-                }
-            }, (error) => console.error("Error listening to hit counter:", error));
-
-            // --- Online Users Logic ---
-            const onlineUserRef = firebase.doc(db, 'artifacts', appId, 'public', 'data', 'online_users', userId);
-
-            const updateLastActive = async () => {
-                try {
-                    await firebase.setDoc(onlineUserRef, { lastActive: firebase.serverTimestamp() }, { merge: true });
-                } catch (error) {
-                    console.error("Error updating last active timestamp:", error);
-                }
-            };
-            
-            const activityEvents = ['mousemove', 'keydown', 'touchstart'];
-            activityEvents.forEach(event => {
-                document.addEventListener(event, updateLastActive);
-            });
-            intervalId = setInterval(updateLastActive, 30000);
-
-            const handleBeforeUnload = async () => {
-                try {
-                    await firebase.setDoc(onlineUserRef, { lastActive: null }, { merge: true });
-                } catch (e) {
-                    console.error("Error clearing user status:", e);
-                }
-            };
-            window.addEventListener('beforeunload', handleBeforeUnload);
-
-            const onlineUsersCollectionRef = firebase.collection(db, 'artifacts', appId, 'public', 'data', 'online_users');
-            
-            onlineUsersUnsub = firebase.onSnapshot(onlineUsersCollectionRef, (querySnapshot) => {
-                const now = Date.now();
-                const onlineThreshold = now - 60000;
-                let count = 0;
-                querySnapshot.forEach(docSnap => {
-                    const data = docSnap.data();
-                    if (data.lastActive && data.lastActive.toMillis() > onlineThreshold) {
-                        count++;
-                    }
-                });
-                document.getElementById('onlineUsers').textContent = count.toLocaleString();
-            }, (error) => console.error("Error listening to online users:", error));
-            
-            console.log("Firebase listeners for hit stats initialized.");
-        }
-        
         // --- Sidebar and Navigation ---
         
         function toggleSidebar() {
@@ -407,18 +273,7 @@
             let html = '';
             switch(tabName) {
                 case 'dashboard':
-                    // Add hit counter and online users display here
                     html = `<div class="bg-white rounded-2xl shadow-xl p-6 mb-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                             <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-xl border">
-                                 <p class="text-blue-600 text-sm font-medium">Total Kunjungan</p>
-                                 <p id="hitCount" class="text-3xl md:text-4xl font-bold text-blue-700">...</p>
-                             </div>
-                             <div class="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-xl border">
-                                 <p class="text-green-600 text-sm font-medium">Pengguna Online</p>
-                                 <p id="onlineUsers" class="text-3xl md:text-4xl font-bold text-green-700">...</p>
-                             </div>
-                        </div>
                         <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
                             <div>
                                 <h2 class="text-2xl font-bold text-gray-800 mb-2">Dashboard Statistik</h2>
@@ -1642,9 +1497,6 @@
             // Perbaikan: Pastikan semua data diinisialisasi di awal jika localStorage kosong
             if (!localStorage.getItem('dataSiswa')) localStorage.setItem('dataSiswa', JSON.stringify(initialDataSiswa));
             
-            // Setup Firebase on DOM load
-            setupFirebase();
-
             setInitialDates();
             updateSelectOptions();
             showTab('dashboard'); 
@@ -2362,3 +2214,4 @@
     </script>
 </body>
 </html>
+
