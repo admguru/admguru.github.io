@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Informasi Manajemen Wali Kelas V16</title>
+    <title>Sistem Informasi Manajemen Wali Kelas V17</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -133,6 +133,7 @@
                     <button onclick="showTab('class_structure', this)" class="sidebar-btn w-full px-4 py-2 font-medium flex items-center space-x-3 rounded-lg text-left text-muted hover:bg-blue-100 dark:hover:bg-blue-900/50"><span>👑</span><span>Struktur Organisasi</span></button>
                     <button onclick="showTab('lesson_schedule', this)" class="sidebar-btn w-full px-4 py-2 font-medium flex items-center space-x-3 rounded-lg text-left text-muted hover:bg-blue-100 dark:hover:bg-blue-900/50"><span>📖</span><span>Jadwal Pelajaran</span></button>
                     <button onclick="showTab('piket_schedule', this)" class="sidebar-btn w-full px-4 py-2 font-medium flex items-center space-x-3 rounded-lg text-left text-muted hover:bg-blue-100 dark:hover:bg-blue-900/50"><span>🧹</span><span>Jadwal Piket</span></button>
+                    <button onclick="showTab('inventory', this)" class="sidebar-btn w-full px-4 py-2 font-medium flex items-center space-x-3 rounded-lg text-left text-muted hover:bg-blue-100 dark:hover:bg-blue-900/50"><span>📦</span><span>Inventaris Kelas</span></button>
                 </div>
 
                 <!-- New combined menu for Absensi and Penilaian -->
@@ -197,7 +198,7 @@
                     </div>
                     <!-- Dashboard Details -->
                     <div id="dashboardDetails" class="bg-card rounded-lg shadow-md p-6">
-                        <h2 class="text-xl font-semibold mb-4 text-default">Rincian Dashboard Hari Ini</h2>
+                        <h2 class="text-xl font-semibold mb-4 flex items-center space-x-2 text-default">Rincian Dashboard Hari Ini</h2>
                         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                             <div>
                                 <h3 class="font-bold mb-2 flex items-center space-x-2 text-default"><span>📋</span><span>Kehadiran Hari Ini</span></h3>
@@ -269,6 +270,34 @@
                         <h2 class="text-xl font-semibold mb-4 flex items-center space-x-2 text-default"><span>🧹</span><span>Jadwal Piket</span></h2>
                         <div id="piketScheduleContainer" class="space-y-6">
                             <!-- Jadwal piket per hari akan di-render di sini -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New Inventory tab content -->
+                <div id="inventory" class="tab-content hidden">
+                    <div class="bg-card rounded-lg shadow-md p-6">
+                        <div class="flex flex-wrap justify-between items-center mb-6">
+                            <h2 class="text-xl font-semibold flex items-center space-x-2 text-default"><span>📦</span><span>Inventaris Kelas</span></h2>
+                            <button onclick="showAddInventoryModal()" class="btn-primary px-4 py-2 rounded-lg flex items-center space-x-2 w-full sm:w-auto justify-center"><span>➕</span><span>Tambah Inventaris</span></button>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full table-auto border border-default">
+                                <thead class="bg-gray-50 dark:bg-gray-800">
+                                    <tr>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-muted uppercase">Nama Barang</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-muted uppercase">Jumlah</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-muted uppercase">Harga Perolehan</th>
+                                        <th class="px-4 py-3 text-left text-xs font-medium text-muted uppercase">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="inventoryTableBody" class="divide-y divide-default">
+                                    <!-- Inventory items will be injected here -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mt-6 flex justify-end">
+                            <button onclick="saveAllInventoryData()" class="btn-primary px-6 py-2 rounded-lg">Simpan Data Inventaris</button>
                         </div>
                     </div>
                 </div>
@@ -434,6 +463,7 @@
                                 <button onclick="resetGradesData()" class="btn-danger text-white px-4 py-2 rounded-lg flex items-center space-x-2"><span>🗑️</span><span>Reset Data Nilai</span></button>
                                 <button onclick="resetLessonScheduleData()" class="btn-danger text-white px-4 py-2 rounded-lg flex items-center space-x-2"><span>🗑️</span><span>Reset Jadwal Pelajaran</span></button>
                                 <button onclick="resetPiketScheduleData()" class="btn-danger text-white px-4 py-2 rounded-lg flex items-center space-x-2"><span>🗑️</span><span>Reset Jadwal Piket</span></button>
+                                <button onclick="resetInventoryData()" class="btn-danger text-white px-4 py-2 rounded-lg flex items-center space-x-2"><span>🗑️</span><span>Reset Inventaris</span></button>
                             </div>
                             <div class="mt-6 border-t border-dashed border-red-400 pt-6">
                                 <p class="text-sm text-muted mb-4">Aksi di bawah ini akan menghapus **SEMUA** data aplikasi dan mengembalikannya ke pengaturan awal.</p>
@@ -456,6 +486,7 @@
     <div id="subjectModal" class="modal fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50 p-4"><div class="modal-content rounded-lg p-6 w-full max-w-md"><h3 class="text-lg font-semibold mb-4 text-default">Kelola Mata Pelajaran</h3><div class="mb-4"><input type="text" id="newSubjectName" placeholder="Nama Mata Pelajaran Baru" class="w-full border rounded-lg px-3 py-2"><button onclick="addSubject()" class="w-full mt-2 btn-primary text-white py-2 rounded-lg">Tambah Mapel</button></div><div id="subjectList" class="space-y-2"></div><div class="flex justify-end mt-4"><button type="button" onclick="closeModal('subjectModal')" class="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded-lg">Tutup</button></div></div></div>
     <div id="addRecordModal" class="modal fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50 p-4"><div class="modal-content rounded-lg p-6 w-full max-w-md"><h3 class="text-lg font-semibold mb-4 text-default" id="recordModalTitle">Tambah Catatan Perilaku</h3><form id="addRecordForm" class="space-y-4"><select id="recordStudent" class="w-full border rounded-lg px-3 py-2" required><option value="">Pilih Siswa</option></select><input type="text" id="recordTitle" placeholder="Judul Prestasi/Pelanggaran" class="w-full border rounded-lg px-3 py-2" required><textarea id="recordDescription" placeholder="Deskripsi & Tindak Lanjut" class="w-full border rounded-lg px-3 py-2" rows="3"></textarea><input type="number" id="recordPoints" placeholder="Poin" class="w-full border rounded-lg px-3 py-2" required><input type="date" id="recordDate" class="w-full border rounded-lg px-3 py-2" required><div class="flex space-x-3"><button type="submit" class="flex-1 btn-primary py-2 rounded-lg">Simpan</button><button type="button" onclick="closeModal('addRecordModal')" class="flex-1 bg-gray-500 hover:bg-gray-600 text-white py-2 rounded-lg">Batal</button></div></form></div></div>
     <div id="addAgendaModal" class="modal fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50 p-4"><div class="modal-content rounded-lg p-6 w-full max-w-md"><h3 class="text-lg font-semibold mb-4 text-default">Tambah Kegiatan Kelas</h3><form id="addAgendaForm" class="space-y-4"><input type="text" id="agendaTitle" placeholder="Nama Kegiatan" class="w-full border rounded-lg px-3 py-2" required><textarea id="agendaDescription" placeholder="Deskripsi Singkat" class="w-full border rounded-lg px-3 py-2" rows="3"></textarea><input type="date" id="agendaDate" class="w-full border rounded-lg px-3 py-2" required><input type="time" id="agendaTime" class="w-full border rounded-lg px-3 py-2" required><div><label class="block text-sm font-medium text-muted mb-2">Dokumentasi (Opsional)</label><input type="file" id="agendaPhoto" accept="image/*" class="w-full border rounded-lg px-3 py-2"><div id="agendaPhotoPreview" class="mt-2 hidden"><img id="agendaPreviewImage" class="w-32 h-32 object-cover rounded-lg border"></div></div><div class="flex space-x-3"><button type="submit" class="flex-1 btn-primary py-2 rounded-lg">Simpan</button><button type="button" onclick="closeModal('addAgendaModal')" class="flex-1 bg-gray-500 hover:bg-gray-600 text-white py-2 rounded-lg">Batal</button></div></form></div></div>
+    <div id="addInventoryModal" class="modal fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50 p-4"><div class="modal-content rounded-lg p-6 w-full max-w-md"><h3 class="text-lg font-semibold mb-4 text-default">Tambah Barang Inventaris</h3><form id="addInventoryForm" class="space-y-4"><input type="text" id="inventoryItem" placeholder="Nama Barang" class="w-full border rounded-lg px-3 py-2" required><input type="number" id="inventoryQuantity" placeholder="Jumlah" class="w-full border rounded-lg px-3 py-2" required><input type="number" id="inventoryPrice" placeholder="Harga Perolehan (Rp)" class="w-full border rounded-lg px-3 py-2" required><div class="flex space-x-3"><button type="submit" class="flex-1 btn-primary py-2 rounded-lg">Simpan</button><button type="button" onclick="closeModal('addInventoryModal')" class="flex-1 bg-gray-500 hover:bg-gray-600 text-white py-2 rounded-lg">Batal</button></div></form></div></div>
     <div id="classInfoModal" class="modal fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50 p-4"><div class="modal-content rounded-lg p-6 w-full max-w-md"><h3 class="text-lg font-semibold mb-4 text-default">Edit Informasi Kelas</h3><form id="classInfoForm" class="space-y-4"><select id="classPresidentSelect" class="w-full border rounded-lg px-3 py-2"><option value="">Pilih Ketua Kelas</option></select><select id="classSecretarySelect" class="w-full border rounded-lg px-3 py-2"><option value="">Pilih Sekretaris</option></select><select id="classTreasurerSelect" class="w-full border rounded-lg px-3 py-2"><option value="">Pilih Bendahara</option></select><div class="flex space-x-3"><button type="submit" class="flex-1 btn-primary py-2 rounded-lg">Simpan</button><button type="button" onclick="closeModal('classInfoModal')" class="flex-1 bg-gray-500 hover:bg-gray-600 text-white py-2 rounded-lg">Batal</button></div></form></div></div>
     <div id="imageModal" class="modal fixed inset-0 bg-black bg-opacity-75 hidden flex items-center justify-center z-50 p-4"><div class="relative max-w-4xl max-h-full"><button onclick="closeModal('imageModal')" class="absolute -top-2 -right-2 text-white bg-black bg-opacity-50 rounded-full w-8 h-8 flex items-center justify-center text-2xl hover:text-gray-300 z-10">✕</button><img id="modalImage" class="max-w-full max-h-full object-contain rounded-lg"></div></div>
     <div id="customAlertModal" class="modal fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50 p-4"><div class="modal-content rounded-lg p-6 w-full max-w-sm text-center shadow-xl"><div id="customAlertIcon" class="text-4xl mb-4"></div><h3 class="text-lg font-semibold mb-2 text-default" id="customAlertTitle"></h3><p class="text-muted mb-6" id="customAlertMessage"></p><div id="customAlertButtons" class="flex justify-center space-x-3"></div></div></div>
@@ -476,9 +507,10 @@
         let classInfo = {};
         let teacherInfo = {};
         let workPlan = [];
-        let journals = []; // New journal data array
-        let lessonSchedule = {}; // New lesson schedule data array
-        let piketSchedule = {}; // New piket schedule data array
+        let journals = [];
+        let lessonSchedule = {};
+        let piketSchedule = {};
+        let classInventory = []; // New inventory data array
         
         // State Variables
         let currentEditingStudentId = null;
@@ -541,6 +573,7 @@
             document.getElementById('settingForm').addEventListener('submit', handleSaveSettings);
             document.getElementById('addWorkPlanForm').addEventListener('submit', handleAddWorkPlan);
             document.getElementById('addJournalForm').addEventListener('submit', handleAddJournal);
+            document.getElementById('addInventoryForm').addEventListener('submit', handleAddInventory);
         }
 
         function toggleNestedMenu(menuId, clickedButton) {
@@ -601,6 +634,9 @@
                 case 'piket_schedule':
                     loadPiketSchedule();
                     break;
+                case 'inventory':
+                    loadInventory();
+                    break;
                 case 'attendance':
                     loadAttendanceForDate();
                     generateDateRangeReport();
@@ -646,6 +682,7 @@
             journals = JSON.parse(localStorage.getItem('journals')) || [];
             lessonSchedule = JSON.parse(localStorage.getItem('lessonSchedule')) || {};
             piketSchedule = JSON.parse(localStorage.getItem('piketSchedule')) || {};
+            classInventory = JSON.parse(localStorage.getItem('classInventory')) || [];
 
             if (students.length === 0) {
                 addSampleData();
@@ -659,6 +696,9 @@
             }
             if (Object.keys(piketSchedule).length === 0) {
                 addSamplePiketSchedule();
+            }
+            if (classInventory.length === 0) {
+                addSampleInventory();
             }
 
             const today = new Date().toISOString().split('T')[0];
@@ -1011,6 +1051,60 @@
         function saveAllPiketSchedule() {
             saveData();
             showAlert('success', 'Tersimpan!', 'Jadwal piket berhasil disimpan.');
+        }
+
+        // Inventory Management
+        function showAddInventoryModal() {
+            document.getElementById('addInventoryForm').reset();
+            openModal('addInventoryModal');
+        }
+
+        function handleAddInventory(e) {
+            e.preventDefault();
+            const newItem = {
+                id: Date.now(),
+                name: document.getElementById('inventoryItem').value,
+                quantity: parseInt(document.getElementById('inventoryQuantity').value),
+                price: parseFloat(document.getElementById('inventoryPrice').value)
+            };
+            classInventory.push(newItem);
+            saveData();
+            loadInventory();
+            closeModal('addInventoryModal');
+            showAlert('success', 'Tersimpan!', 'Barang inventaris berhasil ditambahkan.');
+        }
+
+        function loadInventory() {
+            const tableBody = document.getElementById('inventoryTableBody');
+            tableBody.innerHTML = '';
+            classInventory.forEach(item => {
+                const total = item.quantity * item.price;
+                const row = `
+                    <tr>
+                        <td class="px-4 py-3 font-medium text-default">${item.name}</td>
+                        <td class="px-4 py-3 text-default">${item.quantity}</td>
+                        <td class="px-4 py-3 text-default">Rp ${item.price.toLocaleString('id-ID')}</td>
+                        <td class="px-4 py-3">
+                            <button onclick="deleteInventoryItem(${item.id})" class="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300">🗑️</button>
+                        </td>
+                    </tr>
+                `;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        function deleteInventoryItem(id) {
+            showConfirm('warning', 'Hapus Barang?', 'Anda yakin ingin menghapus barang inventaris ini?', () => {
+                classInventory = classInventory.filter(item => item.id !== id);
+                saveData();
+                loadInventory();
+                showAlert('success', 'Dihapus!', 'Barang inventaris telah dihapus.');
+            });
+        }
+
+        function saveAllInventoryData() {
+            saveData();
+            showAlert('success', 'Tersimpan!', 'Data inventaris berhasil disimpan.');
         }
 
         // Attendance Management
@@ -1708,22 +1802,30 @@
                     doc.autoTable({ startY: finalY, head: [['Hari', 'Jadwal Pelajaran', 'Jadwal Piket']], body: tableData });
                     finalY = doc.autoTable.previous.finalY;
                 });
+                
+                addSection('H. INVENTARIS KELAS', () => {
+                    finalY += 2;
+                    const head = [['No', 'Nama Barang', 'Jumlah', 'Harga Perolehan']];
+                    const body = classInventory.map((item, i) => [i + 1, item.name, item.quantity, `Rp ${item.price.toLocaleString('id-ID')}`]);
+                    doc.autoTable({ startY: finalY, head, body });
+                    finalY = doc.autoTable.previous.finalY;
+                });
 
-                addSection('H. DOKUMENTASI KEGIATAN KELAS', () => {
+                addSection('I. DOKUMENTASI KEGIATAN KELAS', () => {
                     const head = [['Tanggal', 'Kegiatan', 'Deskripsi']];
                     const body = agenda.map(a => [new Date(a.date).toLocaleDateString('id-ID'), a.title, a.description]);
                     doc.autoTable({ startY: finalY, head, body });
                     finalY = doc.autoTable.previous.finalY;
                 });
 
-                addSection('I. JURNAL KELAS', () => {
+                addSection('J. JURNAL KELAS', () => {
                     const head = [['Tanggal', 'Catatan']];
                     const body = journals.map(j => [new Date(j.date).toLocaleDateString('id-ID'), j.note]);
                     if (body.length > 0) { doc.autoTable({ startY: finalY, head, body }); finalY = doc.autoTable.previous.finalY; } else { doc.text('Tidak ada catatan jurnal.', 16, finalY += 5); finalY += 5; }
                 });
             }
 
-            addSection('J. CATATAN KHUSUS WALI KELAS', () => {
+            addSection('K. CATATAN KHUSUS WALI KELAS', () => {
                 if (studentId) {
                     const student = targetStudents[0];
                     doc.text(student.specialNotes || 'Tidak ada catatan khusus.', 16, finalY + 5, { maxWidth: 178 });
@@ -1752,7 +1854,7 @@
         // Backup & Restore & Reset
         function backupData() {
             try {
-                const data = { students, attendance, achievements, violations, agenda, subjects, grades, classInfo, teacherInfo, workPlan, journals, lessonSchedule, piketSchedule, timestamp: new Date().toISOString() };
+                const data = { students, attendance, achievements, violations, agenda, subjects, grades, classInfo, teacherInfo, workPlan, journals, lessonSchedule, piketSchedule, classInventory, timestamp: new Date().toISOString() };
                 const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
                 const a = document.createElement('a');
                 a.href = URL.createObjectURL(blob);
@@ -1781,7 +1883,7 @@
                         throw new Error("Format file tidak valid.");
                     }
                     showConfirm('warning', 'Impor Data?', 'Data saat ini akan ditimpa dengan data dari file. Yakin?', () => {
-                        Object.assign(window, { students: [], attendance: {}, achievements: [], violations: [], agenda: [], subjects: [], grades: {}, classInfo: {}, teacherInfo: {}, workPlan: [], journals: [], lessonSchedule: {}, piketSchedule: {} });
+                        Object.assign(window, { students: [], attendance: {}, achievements: [], violations: [], agenda: [], subjects: [], grades: {}, classInfo: {}, teacherInfo: {}, workPlan: [], journals: [], lessonSchedule: {}, piketSchedule: {}, classInventory: [] });
                         Object.assign(window, data);
                         saveData();
                         location.reload(); 
@@ -1835,6 +1937,15 @@
             });
         }
 
+        function resetInventoryData() {
+            showConfirm('error', 'Reset Inventaris?', 'ANDA YAKIN? Semua data inventaris akan dihapus permanen.', () => {
+                classInventory = [];
+                saveData();
+                loadInventory();
+                showAlert('success', 'Berhasil!', 'Data inventaris telah direset.');
+            });
+        }
+
         // Utility Functions
         function saveData() {
             try {
@@ -1851,6 +1962,7 @@
                 localStorage.setItem('journals', JSON.stringify(journals));
                 localStorage.setItem('lessonSchedule', JSON.stringify(lessonSchedule));
                 localStorage.setItem('piketSchedule', JSON.stringify(piketSchedule));
+                localStorage.setItem('classInventory', JSON.stringify(classInventory));
             } catch (e) {
                 if (e.name === 'QuotaExceededError') {
                     showAlert('error', 'Penyimpanan Penuh!', 'Gagal menyimpan data karena penyimpanan browser penuh. Ini mungkin disebabkan oleh terlalu banyak foto. Coba ekspor data, lalu reset aplikasi.');
@@ -1941,6 +2053,7 @@
             journals = [];
             lessonSchedule = {};
             piketSchedule = {};
+            classInventory = [];
             saveData();
         }
 
@@ -1976,6 +2089,17 @@
                 'Kamis': [1010, 1011, 1012],
                 'Jumat': [1013, 1014, 1015]
             };
+            saveData();
+        }
+
+        function addSampleInventory() {
+            classInventory = [
+                { id: 1, name: 'Papan Tulis', quantity: 1, price: 500000 },
+                { id: 2, name: 'Meja Siswa', quantity: 32, price: 150000 },
+                { id: 3, name: 'Kursi Siswa', quantity: 32, price: 100000 },
+                { id: 4, name: 'Spidol Whiteboard', quantity: 5, price: 15000 },
+                { id: 5, name: 'Penghapus Papan Tulis', quantity: 2, price: 10000 }
+            ];
             saveData();
         }
     </script>
