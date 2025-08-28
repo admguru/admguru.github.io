@@ -15,6 +15,74 @@
             background-size: 400% 400%;
             animation: gradientShift 10s ease infinite;
         }
+
+        /* Gaya untuk elemen latar belakang animasi */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .worm-shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.08); /* Warna transparan untuk bentuk */
+            border-radius: 50%;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+            filter: blur(20px); /* Efek kabur agar terlihat lebih lembut */
+        }
+
+        .worm-1 {
+            width: 300px;
+            height: 300px;
+            top: 15%;
+            left: 10%;
+            animation: moveWorm1 20s infinite;
+        }
+
+        .worm-2 {
+            width: 250px;
+            height: 250px;
+            top: 60%;
+            left: 70%;
+            animation: moveWorm2 25s infinite;
+        }
+
+        .worm-3 {
+            width: 200px;
+            height: 200px;
+            top: 30%;
+            left: 40%;
+            animation: moveWorm3 18s infinite;
+        }
+
+        @keyframes moveWorm1 {
+            0% { transform: translate(0, 0) scale(1.0); }
+            25% { transform: translate(150px, -80px) scale(1.1); }
+            50% { transform: translate(200px, 120px) scale(1.2); }
+            75% { transform: translate(50px, 100px) scale(1.1); }
+            100% { transform: translate(0, 0) scale(1.0); }
+        }
+
+        @keyframes moveWorm2 {
+            0% { transform: translate(0, 0) scale(1.0); }
+            25% { transform: translate(-100px, 50px) scale(0.9); }
+            50% { transform: translate(-150px, -100px) scale(0.8); }
+            75% { transform: translate(-50px, -80px) scale(0.9); }
+            100% { transform: translate(0, 0) scale(1.0); }
+        }
+
+        @keyframes moveWorm3 {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(100px, 50px) rotate(90deg); }
+            50% { transform: translate(50px, 150px) rotate(180deg); }
+            75% { transform: translate(120px, 80px) rotate(270deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
         
         .title-font {
             font-family: 'Space Grotesk', sans-serif;
@@ -87,6 +155,13 @@
     </style>
 </head>
 <body class="min-h-screen">
+    <!-- Elemen animasi latar belakang -->
+    <div class="animated-bg">
+        <div class="worm-shape worm-1"></div>
+        <div class="worm-shape worm-2"></div>
+        <div class="worm-shape worm-3"></div>
+    </div>
+
     <!-- Header dengan Judul -->
     <div class="text-center pt-12 pb-8">
         <h1 class="title-font text-5xl sm:text-6xl md:text-8xl font-bold text-gradient mb-6 tracking-tight">
