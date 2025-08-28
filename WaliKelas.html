@@ -599,7 +599,33 @@
                     <div class="bg-card rounded-lg shadow-md p-6 space-y-8">
                         <div>
                             <h2 class="text-xl font-semibold mb-6 flex items-center space-x-2 text-default"><span>⚙️</span><span>Setting Biodata Wali Kelas</span></h2>
-                            <form id="settingForm" class="space-y-4 max-w-lg mx-auto"><div><label for="teacherFullName" class="block text-sm font-medium text-muted">Nama Lengkap & Gelar</label><input type="text" id="teacherFullName" class="mt-1 w-full border border-default rounded-lg px-3 py-2" required></div><div><label for="teacherNip" class="block text-sm font-medium text-muted">NIP / ID</label><input type="text" id="teacherNip" class="mt-1 w-full border border-default rounded-lg px-3 py-2"></div><div><label for="teacherRank" class="block text-sm font-medium text-muted">Pangkat / Golongan</label><input type="text" id="teacherRank" class="mt-1 w-full border border-default rounded-lg px-3 py-2"></div><div><label for="teacherPosition" class="block text-sm font-medium text-muted">Jabatan</label><input type="text" id="teacherPosition" class="mt-1 w-full border border-default rounded-lg px-3 py-2"></div><div><label for="teacherWorkUnit" class="block text-sm font-medium text-muted">Unit Kerja</label><input type="text" id="teacherWorkUnit" class="mt-1 w-full border border-default rounded-lg px-3 py-2"></div><div class="flex justify-end pt-4"><button type="submit" class="btn-primary py-2 px-6 rounded-lg">Simpan</button></div></form>
+                            <!-- FIX: Menambahkan input untuk teacherWorkUnit -->
+                            <form id="settingForm" class="space-y-4 max-w-lg mx-auto">
+                                <div>
+                                    <label for="teacherFullName" class="block text-sm font-medium text-muted">Nama Lengkap & Gelar</label>
+                                    <input type="text" id="teacherFullName" class="mt-1 w-full border border-default rounded-lg px-3 py-2" required>
+                                </div>
+                                <div>
+                                    <label for="teacherNip" class="block text-sm font-medium text-muted">NIP / ID</label>
+                                    <input type="text" id="teacherNip" class="mt-1 w-full border border-default rounded-lg px-3 py-2">
+                                </div>
+                                <div>
+                                    <label for="teacherRank" class="block text-sm font-medium text-muted">Pangkat / Golongan</label>
+                                    <input type="text" id="teacherRank" class="mt-1 w-full border border-default rounded-lg px-3 py-2">
+                                </div>
+                                <div>
+                                    <label for="teacherPosition" class="block text-sm font-medium text-muted">Jabatan</label>
+                                    <input type="text" id="teacherPosition" class="mt-1 w-full border border-default rounded-lg px-3 py-2">
+                                </div>
+                                <!-- FIX: Menambahkan input untuk Unit Kerja -->
+                                <div>
+                                    <label for="teacherWorkUnit" class="block text-sm font-medium text-muted">Unit Kerja</label>
+                                    <input type="text" id="teacherWorkUnit" class="mt-1 w-full border border-default rounded-lg px-3 py-2">
+                                </div>
+                                <div class="flex justify-end pt-4">
+                                    <button type="submit" class="btn-primary py-2 px-6 rounded-lg">Simpan</button>
+                                </div>
+                            </form>
                         </div>
                         <div class="border-t border-default pt-8">
                             <h2 class="text-xl font-semibold mb-2 text-default">Impor / Ekspor Data</h2>
@@ -636,11 +662,100 @@
     
     <!-- Modals and Overlays -->
     <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden md:hidden"></div>
-    <div id="addStudentModal" class="modal fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50 p-4"><div class="modal-content rounded-lg p-6 w-full max-w-md"><h3 class="text-lg font-semibold mb-4 text-default">Tambah Siswa Baru</h3><form id="addStudentForm" class="space-y-4"><input type="text" id="studentNIS" placeholder="NIS/NISN" class="w-full border rounded-lg px-3 py-2" required><input type="text" id="studentName" placeholder="Nama Lengkap" class="w-full border rounded-lg px-3 py-2" required><div class="grid grid-cols-2 gap-4"><input type="text" id="studentBirthPlace" placeholder="Tempat Lahir" class="w-full border rounded-lg px-3 py-2" required><input type="date" id="studentBirthDate" class="w-full border rounded-lg px-3 py-2" required></div><select id="studentGender" class="w-full border rounded-lg px-3 py-2" required><option value="">Pilih Jenis Kelamin</option><option value="L">Laki-laki</option><option value="P">Perempuan</option></select><input type="tel" id="studentSelfPhone" placeholder="No. HP Siswa" class="w-full border rounded-lg px-3 py-2"><input type="text" id="studentParentName" placeholder="Nama Orang Tua/Wali" class="w-full border rounded-lg px-3 py-2"><input type="tel" id="studentParentPhone" placeholder="No. HP Orang Tua/Wali" class="w-full border rounded-lg px-3 py-2" required><textarea id="studentAddress" placeholder="Alamat Rumah" class="w-full border rounded-lg px-3 py-2" rows="2" required></textarea><textarea id="studentExtracurricular" placeholder="Ekstrakurikuler (pisahkan koma)" class="w-full border rounded-lg px-3 py-2" rows="2"></textarea><div><label class="block text-sm font-medium text-muted mb-2">Foto Siswa (Opsional)</label><input type="file" id="studentPhoto" accept="image/*" class="w-full border rounded-lg px-3 py-2" onchange="previewPhoto(this, 'previewImage', 'photoPreview')"><div id="photoPreview" class="mt-2 hidden"><img id="previewImage" class="w-20 h-20 object-cover rounded-lg border"></div></div><div class="flex space-x-3"><button type="submit" class="flex-1 btn-primary py-2 rounded-lg">Simpan</button><button type="button" onclick="closeModal('addStudentModal')" class="flex-1 bg-gray-500 hover:bg-gray-600 text-white py-2 rounded-lg">Batal</button></div></form></div></div>
-    <div id="editStudentModal" class="modal fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50 p-4"><div class="modal-content rounded-lg p-6 w-full max-w-md"><h3 class="text-lg font-semibold mb-4 text-default">Edit Siswa</h3><form id="editStudentForm" class="space-y-4"><input type="hidden" id="editStudentId"><input type="text" id="editStudentNIS" placeholder="NIS/NISN" class="w-full border rounded-lg px-3 py-2" required><input type="text" id="editStudentName" placeholder="Nama Lengkap" class="w-full border rounded-lg px-3 py-2" required><div class="grid grid-cols-2 gap-4"><input type="text" id="editStudentBirthPlace" placeholder="Tempat Lahir" class="w-full border rounded-lg px-3 py-2" required><input type="date" id="editStudentBirthDate" class="w-full border rounded-lg px-3 py-2" required></div><select id="editStudentGender" class="w-full border rounded-lg px-3 py-2" required><option value="">Pilih Jenis Kelamin</option><option value="L">Laki-laki</option><option value="P">Perempuan</option></select><input type="tel" id="editStudentSelfPhone" placeholder="No. HP Siswa" class="w-full border rounded-lg px-3 py-2"><input type="text" id="editStudentParentName" placeholder="Nama Orang Tua/Wali" class="w-full border rounded-lg px-3 py-2"><input type="tel" id="editStudentParentPhone" placeholder="No. HP Orang Tua/Wali" class="w-full border rounded-lg px-3 py-2" required><textarea id="editStudentAddress" placeholder="Alamat Rumah" class="w-full border rounded-lg px-3 py-2" rows="2" required></textarea><textarea id="editStudentExtracurricular" placeholder="Ekstrakurikuler (pisahkan koma)" class="w-full border rounded-lg px-3 py-2" rows="2"></textarea><div><label class="block text-sm font-medium text-muted mb-2">Foto Siswa</label><input type="file" id="editStudentPhoto" accept="image/*" class="w-full border rounded-lg px-3 py-2" onchange="previewPhoto(this, 'editPreviewImage', 'editPhotoPreview')"><div id="editPhotoPreview" class="mt-2"><img id="editPreviewImage" class="w-20 h-20 object-cover rounded-lg border"></div></div><div class="flex space-x-3"><button type="submit" class="flex-1 btn-primary py-2 rounded-lg">Update</button><button type="button" onclick="closeModal('editStudentModal')" class="flex-1 bg-gray-500 hover:bg-gray-600 text-white py-2 rounded-lg">Batal</button></div></form></div></div>
+    <div id="addStudentModal" class="modal fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50 p-4">
+        <div class="modal-content rounded-lg p-6 w-full max-w-md">
+            <h3 class="text-lg font-semibold mb-4 text-default">Tambah Siswa Baru</h3>
+            <form id="addStudentForm" class="space-y-4">
+                <input type="text" id="studentNIS" placeholder="NIS/NISN" class="w-full border rounded-lg px-3 py-2" required>
+                <input type="text" id="studentName" placeholder="Nama Lengkap" class="w-full border rounded-lg px-3 py-2" required>
+                <div class="grid grid-cols-2 gap-4">
+                    <input type="text" id="studentBirthPlace" placeholder="Tempat Lahir" class="w-full border rounded-lg px-3 py-2" required>
+                    <input type="date" id="studentBirthDate" class="w-full border rounded-lg px-3 py-2" required>
+                </div>
+                <select id="studentGender" class="w-full border rounded-lg px-3 py-2" required>
+                    <option value="">Pilih Jenis Kelamin</option>
+                    <option value="L">Laki-laki</option>
+                    <option value="P">Perempuan</option>
+                </select>
+                <input type="tel" id="studentSelfPhone" placeholder="No. HP Siswa" class="w-full border rounded-lg px-3 py-2">
+                <input type="text" id="studentParentName" placeholder="Nama Orang Tua/Wali" class="w-full border rounded-lg px-3 py-2">
+                <input type="tel" id="studentParentPhone" placeholder="No. HP Orang Tua/Wali" class="w-full border rounded-lg px-3 py-2" required>
+                <textarea id="studentAddress" placeholder="Alamat Rumah" class="w-full border rounded-lg px-3 py-2" rows="2" required></textarea>
+                <textarea id="studentExtracurricular" placeholder="Ekstrakurikuler (pisahkan koma)" class="w-full border rounded-lg px-3 py-2" rows="2"></textarea>
+                <div>
+                    <label class="block text-sm font-medium text-muted mb-2">URL Foto Siswa (Opsional)</label>
+                    <input type="text" id="studentPhotoUrl" placeholder="Contoh: https://example.com/foto.jpg" class="w-full border rounded-lg px-3 py-2" oninput="previewPhotoFromUrl(this.value, 'previewImage', 'photoPreview')">
+                    <div id="photoPreview" class="mt-2 hidden">
+                        <img id="previewImage" class="w-20 h-20 object-cover rounded-lg border">
+                    </div>
+                </div>
+                <div class="flex space-x-3">
+                    <button type="submit" class="flex-1 btn-primary py-2 rounded-lg">Simpan</button>
+                    <button type="button" onclick="closeModal('addStudentModal')" class="flex-1 bg-gray-500 hover:bg-gray-600 text-white py-2 rounded-lg">Batal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="editStudentModal" class="modal fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50 p-4">
+        <div class="modal-content rounded-lg p-6 w-full max-w-md">
+            <h3 class="text-lg font-semibold mb-4 text-default">Edit Siswa</h3>
+            <form id="editStudentForm" class="space-y-4">
+                <input type="hidden" id="editStudentId">
+                <input type="text" id="editStudentNIS" placeholder="NIS/NISN" class="w-full border rounded-lg px-3 py-2" required>
+                <input type="text" id="editStudentName" placeholder="Nama Lengkap" class="w-full border rounded-lg px-3 py-2" required>
+                <div class="grid grid-cols-2 gap-4">
+                    <input type="text" id="editStudentBirthPlace" placeholder="Tempat Lahir" class="w-full border rounded-lg px-3 py-2" required>
+                    <input type="date" id="editStudentBirthDate" class="w-full border rounded-lg px-3 py-2" required>
+                </div>
+                <select id="editStudentGender" class="w-full border rounded-lg px-3 py-2" required>
+                    <option value="">Pilih Jenis Kelamin</option>
+                    <option value="L">Laki-laki</option>
+                    <option value="P">Perempuan</option>
+                </select>
+                <input type="tel" id="editStudentSelfPhone" placeholder="No. HP Siswa" class="w-full border rounded-lg px-3 py-2">
+                <input type="text" id="editStudentParentName" placeholder="Nama Orang Tua/Wali" class="w-full border rounded-lg px-3 py-2">
+                <input type="tel" id="editStudentParentPhone" placeholder="No. HP Orang Tua/Wali" class="w-full border rounded-lg px-3 py-2" required>
+                <textarea id="editStudentAddress" placeholder="Alamat Rumah" class="w-full border rounded-lg px-3 py-2" rows="2" required></textarea>
+                <textarea id="editStudentExtracurricular" placeholder="Ekstrakurikuler (pisahkan koma)" class="w-full border rounded-lg px-3 py-2" rows="2"></textarea>
+                <div>
+                    <label class="block text-sm font-medium text-muted mb-2">URL Foto Siswa</label>
+                    <input type="text" id="editStudentPhotoUrl" placeholder="Contoh: https://example.com/foto.jpg" class="w-full border rounded-lg px-3 py-2" oninput="previewPhotoFromUrl(this.value, 'editPreviewImage', 'editPhotoPreview')">
+                    <div id="editPhotoPreview" class="mt-2">
+                        <img id="editPreviewImage" class="w-20 h-20 object-cover rounded-lg border">
+                    </div>
+                </div>
+                <div class="flex space-x-3">
+                    <button type="submit" class="flex-1 btn-primary py-2 rounded-lg">Update</button>
+                    <button type="button" onclick="closeModal('editStudentModal')" class="flex-1 bg-gray-500 hover:bg-gray-600 text-white py-2 rounded-lg">Batal</button>
+                </div>
+            </form>
+        </div>
+    </div>
     <div id="subjectModal" class="modal fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50 p-4"><div class="modal-content rounded-lg p-6 w-full max-w-md"><h3 class="text-lg font-semibold mb-4 text-default">Kelola Mata Pelajaran</h3><div class="mb-4"><input type="text" id="newSubjectName" placeholder="Nama Mata Pelajaran Baru" class="w-full border rounded-lg px-3 py-2"><button onclick="addSubject()" class="w-full mt-2 btn-primary text-white py-2 rounded-lg">Tambah Mapel</button></div><div id="subjectList" class="space-y-2"></div><div class="flex justify-end mt-4"><button type="button" onclick="closeModal('subjectModal')" class="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded-lg">Tutup</button></div></div></div>
     <div id="addRecordModal" class="modal fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50 p-4"><div class="modal-content rounded-lg p-6 w-full max-w-md"><h3 class="text-lg font-semibold mb-4 text-default" id="recordModalTitle">Tambah Catatan Perilaku</h3><form id="addRecordForm" class="space-y-4"><select id="recordStudent" class="w-full border rounded-lg px-3 py-2" required><option value="">Pilih Siswa</option></select><input type="text" id="recordTitle" placeholder="Judul Prestasi/Pelanggaran" class="w-full border rounded-lg px-3 py-2" required><textarea id="recordDescription" placeholder="Deskripsi & Tindak Lanjut" class="w-full border rounded-lg px-3 py-2" rows="3"></textarea><input type="number" id="recordPoints" placeholder="Poin" class="w-full border rounded-lg px-3 py-2" required><input type="date" id="recordDate" class="w-full border rounded-lg px-3 py-2" required><div class="flex space-x-3"><button type="submit" class="flex-1 btn-primary py-2 rounded-lg">Simpan</button><button type="button" onclick="closeModal('addRecordModal')" class="flex-1 bg-gray-500 hover:bg-gray-600 text-white py-2 rounded-lg">Batal</button></div></form></div></div>
-    <div id="addAgendaModal" class="modal fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50 p-4"><div class="modal-content rounded-lg p-6 w-full max-w-md"><h3 class="text-lg font-semibold mb-4 text-default">Tambah Kegiatan Kelas</h3><form id="addAgendaForm" class="space-y-4"><input type="text" id="agendaTitle" placeholder="Nama Kegiatan" class="w-full border rounded-lg px-3 py-2" required><textarea id="agendaDescription" placeholder="Deskripsi Singkat" class="w-full border rounded-lg px-3 py-2" rows="3"></textarea><input type="date" id="agendaDate" class="w-full border rounded-lg px-3 py-2" required><input type="time" id="agendaTime" class="w-full border rounded-lg px-3 py-2" required><div><label class="block text-sm font-medium text-muted mb-2">Dokumentasi (Opsional)</label><input type="file" id="agendaPhoto" accept="image/*" class="w-full border rounded-lg px-3 py-2" onchange="previewPhoto(this, 'agendaPreviewImage', 'agendaPhotoPreview')"><div id="agendaPhotoPreview" class="mt-2 hidden"><img id="agendaPreviewImage" class="w-32 h-32 object-cover rounded-lg border"></div></div><div class="flex space-x-3"><button type="submit" class="flex-1 btn-primary py-2 rounded-lg">Simpan</button><button type="button" onclick="closeModal('addAgendaModal')" class="flex-1 bg-gray-500 hover:bg-gray-600 text-white py-2 rounded-lg">Batal</button></div></form></div></div>
+    <!-- FIX: Mengganti input file dengan input URL di modal kegiatan -->
+    <div id="addAgendaModal" class="modal fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50 p-4">
+        <div class="modal-content rounded-lg p-6 w-full max-w-md">
+            <h3 class="text-lg font-semibold mb-4 text-default">Tambah Kegiatan Kelas</h3>
+            <form id="addAgendaForm" class="space-y-4">
+                <input type="text" id="agendaTitle" placeholder="Nama Kegiatan" class="w-full border rounded-lg px-3 py-2" required>
+                <textarea id="agendaDescription" placeholder="Deskripsi Singkat" class="w-full border rounded-lg px-3 py-2" rows="3"></textarea>
+                <input type="date" id="agendaDate" class="w-full border rounded-lg px-3 py-2" required>
+                <input type="time" id="agendaTime" class="w-full border rounded-lg px-3 py-2" required>
+                <div>
+                    <label class="block text-sm font-medium text-muted mb-2">URL Dokumentasi (Opsional)</label>
+                    <input type="text" id="agendaPhotoUrl" placeholder="Contoh: https://example.com/dokumentasi.jpg" class="w-full border rounded-lg px-3 py-2" oninput="previewPhotoFromUrl(this.value, 'agendaPreviewImage', 'agendaPhotoPreview')">
+                    <div id="agendaPhotoPreview" class="mt-2 hidden">
+                        <img id="agendaPreviewImage" class="w-32 h-32 object-cover rounded-lg border">
+                    </div>
+                </div>
+                <div class="flex space-x-3">
+                    <button type="submit" class="flex-1 btn-primary py-2 rounded-lg">Simpan</button>
+                    <button type="button" onclick="closeModal('addAgendaModal')" class="flex-1 bg-gray-500 hover:bg-gray-600 text-white py-2 rounded-lg">Batal</button>
+                </div>
+            </form>
+        </div>
+    </div>
     <div id="classInfoModal" class="modal fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50 p-4"><div class="modal-content rounded-lg p-6 w-full max-w-md"><h3 class="text-lg font-semibold mb-4 text-default">Edit Informasi Kelas</h3><form id="classInfoForm" class="space-y-4"><select id="classPresidentSelect" class="w-full border rounded-lg px-3 py-2"><option value="">Pilih Ketua Kelas</option></select><select id="classSecretarySelect" class="w-full border rounded-lg px-3 py-2"><option value="">Pilih Sekretaris</option></select><select id="classTreasurerSelect" class="w-full border rounded-lg px-3 py-2"><option value="">Pilih Bendahara</option></select><div class="flex space-x-3"><button type="submit" class="flex-1 btn-primary py-2 rounded-lg">Simpan</button><button type="button" onclick="closeModal('classInfoModal')" class="flex-1 bg-gray-500 hover:bg-gray-600 text-white py-2 rounded-lg">Batal</button></div></form></div></div>
     <div id="imageModal" class="modal fixed inset-0 bg-black bg-opacity-75 hidden flex items-center justify-center z-50 p-4"><div class="relative max-w-4xl max-h-full"><button onclick="closeModal('imageModal')" class="absolute -top-2 -right-2 text-white bg-black bg-opacity-50 rounded-full w-8 h-8 flex items-center justify-center text-2xl hover:text-gray-300 z-10">✕</button><img id="modalImage" class="max-w-full max-h-full object-contain rounded-lg"></div></div>
     <div id="customAlertModal" class="modal fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50 p-4"><div class="modal-content rounded-lg p-6 w-full max-w-sm text-center shadow-xl"><div id="customAlertIcon" class="text-4xl mb-4"></div><h3 class="text-lg font-semibold mb-2 text-default" id="customAlertTitle"></h3><p class="text-muted mb-6" id="customAlertMessage"></p><div id="customAlertButtons" class="flex justify-center space-x-3"></div></div></div>
@@ -649,7 +764,7 @@
     <div id="importStudentsModal" class="modal fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50 p-4">
         <div class="modal-content rounded-lg p-6 w-full max-w-md">
             <h3 class="text-lg font-semibold mb-4 text-default">Impor Data Siswa</h3>
-            <p class="text-muted mb-4">Pilih cara impor data dari file Excel:</p>
+            <p class="text-sm text-muted mb-4">Pilih cara impor data dari file Excel:</p>
             <div class="flex space-x-3">
                 <button id="importAddBtn" class="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg">Tambahkan</button>
                 <button id="importOverwriteBtn" class="flex-1 bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg">Timpa Semua</button>
@@ -747,27 +862,30 @@
             document.getElementById('mutationForm').addEventListener('submit', handleMutateStudent); // Changed from handleAddMutation to handleMutateStudent
         }
 
+        // FIX: Memastikan hanya satu menu yang terbuka pada satu waktu
         function toggleNestedMenu(menuId, clickedButton) {
             const menu = document.getElementById(menuId);
             const icon = document.getElementById(menuId + 'ToggleIcon');
-            const isOpen = menu.classList.contains('open');
-            
-            // Close all other nested menus and remove 'active' from their main buttons
+            const isOpen = menu && menu.classList.contains('open');
+
+            // Tutup semua menu bersarang dan kembalikan ikonnya ke posisi awal
             document.querySelectorAll('.nested-menu').forEach(m => {
-                if (m.id !== menuId) {
+                if (m && m.id !== menuId) {
                     m.classList.remove('open');
+                    const otherIcon = document.getElementById(m.id + 'ToggleIcon');
+                    if (otherIcon) {
+                        otherIcon.style.transform = 'rotate(0deg)';
+                    }
                 }
             });
-            document.querySelectorAll('[id$="ToggleIcon"]').forEach(i => {
-                if (i.id !== menuId + 'ToggleIcon') {
-                    i.style.transform = 'rotate(0deg)';
-                }
-            });
-            
-            // Toggle the clicked menu
-            menu.classList.toggle('open');
-            icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+
+            // Putar ikon dan buka/tutup menu yang diklik
+            if (menu && icon) {
+                menu.classList.toggle('open');
+                icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+            }
         }
+
 
         function showTab(tabName, clickedButton) {
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
@@ -879,11 +997,21 @@
 
 
             const today = new Date().toISOString().split('T')[0];
-            document.getElementById('attendanceDate').value = today;
-            const firstDayOfMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString().split('T')[0];
-            document.getElementById('startDate').value = firstDayOfMonth;
-            document.getElementById('endDate').value = today;
-            document.getElementById('journalDate').value = today;
+            const attendanceDateInput = document.getElementById('attendanceDate');
+            if (attendanceDateInput) {
+                attendanceDateInput.value = today;
+            }
+
+            const startDateInput = document.getElementById('startDate');
+            const endDateInput = document.getElementById('endDate');
+            const journalDateInput = document.getElementById('journalDate');
+            
+            if (startDateInput && endDateInput && journalDateInput) {
+                const firstDayOfMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString().split('T')[0];
+                startDateInput.value = firstDayOfMonth;
+                endDateInput.value = today;
+                journalDateInput.value = today;
+            }
             
             populateAllSelects();
             loadClassInfo();
@@ -898,25 +1026,22 @@
 
         // Student Management
         function showAddStudentModal() {
-            document.getElementById('addStudentForm').reset();
-            document.getElementById('photoPreview').classList.add('hidden');
+            const addStudentForm = document.getElementById('addStudentForm');
+            if (addStudentForm) {
+                addStudentForm.reset();
+            }
+            const photoPreview = document.getElementById('photoPreview');
+            if (photoPreview) {
+                photoPreview.classList.add('hidden');
+            }
             openModal('addStudentModal');
         }
 
         function handleAddStudent(e) {
             e.preventDefault();
-            const photoFile = document.getElementById('studentPhoto').files[0];
-            if (photoFile) {
-                if (photoFile.size > 1024 * 1024) { // 1MB limit
-                    showAlert('warning', 'Ukuran File Terlalu Besar', 'Ukuran foto maksimal adalah 1MB untuk menjaga performa.');
-                    return;
-                }
-                const reader = new FileReader();
-                reader.onload = (event) => saveStudent(event.target.result);
-                reader.readAsDataURL(photoFile);
-            } else {
-                saveStudent(null);
-            }
+            const photoUrlInput = document.getElementById('studentPhotoUrl');
+            const photoUrl = photoUrlInput ? photoUrlInput.value : null;
+            saveStudent(photoUrl);
         }
 
         function saveStudent(photoData) {
@@ -960,8 +1085,13 @@
             document.getElementById('editStudentParentPhone').value = student.parentPhone;
             document.getElementById('editStudentAddress').value = student.address;
             document.getElementById('editStudentExtracurricular').value = student.extracurricular || '';
+            
+            const photoUrlInput = document.getElementById('editStudentPhotoUrl');
             const preview = document.getElementById('editPreviewImage');
             const previewContainer = document.getElementById('editPhotoPreview');
+            
+            photoUrlInput.value = student.photo || '';
+
             if (student.photo) {
                 preview.src = student.photo;
                 previewContainer.classList.remove('hidden');
@@ -975,23 +1105,11 @@
         function handleEditStudent(e) {
             e.preventDefault();
             const studentId = parseInt(document.getElementById('editStudentId').value);
-            const photoFile = document.getElementById('editStudentPhoto').files[0];
+            const photoUrl = document.getElementById('editStudentPhotoUrl').value;
             const studentIndex = students.findIndex(s => s.id === studentId);
             if (studentIndex === -1) return;
             
-            const existingPhoto = students[studentIndex].photo;
-            
-            if (photoFile) {
-                if (photoFile.size > 1024 * 1024) { // 1MB limit
-                    showAlert('warning', 'Ukuran File Terlalu Besar', 'Ukuran foto maksimal adalah 1MB.');
-                    return;
-                }
-                const reader = new FileReader();
-                reader.onload = (event) => updateStudent(studentIndex, event.target.result);
-                reader.readAsDataURL(photoFile);
-            } else {
-                updateStudent(studentIndex, existingPhoto);
-            }
+            updateStudent(studentIndex, photoUrl);
         }
 
         function updateStudent(index, photoData) {
@@ -1039,6 +1157,7 @@
 
         function loadStudents() {
             const container = document.getElementById('studentCardContainer');
+            if (!container) return; // FIX: Pengecekan null
             container.innerHTML = '';
             students.sort((a, b) => a.name.localeCompare(b.name)).forEach(student => {
                 const rewardPoints = achievements.filter(a => a.studentId === student.id).reduce((sum, a) => sum + a.points, 0);
@@ -1048,7 +1167,7 @@
                 const card = `
                     <div class="bg-card rounded-lg shadow-md p-5 border-l-4" style="border-color: var(--accent-color);">
                         <div class="flex items-start space-x-4">
-                            <img src="${photoSrc}" class="w-24 h-24 object-cover rounded-lg border border-default cursor-pointer" onclick="showImageModal('${photoSrc}')">
+                            <img src="${photoSrc}" class="w-24 h-24 object-cover rounded-lg border border-default cursor-pointer" onerror="this.onerror=null;this.src='https://placehold.co/400x400/EBF4FF/7F9CF5?text=Foto';" onclick="showImageModal('${photoSrc}')">
                             <div class="flex-1">
                                 <div class="flex justify-between items-start">
                                     <div>
@@ -1107,7 +1226,9 @@
             if (!student) return;
 
             const noteTextarea = document.getElementById(`note-${studentId}`);
-            student.specialNotes = noteTextarea.value;
+            if (noteTextarea) { // FIX: Pengecekan null
+                student.specialNotes = noteTextarea.value;
+            }
 
             saveData();
             showAlert('success', 'Tersimpan!', `Catatan untuk ${student.name} berhasil diperbarui.`);
@@ -1160,7 +1281,10 @@
                 loadMutationData();
                 loadClassInfo();
                 updateDashboard(); // Update dashboard to reflect student count change
-                document.getElementById('mutationForm').reset();
+                const mutationForm = document.getElementById('mutationForm');
+                if (mutationForm) {
+                    mutationForm.reset();
+                }
                 showAlert('success', 'Berhasil!', `Data mutasi untuk ${student.name} telah disimpan dan data siswa telah dihapus dari daftar aktif.`);
             });
         }
@@ -1172,6 +1296,7 @@
 
         function populateMutationStudentSelect() {
             const select = document.getElementById('mutationStudent');
+            if (!select) return; // FIX: Pengecekan null
             select.innerHTML = '<option value="" disabled selected>-- Pilih Siswa --</option>';
             students.sort((a,b) => a.name.localeCompare(b.name)).forEach(student => {
                 select.innerHTML += `<option value="${student.id}">${student.name}</option>`;
@@ -1181,6 +1306,7 @@
         function loadMutationHistory() {
             const tbody = document.getElementById('mutationTableBody');
             const message = document.getElementById('noMutationMessage');
+            if (!tbody || !message) return; // FIX: Pengecekan null
             tbody.innerHTML = '';
             
             if (studentMutations.length === 0) {
@@ -1232,6 +1358,7 @@
         const daysOfWeek = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat'];
         function loadLessonSchedule() {
             const container = document.getElementById('lessonScheduleContainer');
+            if (!container) return; // FIX: Pengecekan null
             container.innerHTML = '';
             daysOfWeek.forEach(day => {
                 const scheduleForDay = lessonSchedule[day] || [];
@@ -1283,6 +1410,7 @@
         // Piket Schedule Management
         function loadPiketSchedule() {
             const container = document.getElementById('piketScheduleContainer');
+            if (!container) return; // FIX: Pengecekan null
             container.innerHTML = '';
             daysOfWeek.forEach(day => {
                 const studentsForDay = piketSchedule[day] || [];
@@ -1314,6 +1442,7 @@
         }
         function addPiket(day) {
             const select = document.getElementById(`add-piket-${day}`);
+            if (!select) return;
             const studentId = parseInt(select.value);
             if (studentId) {
                 if (!piketSchedule[day]) piketSchedule[day] = [];
@@ -1343,6 +1472,7 @@
         // Inventory Management
         function loadInventory() {
             const container = document.getElementById('inventoryList');
+            if (!container) return; // FIX: Pengecekan null
             container.innerHTML = '';
             let totalValue = 0;
 
@@ -1364,7 +1494,10 @@
                     container.innerHTML += row;
                 });
             }
-            document.getElementById('totalInventoryValue').textContent = `Rp ${totalValue.toLocaleString('id-ID')}`;
+            const totalValueElement = document.getElementById('totalInventoryValue');
+            if (totalValueElement) { // FIX: Pengecekan null
+                totalValueElement.textContent = `Rp ${totalValue.toLocaleString('id-ID')}`;
+            }
         }
         
         function addInventoryItem(e) {
@@ -1383,7 +1516,10 @@
                 inventory.push(newItem);
                 saveData();
                 loadInventory();
-                document.getElementById('addInventoryForm').reset();
+                const form = document.getElementById('addInventoryForm');
+                if (form) {
+                    form.reset();
+                }
                 showAlert('success', 'Berhasil!', 'Barang inventaris berhasil ditambahkan.');
             }
         }
@@ -1412,8 +1548,11 @@
 
         // Attendance Management
         function loadAttendanceForDate() {
-            const date = document.getElementById('attendanceDate').value;
+            const dateInput = document.getElementById('attendanceDate');
+            if (!dateInput) return; // FIX: Pengecekan null
+            const date = dateInput.value;
             const container = document.getElementById('attendanceList');
+            if (!container) return; // FIX: Pengecekan null
             container.innerHTML = '';
             if (!attendance[date]) attendance[date] = {};
             
@@ -1432,10 +1571,12 @@
             if (!attendance[date][studentId]) attendance[date][studentId] = { status: '', notes: '' };
             attendance[date][studentId].status = status;
             const buttonGroup = button.parentElement;
-            buttonGroup.querySelectorAll('button').forEach(btn => { btn.classList.remove('bg-green-500', 'bg-yellow-500', 'bg-blue-500', 'bg-red-500', 'text-white'); btn.classList.add('bg-gray-200', 'dark:bg-gray-600'); });
-            button.classList.remove('bg-gray-200', 'dark:bg-gray-600');
-            const colorMap = { hadir: 'bg-green-500', sakit: 'bg-yellow-500', izin: 'bg-blue-500', alpa: 'bg-red-500' };
-            button.classList.add(colorMap[status], 'text-white');
+            if (buttonGroup) { // FIX: Pengecekan null
+                buttonGroup.querySelectorAll('button').forEach(btn => { btn.classList.remove('bg-green-500', 'bg-yellow-500', 'bg-blue-500', 'bg-red-500', 'text-white'); btn.classList.add('bg-gray-200', 'dark:bg-gray-600'); });
+                button.classList.remove('bg-gray-200', 'dark:bg-gray-600');
+                const colorMap = { hadir: 'bg-green-500', sakit: 'bg-yellow-500', izin: 'bg-blue-500', alpa: 'bg-red-500' };
+                button.classList.add(colorMap[status], 'text-white');
+            }
         }
 
         function setAttendanceNote(date, studentId, notes) {
@@ -1451,7 +1592,9 @@
         }
 
         function markAllPresent() {
-            const date = document.getElementById('attendanceDate').value;
+            const dateInput = document.getElementById('attendanceDate');
+            if (!dateInput) return; // FIX: Pengecekan null
+            const date = dateInput.value;
             showConfirm('info', 'Hadir Semua?', `Yakin menandai semua siswa hadir untuk tanggal ${new Date(date).toLocaleDateString('id-ID')}?`, () => {
                 if (!attendance[date]) attendance[date] = {};
                 students.forEach(student => { attendance[date][student.id] = { status: 'hadir', notes: '' }; });
@@ -1461,14 +1604,15 @@
         }
         
         function generateDateRangeReport() {
-            const startDate = document.getElementById('startDate').value;
-            const endDate = document.getElementById('endDate').value;
+            const startDate = document.getElementById('startDate');
+            const endDate = document.getElementById('endDate');
             const container = document.getElementById('dateRangeReport');
-            if (!startDate || !endDate || new Date(startDate) > new Date(endDate)) { container.innerHTML = ''; return; }
+            if (!startDate || !endDate || !container) return; // FIX: Pengecekan null
+            if (!startDate.value || !endDate.value || new Date(startDate.value) > new Date(endDate.value)) { container.innerHTML = ''; return; }
             const stats = { hadir: 0, sakit: 0, izin: 0, alpa: 0, total: 0 };
             Object.keys(attendance).forEach(date => {
                 const currentDate = new Date(date);
-                if (currentDate >= new Date(startDate) && currentDate <= new Date(endDate)) {
+                if (currentDate >= new Date(startDate.value) && currentDate <= new Date(endDate.value)) {
                     Object.values(attendance[date]).forEach(rec => { if (stats.hasOwnProperty(rec.status)) { stats[rec.status]++; stats.total++; } });
                 }
             });
@@ -1478,15 +1622,17 @@
         }
 
         function generateIndividualReport() {
-            const studentId = parseInt(document.getElementById('individualStudentSelect').value);
-            const startDate = document.getElementById('startDate').value;
-            const endDate = document.getElementById('endDate').value;
+            const studentSelect = document.getElementById('individualStudentSelect');
+            const startDate = document.getElementById('startDate');
+            const endDate = document.getElementById('endDate');
             const container = document.getElementById('individualReport');
-            if (!studentId || !startDate || !endDate) { container.innerHTML = ''; return; }
+            if (!studentSelect || !startDate || !endDate || !container) return; // FIX: Pengecekan null
+            const studentId = parseInt(studentSelect.value);
+            if (!studentId || !startDate.value || !endDate.value) { container.innerHTML = ''; return; }
             const stats = { hadir: 0, sakit: 0, izin: 0, alpa: 0 };
             Object.keys(attendance).forEach(date => {
                 const currentDate = new Date(date);
-                if (currentDate >= new Date(startDate) && currentDate <= new Date(endDate)) {
+                if (currentDate >= new Date(startDate.value) && currentDate <= new Date(endDate.value)) {
                     const rec = attendance[date][studentId];
                     if (rec && stats.hasOwnProperty(rec.status)) stats[rec.status]++;
                 }
@@ -1501,13 +1647,15 @@
         }
 
         function addSubject() {
-            const subjectName = document.getElementById('newSubjectName').value.trim();
+            const subjectNameInput = document.getElementById('newSubjectName');
+            if (!subjectNameInput) return; // FIX: Pengecekan null
+            const subjectName = subjectNameInput.value.trim();
             if (subjectName && !subjects.find(s => s.name.toLowerCase() === subjectName.toLowerCase())) {
                 subjects.push({ id: Date.now(), name: subjectName });
                 saveData();
                 loadSubjectList();
                 loadGradesTable();
-                document.getElementById('newSubjectName').value = '';
+                subjectNameInput.value = '';
                 showAlert('success', 'Berhasil!', 'Mata pelajaran berhasil ditambahkan.');
             } else if (subjectName) {
                 showAlert('warning', 'Gagal', 'Mata pelajaran sudah ada.');
@@ -1527,6 +1675,7 @@
 
         function loadSubjectList() {
             const container = document.getElementById('subjectList');
+            if (!container) return; // FIX: Pengecekan null
             container.innerHTML = '';
             subjects.sort((a,b) => a.name.localeCompare(b.name)).forEach(subject => {
                 container.innerHTML += `<div class="flex justify-between items-center p-2 border border-default rounded"><span>${subject.name}</span><button onclick="deleteSubject(${subject.id})" class="text-red-500 hover:text-red-700">🗑️</button></div>`;
@@ -1536,6 +1685,7 @@
         function loadGradesTable() {
             const head = document.getElementById('gradesTableHead');
             const body = document.getElementById('gradesTableBody');
+            if (!head || !body) return; // FIX: Pengecekan null
             const sortedSubjects = [...subjects].sort((a,b) => a.name.localeCompare(b.name));
             head.innerHTML = `<tr><th scope="col" class="px-4 py-3 text-left text-xs font-medium text-muted uppercase">Nama Siswa</th>${sortedSubjects.map(s => `<th scope="col" class="px-4 py-3 text-left text-xs font-medium text-muted uppercase">${s.name}</th>`).join('')}<th scope="col" class="px-4 py-3 text-left text-xs font-medium text-muted uppercase">Rata-rata</th></tr>`;
             body.innerHTML = '';
@@ -1572,6 +1722,7 @@
         // Health Management
         function loadHealthAndNotesTable() {
             const body = document.getElementById('healthTableBody');
+            if (!body) return; // FIX: Pengecekan null
             body.innerHTML = '';
             students.sort((a, b) => a.name.localeCompare(b.name)).forEach(student => {
                 const sHealth = student.health || {};
@@ -1599,12 +1750,23 @@
         // Records (Behavior) Management
         function showAddRecordModal(type) {
             currentRecordType = type;
-            document.getElementById('recordModalTitle').textContent = type === 'achievement' ? 'Tambah Reward / Prestasi' : 'Tambah Pelanggaran';
-            document.getElementById('recordPoints').placeholder = type === 'achievement' ? 'Poin Reward' : 'Poin Pelanggaran';
+            const titleElement = document.getElementById('recordModalTitle');
+            if (titleElement) {
+                titleElement.textContent = type === 'achievement' ? 'Tambah Reward / Prestasi' : 'Tambah Pelanggaran';
+            }
+            const pointsElement = document.getElementById('recordPoints');
+            if (pointsElement) {
+                pointsElement.placeholder = type === 'achievement' ? 'Poin Reward' : 'Poin Pelanggaran';
+            }
             const select = document.getElementById('recordStudent');
-            select.innerHTML = '<option value="">Pilih Siswa</option>';
-            students.sort((a, b) => a.name.localeCompare(b.name)).forEach(student => { select.innerHTML += `<option value="${student.id}">${student.name}</option>`; });
-            document.getElementById('addRecordForm').reset();
+            if (select) { // FIX: Pengecekan null
+                select.innerHTML = '<option value="">Pilih Siswa</option>';
+                students.sort((a, b) => a.name.localeCompare(b.name)).forEach(student => { select.innerHTML += `<option value="${student.id}">${student.name}</option>`; });
+            }
+            const form = document.getElementById('addRecordForm');
+            if (form) {
+                form.reset();
+            }
             openModal('addRecordModal');
         }
 
@@ -1620,9 +1782,10 @@
 
         function loadRecords() {
             const achievementsContainer = document.getElementById('achievementsList');
+            const violationsContainer = document.getElementById('violationsList');
+            if (!achievementsContainer || !violationsContainer) return; // FIX: Pengecekan null
             achievementsContainer.innerHTML = '';
             achievements.sort((a,b) => new Date(b.date) - new Date(a.date)).forEach(a => achievementsContainer.innerHTML += createRecordCard(a, 'achievement'));
-            const violationsContainer = document.getElementById('violationsList');
             violationsContainer.innerHTML = '';
             violations.sort((a,b) => new Date(b.date) - new Date(a.date)).forEach(v => violationsContainer.innerHTML += createRecordCard(v, 'violation'));
         }
@@ -1653,12 +1816,16 @@
             journals.push(newJournal);
             saveData();
             loadJournals();
-            document.getElementById('addJournalForm').reset();
+            const form = document.getElementById('addJournalForm');
+            if (form) {
+                form.reset();
+            }
             showAlert('success', 'Jurnal Tersimpan!', 'Catatan jurnal harian berhasil disimpan.');
         }
 
         function loadJournals() {
             const container = document.getElementById('journalList');
+            if (!container) return; // FIX: Pengecekan null
             container.innerHTML = '';
             const sortedJournals = [...journals].sort((a, b) => new Date(b.date) - new Date(a.date));
             if (sortedJournals.length === 0) {
@@ -1695,6 +1862,7 @@
             e.preventDefault();
             const taskInput = document.getElementById('workPlanTask');
             const timelineInput = document.getElementById('workPlanTimeline');
+            if (!taskInput || !timelineInput) return; // FIX: Pengecekan null
             const task = taskInput.value.trim();
             const timeline = timelineInput.value.trim();
 
@@ -1722,6 +1890,7 @@
 
         function loadWorkPlan() {
             const container = document.getElementById('workPlanContainer');
+            if (!container) return; // FIX: Pengecekan null
             container.innerHTML = '';
             if (workPlan.length === 0) {
                 container.innerHTML = '<p class="text-muted text-center">Belum ada program kerja yang ditambahkan.</p>';
@@ -1756,11 +1925,62 @@
         }
         
         // Agenda Management
-        function showAddAgendaModal() { document.getElementById('addAgendaForm').reset(); document.getElementById('agendaPhotoPreview').classList.add('hidden'); openModal('addAgendaModal'); }
-        function handleAddAgenda(e) { e.preventDefault(); const photoFile = document.getElementById('agendaPhoto').files[0]; if (photoFile) { const reader = new FileReader(); reader.onload = (event) => saveAgenda(event.target.result); reader.readAsDataURL(photoFile); } else { saveAgenda(null); } }
-        function saveAgenda(photo) { agenda.push({ id: Date.now(), title: document.getElementById('agendaTitle').value, description: document.getElementById('agendaDescription').value, date: document.getElementById('agendaDate').value, time: document.getElementById('agendaTime').value, photo: photo }); saveData(); loadAgenda(); closeModal('addAgendaModal'); showAlert('success', 'Sukses!', 'Kegiatan baru berhasil ditambahkan.'); }
-        function loadAgenda() { const container = document.getElementById('agendaList'); container.innerHTML = ''; const sortedAgenda = [...agenda].sort((a, b) => new Date(`${b.date}T${b.time}`) - new Date(`${a.date}T${a.time}`)); sortedAgenda.forEach(item => { const photoSection = item.photo ? `<div class="mt-3 mb-3"><img src="${item.photo}" class="w-full max-w-md h-48 object-cover rounded-lg border border-default cursor-pointer" onclick="showImageModal('${item.photo}')" alt="Foto Kegiatan"></div>` : ''; container.innerHTML += `<div class="p-4 border border-default rounded-lg bg-info-card"><div class="flex justify-between items-start"><div class="flex-1"><h4 class="font-semibold text-default">${item.title}</h4><p class="text-sm text-muted">${item.description}</p><p class="text-xs text-gray-500 dark:text-gray-400">📅 ${new Date(item.date).toLocaleDateString('id-ID')} ⏰ ${item.time}</p>${photoSection}</div><button onclick="deleteAgenda(${item.id})" class="text-red-500 hover:text-red-700 ml-4">🗑️</button></div></div>`; }); }
-        function deleteAgenda(id) { showConfirm('warning', 'Hapus Kegiatan?', 'Anda yakin ingin menghapus kegiatan ini?', () => { agenda = agenda.filter(a => a.id !== id); saveData(); loadAgenda(); showAlert('success', 'Dihapus!', 'Kegiatan telah dihapus.'); } ); }
+        function showAddAgendaModal() { 
+            const form = document.getElementById('addAgendaForm');
+            if (form) {
+                form.reset(); 
+            }
+            const photoPreview = document.getElementById('agendaPhotoPreview');
+            if (photoPreview) {
+                photoPreview.classList.add('hidden');
+            }
+            const photoUrlInput = document.getElementById('agendaPhotoUrl');
+            if (photoUrlInput) {
+                photoUrlInput.value = '';
+            }
+            openModal('addAgendaModal'); 
+        }
+        
+        function handleAddAgenda(e) { 
+            e.preventDefault(); 
+            const photoUrl = document.getElementById('agendaPhotoUrl').value;
+            saveAgenda(photoUrl);
+        }
+        
+        function saveAgenda(photo) { 
+            agenda.push({ 
+                id: Date.now(), 
+                title: document.getElementById('agendaTitle').value, 
+                description: document.getElementById('agendaDescription').value, 
+                date: document.getElementById('agendaDate').value, 
+                time: document.getElementById('agendaTime').value, 
+                photo: photo 
+            }); 
+            saveData(); 
+            loadAgenda(); 
+            closeModal('addAgendaModal'); 
+            showAlert('success', 'Sukses!', 'Kegiatan baru berhasil ditambahkan.'); 
+        }
+        
+        function loadAgenda() { 
+            const container = document.getElementById('agendaList'); 
+            if (!container) return; // FIX: Pengecekan null
+            container.innerHTML = ''; 
+            const sortedAgenda = [...agenda].sort((a, b) => new Date(`${b.date}T${b.time}`) - new Date(`${a.date}T${a.time}`)); 
+            sortedAgenda.forEach(item => { 
+                const photoSection = item.photo ? `<div class="mt-3 mb-3"><img src="${item.photo}" class="w-full max-w-md h-48 object-cover rounded-lg border border-default cursor-pointer" onerror="this.onerror=null;this.src='https://placehold.co/400x200/EBF4FF/7F9CF5?text=Foto+Tidak+Ditemukan';" onclick="showImageModal('${item.photo}')" alt="Foto Kegiatan"></div>` : ''; 
+                container.innerHTML += `<div class="p-4 border border-default rounded-lg bg-info-card"><div class="flex justify-between items-start"><div class="flex-1"><h4 class="font-semibold text-default">${item.title}</h4><p class="text-sm text-muted">${item.description}</p><p class="text-xs text-gray-500 dark:text-gray-400">📅 ${new Date(item.date).toLocaleDateString('id-ID')} ⏰ ${item.time}</p>${photoSection}</div><button onclick="deleteAgenda(${item.id})" class="text-red-500 hover:text-red-700 ml-4">🗑️</button></div></div>`; 
+            }); 
+        }
+        
+        function deleteAgenda(id) { 
+            showConfirm('warning', 'Hapus Kegiatan?', 'Anda yakin ingin menghapus kegiatan ini?', () => { 
+                agenda = agenda.filter(a => a.id !== id); 
+                saveData(); 
+                loadAgenda(); 
+                showAlert('success', 'Dihapus!', 'Kegiatan telah dihapus.'); 
+            }); 
+        }
 
         // Class & Teacher Info Management
         function showClassInfoModal() {
@@ -1768,16 +1988,29 @@
             const roles = { classPresidentSelect: classInfo.president, classSecretarySelect: classInfo.secretary, classTreasurerSelect: classInfo.treasurer };
             selects.forEach(selectId => {
                 const select = document.getElementById(selectId);
-                select.innerHTML = '<option value="">Pilih Ketua Kelas</option>';
-                students.sort((a, b) => a.name.localeCompare(b.name)).forEach(student => { const selected = roles[selectId] == student.id ? 'selected' : ''; select.innerHTML += `<option value="${student.id}" ${selected}>${student.name}</option>`; });
+                if (select) { // FIX: Pengecekan null
+                    select.innerHTML = '<option value="">Pilih Ketua Kelas</option>';
+                    students.sort((a, b) => a.name.localeCompare(b.name)).forEach(student => { const selected = roles[selectId] == student.id ? 'selected' : ''; select.innerHTML += `<option value="${student.id}" ${selected}>${student.name}</option>`; });
+                }
             });
             openModal('classInfoModal');
         }
         function handleSaveClassInfo(e) {
             e.preventDefault();
-            classInfo.president = parseInt(document.getElementById('classPresidentSelect').value) || null;
-            classInfo.secretary = parseInt(document.getElementById('classSecretarySelect').value) || null;
-            classInfo.treasurer = parseInt(document.getElementById('classTreasurerSelect').value) || null;
+            const presidentSelect = document.getElementById('classPresidentSelect');
+            const secretarySelect = document.getElementById('classSecretarySelect');
+            const treasurerSelect = document.getElementById('classTreasurerSelect');
+            
+            if (presidentSelect) {
+                 classInfo.president = parseInt(presidentSelect.value) || null;
+            }
+            if (secretarySelect) {
+                 classInfo.secretary = parseInt(secretarySelect.value) || null;
+            }
+            if (treasurerSelect) {
+                 classInfo.treasurer = parseInt(treasurerSelect.value) || null;
+            }
+
             students.forEach(student => { 
                 student.position = ''; 
                 if (student.id === classInfo.president) student.position = 'ketua'; 
@@ -1791,14 +2024,10 @@
             showAlert('success', 'Sukses!', 'Informasi kelas berhasil diperbarui.');
         }
         function loadClassInfo() {
-            // Perbaikan: Menghapus baris yang mencoba mengakses elemen dengan ID "teacherName"
-            // Karena elemen tersebut tidak ada di HTML.
-            
             const president = students.find(s => s.id === classInfo.president);
             const secretary = students.find(s => s.id === classInfo.secretary);
             const treasurer = students.find(s => s.id === classInfo.treasurer);
             
-            // Perbaikan: Mengubah ID elemen yang dicari agar sesuai dengan HTML
             const presidentElement = document.getElementById('classPresident-structure');
             if (presidentElement) {
                 presidentElement.textContent = president ? president.name : '-';
@@ -1814,7 +2043,6 @@
                 treasurerElement.textContent = treasurer ? treasurer.name : '-';
             }
 
-            // Memperbarui info pengurus di dashboard
             const presidentDashboardElement = document.getElementById('classPresident-dashboard');
             if (presidentDashboardElement) {
                 presidentDashboardElement.textContent = president ? president.name : '-';
@@ -1836,23 +2064,54 @@
             showAlert('success', 'Sukses!', 'Biodata wali kelas berhasil disimpan.');
         }
         function loadSettings() {
-            document.getElementById('teacherFullName').value = teacherInfo.name || '';
-            document.getElementById('teacherNip').value = teacherInfo.nip || '';
-            document.getElementById('teacherRank').value = teacherInfo.rank || '';
-            document.getElementById('teacherPosition').value = teacherInfo.position || '';
-            document.getElementById('teacherWorkUnit').value = teacherInfo.workUnit || '';
+            const teacherFullName = document.getElementById('teacherFullName');
+            if (teacherFullName) {
+                teacherFullName.value = teacherInfo.name || '';
+            }
+            const teacherNip = document.getElementById('teacherNip');
+            if (teacherNip) {
+                teacherNip.value = teacherInfo.nip || '';
+            }
+            const teacherRank = document.getElementById('teacherRank');
+            if (teacherRank) {
+                teacherRank.value = teacherInfo.rank || '';
+            }
+            const teacherPosition = document.getElementById('teacherPosition');
+            if (teacherPosition) {
+                teacherPosition.value = teacherInfo.position || '';
+            }
+            const teacherWorkUnit = document.getElementById('teacherWorkUnit');
+            if (teacherWorkUnit) {
+                teacherWorkUnit.value = teacherInfo.workUnit || '';
+            }
         }
 
         // Dashboard & Charts
         function updateDashboard() {
-            document.getElementById('totalStudents').textContent = students.length;
-            document.getElementById('maleStudents').textContent = students.filter(s => s.gender === 'L').length;
-            document.getElementById('femaleStudents').textContent = students.filter(s => s.gender === 'P').length;
-            const today = document.getElementById('attendanceDate').value;
+            const totalStudentsElement = document.getElementById('totalStudents');
+            if (totalStudentsElement) {
+                totalStudentsElement.textContent = students.length;
+            }
+            const maleStudentsElement = document.getElementById('maleStudents');
+            if (maleStudentsElement) {
+                maleStudentsElement.textContent = students.filter(s => s.gender === 'L').length;
+            }
+            const femaleStudentsElement = document.getElementById('femaleStudents');
+            if (femaleStudentsElement) {
+                femaleStudentsElement.textContent = students.filter(s => s.gender === 'P').length;
+            }
+            
+            const attendanceDateInput = document.getElementById('attendanceDate');
+            if (!attendanceDateInput) return; // FIX: Pengecekan null
+
+            const today = attendanceDateInput.value;
             const todayAttendanceData = attendance[today] || {};
             const presentToday = Object.values(todayAttendanceData).filter(rec => rec.status === 'hadir').length;
             const attendancePercentage = students.length > 0 ? Math.round((presentToday / students.length) * 100) : 0;
-            document.getElementById('todayAttendance').textContent = `${attendancePercentage}%`;
+            const todayAttendanceElement = document.getElementById('todayAttendance');
+            if (todayAttendanceElement) {
+                todayAttendanceElement.textContent = `${attendancePercentage}%`;
+            }
             
             updateDashboardDetails();
             updateClassCharts();
@@ -1866,66 +2125,74 @@
             const todayAttendance = attendance[today] || {};
             const absentStudents = students.filter(s => todayAttendance[s.id] && todayAttendance[s.id].status !== 'hadir' && todayAttendance[s.id].status !== 'belum');
             
-            if (absentStudents.length > 0) {
-                attendanceContainer.innerHTML = absentStudents.map(s => {
-                    const status = todayAttendance[s.id].status;
-                    const color = {sakit: 'text-yellow-500', izin: 'text-blue-500', alpa: 'text-red-500'}[status];
-                    return `<div class="flex justify-between text-default"><span>${s.name}</span><span class="font-bold ${color}">${status.charAt(0).toUpperCase() + status.slice(1)}</span></div>`;
-                }).join('');
-            } else {
-                attendanceContainer.innerHTML = `<p class="text-muted">Semua siswa hadir hari ini.</p>`;
+            if (attendanceContainer) { // FIX: Pengecekan null
+                if (absentStudents.length > 0) {
+                    attendanceContainer.innerHTML = absentStudents.map(s => {
+                        const status = todayAttendance[s.id].status;
+                        const color = {sakit: 'text-yellow-500', izin: 'text-blue-500', alpa: 'text-red-500'}[status];
+                        return `<div class="flex justify-between text-default"><span>${s.name}</span><span class="font-bold ${color}">${status.charAt(0).toUpperCase() + status.slice(1)}</span></div>`;
+                    }).join('');
+                } else {
+                    attendanceContainer.innerHTML = `<p class="text-muted">Semua siswa hadir hari ini.</p>`;
+                }
             }
 
             // Records Details
             const recordsContainer = document.getElementById('dashboardRecordsDetails');
             const recentRecords = [...achievements, ...violations].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 5);
-            if (recentRecords.length > 0) {
-                recordsContainer.innerHTML = recentRecords.map(r => {
-                    const student = students.find(s => s.id === r.studentId);
-                    const isAchievement = r.type === 'achievement';
-                    const icon = isAchievement ? '🏆' : '⚠️';
-                    const color = isAchievement ? 'text-green-500' : 'text-red-500';
-                    return `<div class="border-l-2 ${isAchievement ? 'border-green-500' : 'border-red-500'} pl-2">
-                                <p class="${color} font-semibold">${icon} ${r.title}</p>
-                                <p class="text-xs text-muted">${student ? student.name : 'Siswa Dihapus'} - ${new Date(r.date).toLocaleDateString('id-ID')}</p>
-                            </div>`;
-                }).join('');
-            } else {
-                recordsContainer.innerHTML = `<p class="text-muted">Belum ada catatan perilaku.</p>`;
+            if (recordsContainer) { // FIX: Pengecekan null
+                if (recentRecords.length > 0) {
+                    recordsContainer.innerHTML = recentRecords.map(r => {
+                        const student = students.find(s => s.id === r.studentId);
+                        const isAchievement = r.type === 'achievement';
+                        const icon = isAchievement ? '🏆' : '⚠️';
+                        const color = isAchievement ? 'text-green-500' : 'text-red-500';
+                        return `<div class="border-l-2 ${isAchievement ? 'border-green-500' : 'border-red-500'} pl-2">
+                                    <p class="${color} font-semibold">${icon} ${r.title}</p>
+                                    <p class="text-xs text-muted">${student ? student.name : 'Siswa Dihapus'} - ${new Date(r.date).toLocaleDateString('id-ID')}</p>
+                                </div>`;
+                    }).join('');
+                } else {
+                    recordsContainer.innerHTML = `<p class="text-muted">Belum ada catatan perilaku.</p>`;
+                }
             }
 
             // Grades Details
             const gradesContainer = document.getElementById('dashboardGradesDetails');
-            if (subjects.length > 0) {
-                gradesContainer.innerHTML = subjects.map(sub => {
-                    let total = 0, count = 0;
-                    students.forEach(stud => {
-                        const score = grades[stud.id]?.[sub.id];
-                        if (score && !isNaN(score)) {
-                            total += parseInt(score);
-                            count++;
-                        }
-                    });
-                    const avg = count > 0 ? (total / count).toFixed(1) : 'N/A';
-                    return `<div class="flex justify-between text-default"><span>${sub.name}</span><span class="font-bold">${avg}</span></div>`;
-                }).join('');
-            } else {
-                gradesContainer.innerHTML = `<p class="text-muted">Belum ada mata pelajaran.</p>`;
+            if (gradesContainer) { // FIX: Pengecekan null
+                if (subjects.length > 0) {
+                    gradesContainer.innerHTML = subjects.map(sub => {
+                        let total = 0, count = 0;
+                        students.forEach(stud => {
+                            const score = grades[stud.id]?.[sub.id];
+                            if (score && !isNaN(score)) {
+                                total += parseInt(score);
+                                count++;
+                            }
+                        });
+                        const avg = count > 0 ? (total / count).toFixed(1) : 'N/A';
+                        return `<div class="flex justify-between text-default"><span>${sub.name}</span><span class="font-bold">${avg}</span></div>`;
+                    }).join('');
+                } else {
+                    gradesContainer.innerHTML = `<p class="text-muted">Belum ada mata pelajaran.</p>`;
+                }
             }
 
             // Mutation Details
             const mutationContainer = document.getElementById('dashboardMutationDetails');
             const recentMutations = [...studentMutations].sort((a,b) => new Date(b.date) - new Date(a.date)).slice(0, 5);
-            if (recentMutations.length > 0) {
-                mutationContainer.innerHTML = recentMutations.map(m => {
-                    const color = m.type === 'Keluar' ? 'text-red-500' : 'text-yellow-500';
-                    return `<div class="border-l-2 ${m.type === 'Keluar' ? 'border-red-500' : 'border-yellow-500'} pl-2">
-                                <p class="${color} font-semibold">Mutasi: ${m.studentName}</p>
-                                <p class="text-xs text-muted">Tipe: ${m.type} - ${new Date(m.date).toLocaleDateString('id-ID')}</p>
-                            </div>`;
-                }).join('');
-            } else {
-                mutationContainer.innerHTML = `<p class="text-muted">Belum ada riwayat mutasi.</p>`;
+            if (mutationContainer) { // FIX: Pengecekan null
+                if (recentMutations.length > 0) {
+                    mutationContainer.innerHTML = recentMutations.map(m => {
+                        const color = m.type === 'Keluar' ? 'text-red-500' : 'text-yellow-500';
+                        return `<div class="border-l-2 ${m.type === 'Keluar' ? 'border-red-500' : 'border-yellow-500'} pl-2">
+                                    <p class="${color} font-semibold">Mutasi: ${m.studentName}</p>
+                                    <p class="text-xs text-muted">Tipe: ${m.type} - ${new Date(m.date).toLocaleDateString('id-ID')}</p>
+                                </div>`;
+                    }).join('');
+                } else {
+                    mutationContainer.innerHTML = `<p class="text-muted">Belum ada riwayat mutasi.</p>`;
+                }
             }
         }
 
@@ -1937,14 +2204,20 @@
             // Attendance
             const attendanceStats = { hadir: 0, sakit: 0, izin: 0, alpa: 0 };
             Object.values(attendance).forEach(day => Object.values(day).forEach(rec => { if(attendanceStats.hasOwnProperty(rec.status)) attendanceStats[rec.status]++; }));
-            if (attendanceChart) attendanceChart.destroy();
-            attendanceChart = new Chart(document.getElementById('attendanceChart').getContext('2d'), { type: 'doughnut', data: { labels: ['Hadir', 'Sakit', 'Izin', 'Alpa'], datasets: [{ data: [attendanceStats.hadir, attendanceStats.sakit, attendanceStats.izin, attendanceStats.alpa], backgroundColor: ['#10B981', '#F59E0B', '#3B82F6', '#EF4444'], borderWidth: 0 }] }, options: { responsive: true, plugins: { legend: { position: 'bottom', labels: { color: textColor } } } } });
+            const attendanceChartElement = document.getElementById('attendanceChart');
+            if (attendanceChartElement) { // FIX: Pengecekan null
+                if (attendanceChart) attendanceChart.destroy();
+                attendanceChart = new Chart(attendanceChartElement.getContext('2d'), { type: 'doughnut', data: { labels: ['Hadir', 'Sakit', 'Izin', 'Alpa'], datasets: [{ data: [attendanceStats.hadir, attendanceStats.sakit, attendanceStats.izin, attendanceStats.alpa], backgroundColor: ['#10B981', '#F59E0B', '#3B82F6', '#EF4444'], borderWidth: 0 }] }, options: { responsive: true, plugins: { legend: { position: 'bottom', labels: { color: textColor } } } } });
+            }
             
             // Records
             const totalRewardPoints = achievements.reduce((sum, a) => sum + a.points, 0);
             const totalViolationPoints = violations.reduce((sum, v) => sum + v.points, 0);
-            if (recordsChart) recordsChart.destroy();
-            recordsChart = new Chart(document.getElementById('recordsChart').getContext('2d'), { type: 'bar', data: { labels: ['Poin Reward', 'Poin Pelanggaran'], datasets: [{ data: [totalRewardPoints, totalViolationPoints], backgroundColor: ['#10B981', '#EF4444'] }] }, options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { color: textColor } }, x: { ticks: { color: textColor } } } } });
+            const recordsChartElement = document.getElementById('recordsChart');
+            if (recordsChartElement) { // FIX: Pengecekan null
+                if (recordsChart) recordsChart.destroy();
+                recordsChart = new Chart(recordsChartElement.getContext('2d'), { type: 'bar', data: { labels: ['Poin Reward', 'Poin Pelanggaran'], datasets: [{ data: [totalRewardPoints, totalViolationPoints], backgroundColor: ['#10B981', '#EF4444'] }] }, options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { color: textColor } }, x: { ticks: { color: textColor } } } } });
+            }
         
             // Grades
             const subjectAvgs = {};
@@ -1960,19 +2233,33 @@
                 });
                 subjectAvgs[sub.name] = count > 0 ? (total / count) : 0;
             });
-            if (gradesChart) gradesChart.destroy();
-            gradesChart = new Chart(document.getElementById('gradesChart').getContext('2d'), { type: 'bar', data: { labels: Object.keys(subjectAvgs), datasets: [{ label: 'Rata-rata Nilai', data: Object.values(subjectAvgs), backgroundColor: '#8B5CF6' }] }, options: { responsive: true, indexAxis: 'y', plugins: { legend: { display: false } }, scales: { y: { ticks: { color: textColor } }, x: { ticks: { color: textColor } } } } });
+            const gradesChartElement = document.getElementById('gradesChart');
+            if (gradesChartElement) { // FIX: Pengecekan null
+                if (gradesChart) gradesChart.destroy();
+                gradesChart = new Chart(gradesChartElement.getContext('2d'), { type: 'bar', data: { labels: Object.keys(subjectAvgs), datasets: [{ label: 'Rata-rata Nilai', data: Object.values(subjectAvgs), backgroundColor: '#8B5CF6' }] }, options: { responsive: true, indexAxis: 'y', plugins: { legend: { display: false } }, scales: { y: { ticks: { color: textColor } }, x: { ticks: { color: textColor } } } } });
+            }
         }
 
         function updateIndividualCharts() {
-            const studentId = parseInt(document.getElementById('dashboardStudentSelect').value);
+            const studentSelect = document.getElementById('dashboardStudentSelect');
+            if (!studentSelect) return; // FIX: Pengecekan null
+            const studentId = parseInt(studentSelect.value);
             const isDark = document.documentElement.classList.contains('dark');
             const textColor = isDark ? '#dbeafe' : '#1e3a8a';
             Chart.defaults.color = textColor;
             
-            if (individualAttendanceChart) individualAttendanceChart.destroy();
-            if (individualRecordsChart) individualRecordsChart.destroy();
-            if (individualGradesChart) individualGradesChart.destroy();
+            const individualAttendanceChartElement = document.getElementById('individualAttendanceChart');
+            if (individualAttendanceChartElement) { // FIX: Pengecekan null
+                if (individualAttendanceChart) individualAttendanceChart.destroy();
+            }
+            const individualRecordsChartElement = document.getElementById('individualRecordsChart');
+            if (individualRecordsChartElement) { // FIX: Pengecekan null
+                if (individualRecordsChart) individualRecordsChart.destroy();
+            }
+            const individualGradesChartElement = document.getElementById('individualGradesChart');
+            if (individualGradesChartElement) { // FIX: Pengecekan null
+                if (individualGradesChart) individualGradesChart.destroy();
+            }
 
             if (!studentId) return;
 
@@ -1984,12 +2271,16 @@
                     attendanceStats[record.status]++;
                 }
             });
-            individualAttendanceChart = new Chart(document.getElementById('individualAttendanceChart').getContext('2d'), { type: 'pie', data: { labels: ['Hadir', 'Sakit', 'Izin', 'Alpa'], datasets: [{ data: [attendanceStats.hadir, attendanceStats.sakit, attendanceStats.izin, attendanceStats.alpa], backgroundColor: ['#10B981', '#F59E0B', '#3B82F6', '#EF4444'], borderWidth: 0 }] }, options: { responsive: true, plugins: { legend: { position: 'bottom', labels: { color: textColor } } } } });
+            if (individualAttendanceChartElement) { // FIX: Pengecekan null
+                individualAttendanceChart = new Chart(individualAttendanceChartElement.getContext('2d'), { type: 'pie', data: { labels: ['Hadir', 'Sakit', 'Izin', 'Alpa'], datasets: [{ data: [attendanceStats.hadir, attendanceStats.sakit, attendanceStats.izin, attendanceStats.alpa], backgroundColor: ['#10B981', '#F59E0B', '#3B82F6', '#EF4444'], borderWidth: 0 }] }, options: { responsive: true, plugins: { legend: { position: 'bottom', labels: { color: textColor } } } } });
+            }
 
             // Individual Records
             const rewardPoints = achievements.filter(a => a.studentId === studentId).reduce((sum, a) => sum + a.points, 0);
             const violationPoints = violations.filter(v => v.studentId === studentId).reduce((sum, v) => sum + v.points, 0);
-            individualRecordsChart = new Chart(document.getElementById('individualRecordsChart').getContext('2d'), { type: 'bar', data: { labels: ['Poin Reward', 'Poin Pelanggaran'], datasets: [{ data: [rewardPoints, violationPoints], backgroundColor: ['#10B981', '#EF4444'] }] }, options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { color: textColor } }, x: { ticks: { color: textColor } } } } });
+            if (individualRecordsChartElement) { // FIX: Pengecekan null
+                individualRecordsChart = new Chart(individualRecordsChartElement.getContext('2d'), { type: 'bar', data: { labels: ['Poin Reward', 'Poin Pelanggaran'], datasets: [{ data: [rewardPoints, violationPoints], backgroundColor: ['#10B981', '#EF4444'] }] }, options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { color: textColor } }, x: { ticks: { color: textColor } } } } });
+            }
         
             // Individual Grades
             const studentGrades = grades[studentId] || {};
@@ -1999,14 +2290,16 @@
                 gradeLabels.push(sub.name);
                 gradeData.push(studentGrades[sub.id] || 0);
             });
-            individualGradesChart = new Chart(document.getElementById('individualGradesChart').getContext('2d'), { type: 'radar', data: { labels: gradeLabels, datasets: [{ label: 'Nilai', data: gradeData, backgroundColor: 'rgba(96, 165, 250, 0.2)', borderColor: 'rgba(96, 165, 250, 1)', pointBackgroundColor: 'rgba(96, 165, 250, 1)' }] }, options: { responsive: true, scales: { r: { beginAtZero: true, max: 100, pointLabels: { color: textColor }, ticks: { backdropColor: 'transparent', color: textColor } } } } });
+            if (individualGradesChartElement) { // FIX: Pengecekan null
+                individualGradesChart = new Chart(individualGradesChartElement.getContext('2d'), { type: 'radar', data: { labels: gradeLabels, datasets: [{ label: 'Nilai', data: gradeData, backgroundColor: 'rgba(96, 165, 250, 0.2)', borderColor: 'rgba(96, 165, 250, 1)', pointBackgroundColor: 'rgba(96, 165, 250, 1)' }] }, options: { responsive: true, scales: { r: { beginAtZero: true, max: 100, pointLabels: { color: textColor }, ticks: { backdropColor: 'transparent', color: textColor } } } } });
+            }
         }
 
         // PDF Generation
         function generateIndividualStudentReport() {
-            const studentId = document.getElementById('reportStudentSelect').value;
-            if (!studentId) { showAlert('warning', 'Pilih Siswa', 'Silakan pilih siswa terlebih dahulu.'); return; }
-            generateMasterPDF(parseInt(studentId));
+            const studentId = document.getElementById('reportStudentSelect');
+            if (!studentId || !studentId.value) { showAlert('warning', 'Pilih Siswa', 'Silakan pilih siswa terlebih dahulu.'); return; }
+            generateMasterPDF(parseInt(studentId.value));
         }
 
         function generateMasterPDF(studentId = null) {
@@ -2040,11 +2333,10 @@
                 const student = allStudentsIncludingMutated.find(s => s.id === studentId);
                 addSection('A. DATA PRIBADI SISWA', () => {
                     finalY += 2;
-                    if (student.photo) { try { doc.addImage(student.photo, 'JPEG', 150, finalY, 35, 45); } catch(e) { console.error("Error adding image to PDF:", e); } }
                     doc.autoTable({ startY: finalY, theme: 'plain', body: [
                         ['Nama Lengkap', `: ${student.name}`],
                         ['NIS/NISN', `: ${student.nis}`],
-                        ['Tempat, Tgl Lahir', `: ${student.birthPlace}, ${new Date(student.birthDate).toLocaleDateString('id-ID')}`],
+                        ['Tempat, Tgl Lahir', `: ${new Date(student.birthDate).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}`],
                         ['No. HP Siswa', `: ${student.studentPhone || '-'}`],
                         ['Nama Orang Tua/Wali', `: ${student.parentName || '-'}`],
                         ['Kontak Ortu/Wali', `: ${student.parentPhone}`],
@@ -2229,10 +2521,11 @@
                 console.error("Backup error:", error);
             }
         }
-
+        
+        // FUNGSI RESTOREDATA YANG TELAH DIPERBAIKI
         function restoreData() {
             const input = document.getElementById('fileInput');
-            if (!input.files || input.files.length === 0) {
+            if (!input || !input.files || input.files.length === 0) {
                 showAlert('warning', 'Pilih File', 'Silakan pilih file backup (.json) terlebih dahulu.');
                 return;
             }
@@ -2245,10 +2538,25 @@
                         throw new Error("Format file tidak valid.");
                     }
                     showConfirm('warning', 'Impor Data?', 'Data saat ini akan ditimpa dengan data dari file. Yakin?', () => {
-                        Object.assign(window, { students: [], attendance: {}, achievements: [], violations: [], agenda: [], subjects: [], grades: {}, classInfo: {}, teacherInfo: {}, workPlan: [], journals: [], lessonSchedule: {}, piketSchedule: {}, inventory: [], studentMutations: [] });
-                        Object.assign(window, data);
-                        saveData();
-                        location.reload(); 
+                        // Perbaikan: Secara eksplisit menugaskan data dari file ke variabel lokal
+                        students = data.students || [];
+                        attendance = data.attendance || {};
+                        achievements = data.achievements || [];
+                        violations = data.violations || [];
+                        agenda = data.agenda || [];
+                        subjects = data.subjects || [];
+                        grades = data.grades || {};
+                        classInfo = data.classInfo || {};
+                        teacherInfo = data.teacherInfo || {};
+                        workPlan = data.workPlan || [];
+                        journals = data.journals || [];
+                        lessonSchedule = data.lessonSchedule || {};
+                        piketSchedule = data.piketSchedule || {};
+                        inventory = data.inventory || [];
+                        studentMutations = data.studentMutations || [];
+                        
+                        saveData(); // Simpan data baru ke localStorage
+                        location.reload(); // Muat ulang halaman untuk me-refresh UI
                     });
                 } catch (error) { showAlert('error', 'Gagal Impor', 'File backup tidak valid atau rusak. ' + error.message); }
             };
@@ -2267,7 +2575,10 @@
             showConfirm('error', 'Reset Data Absensi?', 'ANDA YAKIN? Semua data absensi akan dihapus permanen.', () => {
                 attendance = {};
                 saveData();
-                showTab('attendance', document.querySelector('button[onclick*="attendance"]'));
+                const attendanceButton = document.querySelector('button[onclick*="attendance"]');
+                if (attendanceButton) {
+                    showTab('attendance', attendanceButton);
+                }
                 showAlert('success', 'Berhasil!', 'Data absensi telah direset.');
             });
         }
@@ -2276,7 +2587,10 @@
             showConfirm('error', 'Reset Data Nilai?', 'ANDA YAKIN? Semua data nilai akan dihapus permanen.', () => {
                 grades = {};
                 saveData();
-                showTab('grades', document.querySelector('button[onclick*="grades"]'));
+                const gradesButton = document.querySelector('button[onclick*="grades"]');
+                if (gradesButton) {
+                    showTab('grades', gradesButton);
+                }
                 showAlert('success', 'Berhasil!', 'Data nilai telah direset.');
             });
         }
@@ -2336,25 +2650,79 @@
             }
         }
         
-        function openModal(modalId) { document.getElementById(modalId).classList.remove('hidden'); }
-        function closeModal(modalId) { document.getElementById(modalId).classList.add('hidden'); }
-        function showImageModal(imageSrc) { document.getElementById('modalImage').src = imageSrc; openModal('imageModal'); }
+        function openModal(modalId) { 
+            const modal = document.getElementById(modalId);
+            if (modal) { // FIX: Pengecekan null
+                modal.classList.remove('hidden'); 
+            }
+        }
+        function closeModal(modalId) { 
+            const modal = document.getElementById(modalId);
+            if (modal) { // FIX: Pengecekan null
+                modal.classList.add('hidden'); 
+            }
+        }
+        function showImageModal(imageSrc) { 
+            const modalImage = document.getElementById('modalImage');
+            if (modalImage) { // FIX: Pengecekan null
+                modalImage.src = imageSrc; 
+            }
+            openModal('imageModal'); 
+        }
+        
+        // Fungsi baru untuk pratinjau gambar dari URL
+        function previewPhotoFromUrl(url, imgId, previewId) { 
+            const imgElement = document.getElementById(imgId);
+            const previewElement = document.getElementById(previewId);
+            if (!imgElement || !previewElement) return; // FIX: Pengecekan null
+
+            if (url && url.startsWith('http')) {
+                imgElement.src = url;
+                previewElement.classList.remove('hidden');
+            } else {
+                imgElement.src = '';
+                previewElement.classList.add('hidden');
+            }
+        }
+
         function previewPhoto(input, imgId, previewId) { 
+            if (!input || !input.files || input.files.length === 0) return;
             const file = input.files[0]; 
             if (file) { 
                 const reader = new FileReader(); 
                 reader.onload = (e) => { 
-                    document.getElementById(imgId).src = e.target.result; 
-                    document.getElementById(previewId).classList.remove('hidden'); 
+                    const imgElement = document.getElementById(imgId);
+                    const previewElement = document.getElementById(previewId);
+                    if (imgElement && previewElement) { // FIX: Pengecekan null
+                        imgElement.src = e.target.result; 
+                        previewElement.classList.remove('hidden'); 
+                    }
                 }; 
                 reader.readAsDataURL(file); 
             } 
         }
-        function populateIndividualStudentSelect() { const select = document.getElementById('individualStudentSelect'); select.innerHTML = '<option value="">Pilih Siswa</option>'; students.sort((a, b) => a.name.localeCompare(b.name)).forEach(student => { select.innerHTML += `<option value="${student.id}">${student.name}</option>`; }); }
-        function populateReportStudentSelect() { const select = document.getElementById('reportStudentSelect'); select.innerHTML = '<option value="">Pilih Siswa</option>'; students.sort((a, b) => a.name.localeCompare(b.name)).forEach(student => { select.innerHTML += `<option value="${student.id}">${student.name}</option>`; }); }
-        function populateDashboardStudentSelect() { const select = document.getElementById('dashboardStudentSelect'); select.innerHTML = '<option value="">Pilih Siswa</option>'; students.sort((a, b) => a.name.localeCompare(b.name)).forEach(student => { select.innerHTML += `<option value="${student.id}">${student.name}</option>`; }); }
+
+        function populateIndividualStudentSelect() { 
+            const select = document.getElementById('individualStudentSelect'); 
+            if (!select) return; // FIX: Pengecekan null
+            select.innerHTML = '<option value="">Pilih Siswa</option>'; 
+            students.sort((a, b) => a.name.localeCompare(b.name)).forEach(student => { select.innerHTML += `<option value="${student.id}">${student.name}</option>`; }); 
+        }
+        function populateReportStudentSelect() { 
+            const select = document.getElementById('reportStudentSelect'); 
+            if (!select) return; // FIX: Pengecekan null
+            select.innerHTML = '<option value="">Pilih Siswa</option>'; 
+            students.sort((a, b) => a.name.localeCompare(b.name)).forEach(student => { select.innerHTML += `<option value="${student.id}">${student.name}</option>`; }); 
+        }
+        function populateDashboardStudentSelect() { 
+            const select = document.getElementById('dashboardStudentSelect'); 
+            if (!select) return; // FIX: Pengecekan null
+            select.innerHTML = '<option value="">Pilih Siswa</option>'; 
+            students.sort((a, b) => a.name.localeCompare(b.name)).forEach(student => { select.innerHTML += `<option value="${student.id}">${student.name}</option>`; }); 
+        }
         function populateMutationStudentSelect() {
             const select = document.getElementById('mutationStudent');
+            if (!select) return; // FIX: Pengecekan null
             select.innerHTML = '<option value="" disabled selected>-- Pilih Siswa --</option>';
             students.sort((a, b) => a.name.localeCompare(b.name)).forEach(student => {
                 select.innerHTML += `<option value="${student.id}">${student.name}</option>`;
@@ -2363,24 +2731,55 @@
         
         function showAlert(type, title, message) {
             const modal = document.getElementById('customAlertModal');
+            if (!modal) return; // FIX: Pengecekan null
             const iconMap = { success: '✅', error: '❌', warning: '⚠️', info: 'ℹ️' };
-            document.getElementById('customAlertIcon').textContent = iconMap[type] || 'ℹ️';
-            document.getElementById('customAlertTitle').textContent = title;
-            document.getElementById('customAlertMessage').textContent = message;
-            document.getElementById('customAlertButtons').innerHTML = `<button onclick="closeModal('customAlertModal')" class="btn-primary px-6 py-2 rounded-lg">OK</button>`;
+            const customAlertIcon = document.getElementById('customAlertIcon');
+            const customAlertTitle = document.getElementById('customAlertTitle');
+            const customAlertMessage = document.getElementById('customAlertMessage');
+            const customAlertButtons = document.getElementById('customAlertButtons');
+
+            if (customAlertIcon) {
+                customAlertIcon.textContent = iconMap[type] || 'ℹ️';
+            }
+            if (customAlertTitle) {
+                customAlertTitle.textContent = title;
+            }
+            if (customAlertMessage) {
+                customAlertMessage.textContent = message;
+            }
+            if (customAlertButtons) {
+                customAlertButtons.innerHTML = `<button onclick="closeModal('customAlertModal')" class="btn-primary px-6 py-2 rounded-lg">OK</button>`;
+            }
             openModal('customAlertModal');
         }
 
         function showConfirm(type, title, message, onConfirm) {
             const modal = document.getElementById('customAlertModal');
+            if (!modal) return; // FIX: Pengecekan null
             const iconMap = { success: '✅', error: '❌', warning: '⚠️', info: 'ℹ️' };
             const colorMap = { error: 'bg-red-600 hover:bg-red-700', warning: 'bg-yellow-500 hover:bg-yellow-600', info: 'bg-blue-500 hover:bg-blue-600', success: 'bg-green-500 hover:bg-green-600' };
-            document.getElementById('customAlertIcon').textContent = iconMap[type] || 'ℹ️';
-            document.getElementById('customAlertTitle').textContent = title;
-            document.getElementById('customAlertMessage').textContent = message;
-            document.getElementById('customAlertButtons').innerHTML = `<button id="confirmBtn" class="${colorMap[type] || 'bg-green-500'} text-white px-6 py-2 rounded-lg">Ya, Lanjutkan</button><button onclick="closeModal('customAlertModal')" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-lg">Batal</button>`;
+            const customAlertIcon = document.getElementById('customAlertIcon');
+            const customAlertTitle = document.getElementById('customAlertTitle');
+            const customAlertMessage = document.getElementById('customAlertMessage');
+            const customAlertButtons = document.getElementById('customAlertButtons');
+            
+            if (customAlertIcon) {
+                customAlertIcon.textContent = iconMap[type] || 'ℹ️';
+            }
+            if (customAlertTitle) {
+                customAlertTitle.textContent = title;
+            }
+            if (customAlertMessage) {
+                customAlertMessage.textContent = message;
+            }
+            if (customAlertButtons) {
+                customAlertButtons.innerHTML = `<button id="confirmBtn" class="${colorMap[type] || 'bg-green-500'} text-white px-6 py-2 rounded-lg">Ya, Lanjutkan</button><button onclick="closeModal('customAlertModal')" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-lg">Batal</button>`;
+            }
             openModal('customAlertModal');
-            document.getElementById('confirmBtn').onclick = () => { closeModal('customAlertModal'); onConfirm(); };
+            const confirmBtn = document.getElementById('confirmBtn');
+            if (confirmBtn) { // FIX: Pengecekan null
+                confirmBtn.onclick = () => { closeModal('customAlertModal'); onConfirm(); };
+            }
         }
 
         // Fungsi baru untuk mengunduh template Excel
