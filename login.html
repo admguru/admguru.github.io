@@ -259,7 +259,7 @@
             'kepala_sekolah': 'kepala123',
             'wali_kelas': 'wali123',
             'kepala_jurusan': 'jurusan123',
-            'bp_bk': 'bpbk123',
+            'bp_bk': 'bpbk123', 
             'tata_usaha': 'tata123',
             'kurikulum': 'kurikulum123',
             'humas': 'humas123',
@@ -303,23 +303,28 @@
             const enteredPassword = passwordInput.value;
             const correctPassword = rolePasswords[selectedRole];
             
-            // Show loading animation
+            // Tampilkan animasi memuat
             loginText.classList.add('hidden');
             loginLoader.classList.remove('hidden');
             
-            // Simulate login process
+            // Simulasikan proses login
             setTimeout(() => {
                 loginText.classList.remove('hidden');
                 loginLoader.classList.add('hidden');
                 
-                // Check password
+                // Periksa password
                 if (enteredPassword === correctPassword) {
-                    // Special redirect for Wali Kelas
                     if (selectedRole === 'wali_kelas') {
+                        // Alihkan langsung untuk role Wali Kelas
                         window.location.href = 'https://admguru.github.io/home.html';
+                    } else if (selectedRole === 'bp_bk') {
+                        // Alihkan langsung untuk role BP BK
+                        window.location.href = 'https://admguru.github.io/homebpbk.html';
                     } else {
+                        // Tampilkan alert untuk role lainnya
                         alert(`✅ Login berhasil!\n\nAnda masuk sebagai: ${selectedRoleText}\nPassword: ${correctPassword}\n\nIni adalah demo sistem login sekolah.`);
                     }
+                    
                     // Reset form
                     passwordInput.value = '';
                 } else if (enteredPassword === '') {
@@ -354,4 +359,3 @@
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9764ae3e12fdf4a9',t:'MTc1NjM5MzI1MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
-
