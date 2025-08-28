@@ -120,7 +120,7 @@
                     <span class="text-3xl">🏫</span>
                     <h1 class="text-xl font-bold text-default">SIM Wali Kelas</h1>
                 </div>
-                <p class="text-xs text-muted mt-1">Sistem Informasi Manajemen Wali Kelas</p>
+                <p class="text-xs text-muted mt-1">Sistem Informasi & Administrasi</p>
             </div>
             <nav class="flex-grow flex flex-col space-y-2 overflow-y-auto">
                 <button onclick="showTab('dashboard', this)" class="sidebar-btn active w-full px-4 py-2 font-medium flex items-center space-x-3 rounded-lg text-left text-muted hover:bg-blue-100 dark:hover:bg-blue-900/50"><span>📊</span><span>Dashboard</span></button>
@@ -132,6 +132,7 @@
                 </button>
                 <div id="classDataMenu" class="nested-menu pl-8 space-y-2">
                     <button onclick="showTab('students', this)" class="sidebar-btn w-full px-4 py-2 font-medium flex items-center space-x-3 rounded-lg text-left text-muted hover:bg-blue-100 dark:hover:bg-blue-900/50"><span>👥</span><span>Siswa</span></button>
+                    <button onclick="showTab('student_mutation', this)" class="sidebar-btn w-full px-4 py-2 font-medium flex items-center space-x-3 rounded-lg text-left text-muted hover:bg-blue-100 dark:hover:bg-blue-900/50"><span>🔄</span><span>Mutasi Siswa</span></button>
                     <button onclick="showTab('class_structure', this)" class="sidebar-btn w-full px-4 py-2 font-medium flex items-center space-x-3 rounded-lg text-left text-muted hover:bg-blue-100 dark:hover:bg-blue-900/50"><span>👑</span><span>Struktur Organisasi</span></button>
                     <button onclick="showTab('lesson_schedule', this)" class="sidebar-btn w-full px-4 py-2 font-medium flex items-center space-x-3 rounded-lg text-left text-muted hover:bg-blue-100 dark:hover:bg-blue-900/50"><span>📖</span><span>Jadwal Pelajaran</span></button>
                     <button onclick="showTab('piket_schedule', this)" class="sidebar-btn w-full px-4 py-2 font-medium flex items-center space-x-3 rounded-lg text-left text-muted hover:bg-blue-100 dark:hover:bg-blue-900/50"><span>🧹</span><span>Jadwal Piket</span></button>
@@ -205,6 +206,11 @@
                                 <h3 class="font-bold mb-2 flex items-center space-x-2 text-default"><span>🎓</span><span>Rata-Rata Nilai Mapel</span></h3>
                                 <div id="dashboardGradesDetails" class="text-sm space-y-1"></div>
                             </div>
+                            <!-- Riwayat Mutasi Siswa di Dashboard -->
+                            <div>
+                                <h3 class="font-bold mb-2 flex items-center space-x-2 text-default"><span>🔄</span><span>Riwayat Mutasi Terbaru</span></h3>
+                                <div id="dashboardMutationDetails" class="space-y-2 text-sm"></div>
+                            </div>
                         </div>
                     </div>
                     <!-- Class Charts -->
@@ -255,8 +261,124 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- TAB BARU UNTUK MUTASI SISWA -->
+                <div id="student_mutation" class="tab-content hidden">
+                    <div class="bg-card rounded-lg shadow-md p-6 w-full space-y-8">
+                        <h1 class="text-2xl font-bold text-center text-default">Manajemen Mutasi Siswa</h1>
+                        
+                        <!-- Formulir Mutasi Siswa -->
+                        <div class="bg-info-card p-6 rounded-lg border border-default">
+                            <h2 class="text-xl font-semibold mb-4 text-default">Formulir Mutasi Siswa</h2>
+                            <form id="mutationForm" class="space-y-4">
+                                
+                                <!-- Dropdown Siswa -->
+                                <div>
+                                    <label for="mutationStudent" class="block text-sm font-medium text-muted mb-1">Pilih Siswa</label>
+                                    <div class="relative">
+                                        <select
+                                            id="mutationStudent"
+                                            name="student"
+                                            class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-default focus:outline-none focus:ring-accent-color focus:border-accent-color sm:text-sm rounded-md shadow-sm bg-card text-default"
+                                            required
+                                        >
+                                            <option value="" disabled selected>-- Pilih Siswa --</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Tanggal Kejadian -->
+                                <div>
+                                    <label for="mutationDate" class="block text-sm font-medium text-muted mb-1">Tanggal Kejadian</label>
+                                    <input
+                                        type="date"
+                                        id="mutationDate"
+                                        name="date"
+                                        class="mt-1 block w-full px-3 py-2 border border-default rounded-md shadow-sm focus:outline-none focus:ring-accent-color focus:border-accent-color sm:text-sm bg-card text-default"
+                                        required
+                                    />
+                                </div>
+
+                                <!-- Tipe Mutasi -->
+                                <div>
+                                    <label for="mutationType" class="block text-sm font-medium text-muted mb-1">Tipe Mutasi</label>
+                                    <div class="flex items-center space-x-4">
+                                        <label class="flex items-center text-muted">
+                                            <input
+                                                type="radio"
+                                                name="mutationType"
+                                                value="Keluar"
+                                                checked
+                                                class="h-4 w-4 text-accent-color border-default focus:ring-accent-color"
+                                            />
+                                            <span class="ml-2">Keluar</span>
+                                        </label>
+                                        <label class="flex items-center text-muted">
+                                            <input
+                                                type="radio"
+                                                name="mutationType"
+                                                value="Pindah"
+                                                class="h-4 w-4 text-accent-color border-default focus:ring-accent-color"
+                                            />
+                                            <span class="ml-2">Pindah</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Keterangan -->
+                                <div>
+                                    <label for="mutationDescription" class="block text-sm font-medium text-muted mb-1">Keterangan (Opsional)</label>
+                                    <textarea
+                                        id="mutationDescription"
+                                        name="description"
+                                        rows="3"
+                                        class="mt-1 block w-full px-3 py-2 border border-default rounded-md shadow-sm focus:outline-none focus:ring-accent-color focus:border-accent-color sm:text-sm bg-card text-default"
+                                        placeholder="Masukkan keterangan tambahan, misalnya alasan pindah atau keluar."
+                                    ></textarea>
+                                </div>
+
+                                <button
+                                    type="submit"
+                                    class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-accent-color hover:bg-accent-color-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-color"
+                                >
+                                    Simpan Mutasi
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Riwayat Mutasi Siswa -->
+                        <div class="bg-card p-6 rounded-lg border border-default">
+                            <h2 class="text-xl font-semibold mb-4 text-default">Riwayat Mutasi Siswa</h2>
+                            <div id="mutationHistory" class="overflow-x-auto rounded-lg border border-default">
+                                <table class="min-w-full divide-y divide-default">
+                                    <thead class="bg-gray-50 dark:bg-gray-800">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-muted uppercase tracking-wider">
+                                                Nama Siswa
+                                            </th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-muted uppercase tracking-wider">
+                                                Tanggal
+                                            </th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-muted uppercase tracking-wider">
+                                                Tipe
+                                            </th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-muted uppercase tracking-wider">
+                                                Keterangan
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="mutationTableBody" class="bg-white dark:bg-gray-900 divide-y divide-default">
+                                        <!-- Mutation history will be injected here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p id="noMutationMessage" class="text-muted text-center py-4 hidden">Belum ada riwayat mutasi.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Existing tab contents... (unchanged) -->
                 
-                <!-- New Class Structure tab content -->
                 <div id="class_structure" class="tab-content hidden">
                     <div class="bg-card rounded-lg shadow-md p-6">
                         <div class="flex flex-wrap justify-between items-center mb-4"><h2 class="text-xl font-semibold flex items-center space-x-2 mb-2 sm:mb-0 text-default"><span>👑</span><span>Struktur Organisasi Kelas</span></h2><button onclick="showClassInfoModal()" class="btn-primary px-4 py-2 rounded-lg flex items-center space-x-2 w-full sm:w-auto justify-center"><span>✏️</span><span>Edit Pengurus</span></button></div>
@@ -320,11 +442,11 @@
                             <table class="min-w-full table-auto border border-default">
                                 <thead class="bg-gray-50 dark:bg-gray-800">
                                     <tr>
-                                        <th class="px-4 py-3 text-left text-xs font-medium text-muted uppercase">Nama Barang</th>
-                                        <th class="px-4 py-3 text-left text-xs font-medium text-muted uppercase">Jumlah</th>
-                                        <th class="px-4 py-3 text-left text-xs font-medium text-muted uppercase">Harga per Unit</th>
-                                        <th class="px-4 py-3 text-left text-xs font-medium text-muted uppercase">Total</th>
-                                        <th class="px-4 py-3 text-left text-xs font-medium text-muted uppercase">Aksi</th>
+                                        <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-muted uppercase">Nama Barang</th>
+                                        <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-muted uppercase">Jumlah</th>
+                                        <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-muted uppercase">Harga per Unit</th>
+                                        <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-muted uppercase">Total</th>
+                                        <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-muted uppercase">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody id="inventoryList" class="divide-y divide-default">
@@ -558,6 +680,7 @@
         let lessonSchedule = {}; // New lesson schedule data array
         let piketSchedule = {}; // New piket schedule data array
         let inventory = []; // New inventory data array
+        let studentMutations = []; // New student mutation data array
         
         // State Variables
         let currentEditingStudentId = null;
@@ -621,6 +744,7 @@
             document.getElementById('addWorkPlanForm').addEventListener('submit', handleAddWorkPlan);
             document.getElementById('addJournalForm').addEventListener('submit', handleAddJournal);
             document.getElementById('addInventoryForm').addEventListener('submit', addInventoryItem);
+            document.getElementById('mutationForm').addEventListener('submit', handleMutateStudent); // Changed from handleAddMutation to handleMutateStudent
         }
 
         function toggleNestedMenu(menuId, clickedButton) {
@@ -671,6 +795,9 @@
                     break;
                 case 'students':
                     loadStudents();
+                    break;
+                case 'student_mutation':
+                    loadMutationData();
                     break;
                 case 'class_structure':
                     loadClassStructure();
@@ -730,6 +857,7 @@
             lessonSchedule = JSON.parse(localStorage.getItem('lessonSchedule')) || {};
             piketSchedule = JSON.parse(localStorage.getItem('piketSchedule')) || {};
             inventory = JSON.parse(localStorage.getItem('inventory')) || [];
+            studentMutations = JSON.parse(localStorage.getItem('studentMutations')) || [];
 
 
             if (students.length === 0) {
@@ -765,6 +893,7 @@
             populateIndividualStudentSelect();
             populateReportStudentSelect();
             populateDashboardStudentSelect();
+            populateMutationStudentSelect();
         }
 
         // Student Management
@@ -896,6 +1025,7 @@
                 achievements = achievements.filter(a => a.studentId !== id);
                 violations = violations.filter(v => v.studentId !== id);
                 journals = journals.filter(j => j.studentId !== id);
+                studentMutations = studentMutations.filter(m => m.studentId !== id);
 
                 if (classInfo.president == id) classInfo.president = null;
                 if (classInfo.secretary == id) classInfo.secretary = null;
@@ -981,6 +1111,98 @@
 
             saveData();
             showAlert('success', 'Tersimpan!', `Catatan untuk ${student.name} berhasil diperbarui.`);
+        }
+
+        // Student Mutation Management
+        function handleMutateStudent(e) {
+            e.preventDefault();
+            const studentId = parseInt(document.getElementById('mutationStudent').value);
+            const student = students.find(s => s.id === studentId);
+            const date = document.getElementById('mutationDate').value;
+            const type = document.querySelector('input[name="mutationType"]:checked').value;
+            const description = document.getElementById('mutationDescription').value;
+
+            if (!studentId || !date) {
+                showAlert('warning', 'Input Tidak Lengkap', 'Silakan pilih siswa dan tanggal kejadian.');
+                return;
+            }
+
+            showConfirm('warning', 'Mutasi Siswa?', `Anda yakin ingin memutasikan siswa ${student.name}? Semua data siswa ini akan dihapus dari daftar aktif.`, () => {
+                const newMutation = {
+                    id: Date.now(),
+                    studentId: studentId,
+                    studentName: student.name,
+                    date: date,
+                    type: type,
+                    description: description
+                };
+
+                // Add mutation to history
+                studentMutations.push(newMutation);
+
+                // Remove student from active data
+                students = students.filter(s => s.id !== studentId);
+                delete grades[studentId];
+                Object.keys(attendance).forEach(date => {
+                    delete attendance[date][studentId];
+                });
+                achievements = achievements.filter(a => a.studentId !== studentId);
+                violations = violations.filter(v => v.studentId !== studentId);
+                journals = journals.filter(j => j.studentId !== studentId);
+
+                // Check and remove from class leadership
+                if (classInfo.president == studentId) classInfo.president = null;
+                if (classInfo.secretary == studentId) classInfo.secretary = null;
+                if (classInfo.treasurer == studentId) classInfo.treasurer = null;
+
+                saveData();
+                loadStudents();
+                loadMutationData();
+                loadClassInfo();
+                updateDashboard(); // Update dashboard to reflect student count change
+                document.getElementById('mutationForm').reset();
+                showAlert('success', 'Berhasil!', `Data mutasi untuk ${student.name} telah disimpan dan data siswa telah dihapus dari daftar aktif.`);
+            });
+        }
+        
+        function loadMutationData() {
+            populateMutationStudentSelect();
+            loadMutationHistory();
+        }
+
+        function populateMutationStudentSelect() {
+            const select = document.getElementById('mutationStudent');
+            select.innerHTML = '<option value="" disabled selected>-- Pilih Siswa --</option>';
+            students.sort((a,b) => a.name.localeCompare(b.name)).forEach(student => {
+                select.innerHTML += `<option value="${student.id}">${student.name}</option>`;
+            });
+        }
+
+        function loadMutationHistory() {
+            const tbody = document.getElementById('mutationTableBody');
+            const message = document.getElementById('noMutationMessage');
+            tbody.innerHTML = '';
+            
+            if (studentMutations.length === 0) {
+                message.classList.remove('hidden');
+            } else {
+                message.classList.add('hidden');
+                studentMutations.sort((a,b) => new Date(b.date) - new Date(a.date)).forEach(mutation => {
+                    const row = document.createElement('tr');
+                    const typeClass = mutation.type === 'Keluar' ? 'bg-red-100 text-red-800' : 'bg-yellow-100 text-yellow-800';
+                    row.innerHTML = `
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-default">${mutation.studentName}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-muted">${new Date(mutation.date).toLocaleDateString('id-ID')}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-muted">
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${typeClass}">
+                                ${mutation.type}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 text-sm text-muted">${mutation.description || '-'}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            }
         }
         
         // Class Structure Management
@@ -1315,7 +1537,7 @@
             const head = document.getElementById('gradesTableHead');
             const body = document.getElementById('gradesTableBody');
             const sortedSubjects = [...subjects].sort((a,b) => a.name.localeCompare(b.name));
-            head.innerHTML = `<tr><th class="px-4 py-3 text-left text-xs font-medium text-muted uppercase">Nama Siswa</th>${sortedSubjects.map(s => `<th class="px-4 py-3 text-left text-xs font-medium text-muted uppercase">${s.name}</th>`).join('')}<th class="px-4 py-3 text-left text-xs font-medium text-muted uppercase">Rata-rata</th></tr>`;
+            head.innerHTML = `<tr><th scope="col" class="px-4 py-3 text-left text-xs font-medium text-muted uppercase">Nama Siswa</th>${sortedSubjects.map(s => `<th scope="col" class="px-4 py-3 text-left text-xs font-medium text-muted uppercase">${s.name}</th>`).join('')}<th scope="col" class="px-4 py-3 text-left text-xs font-medium text-muted uppercase">Rata-rata</th></tr>`;
             body.innerHTML = '';
             students.sort((a, b) => a.name.localeCompare(b.name)).forEach(student => {
                 let totalScore = 0;
@@ -1323,7 +1545,7 @@
                 const row = document.createElement('tr');
                 row.innerHTML = `<td class="px-4 py-3 font-medium text-default">${student.name}</td>`;
                 sortedSubjects.forEach(subject => {
-                    const score = grades[student.id]?.[sub.id] || '';
+                    const score = grades[student.id]?.[subject.id] || '';
                     if (score && !isNaN(score)) {
                         totalScore += parseInt(score);
                         subjectCount++;
@@ -1690,6 +1912,21 @@
             } else {
                 gradesContainer.innerHTML = `<p class="text-muted">Belum ada mata pelajaran.</p>`;
             }
+
+            // Mutation Details
+            const mutationContainer = document.getElementById('dashboardMutationDetails');
+            const recentMutations = [...studentMutations].sort((a,b) => new Date(b.date) - new Date(a.date)).slice(0, 5);
+            if (recentMutations.length > 0) {
+                mutationContainer.innerHTML = recentMutations.map(m => {
+                    const color = m.type === 'Keluar' ? 'text-red-500' : 'text-yellow-500';
+                    return `<div class="border-l-2 ${m.type === 'Keluar' ? 'border-red-500' : 'border-yellow-500'} pl-2">
+                                <p class="${color} font-semibold">Mutasi: ${m.studentName}</p>
+                                <p class="text-xs text-muted">Tipe: ${m.type} - ${new Date(m.date).toLocaleDateString('id-ID')}</p>
+                            </div>`;
+                }).join('');
+            } else {
+                mutationContainer.innerHTML = `<p class="text-muted">Belum ada riwayat mutasi.</p>`;
+            }
         }
 
         function updateClassCharts() {
@@ -1797,9 +2034,10 @@
             };
 
             const targetStudents = studentId ? [students.find(s => s.id === studentId)] : [...students].sort((a, b) => a.name.localeCompare(b.name));
+            const allStudentsIncludingMutated = studentMutations.length > 0 ? [...students, ...studentMutations.map(m => students.find(s => s.id === m.studentId) || { id: m.studentId, name: m.studentName })] : students;
 
             if (studentId) {
-                const student = targetStudents[0];
+                const student = allStudentsIncludingMutated.find(s => s.id === studentId);
                 addSection('A. DATA PRIBADI SISWA', () => {
                     finalY += 2;
                     if (student.photo) { try { doc.addImage(student.photo, 'JPEG', 150, finalY, 35, 45); } catch(e) { console.error("Error adding image to PDF:", e); } }
@@ -1899,8 +2137,16 @@
                 doc.autoTable({ startY: finalY, head, body });
                 finalY = doc.autoTable.previous.finalY;
             });
+            
+            addSection('G. DATA MUTASI SISWA', () => {
+                const mutations = studentMutations.filter(m => !studentId || m.studentId === studentId);
+                const head = [['Tanggal', 'Nama Siswa', 'Tipe', 'Keterangan']];
+                const body = mutations.map(m => [new Date(m.date).toLocaleDateString('id-ID'), m.studentName, m.type, m.description || '-']); // Use m.studentName
+                if (body.length > 0) { doc.autoTable({ startY: finalY, head, body }); finalY = doc.autoTable.previous.finalY; } else { doc.text('Tidak ada catatan mutasi.', 16, finalY + 5); finalY += 10; }
+            });
+            
 
-            addSection('G. DATA INVENTARIS KELAS', () => {
+            addSection('H. DATA INVENTARIS KELAS', () => {
                 finalY += 2;
                 const head = [['No', 'Nama Barang', 'Jumlah', 'Harga per Unit', 'Total']];
                 const body = inventory.map((item, i) => [i + 1, item.name, item.quantity, `Rp ${item.price.toLocaleString('id-ID')}`, `Rp ${(item.quantity * item.price).toLocaleString('id-ID')}`]);
@@ -1913,7 +2159,7 @@
             });
             
             if (!studentId) {
-                addSection('H. JADWAL PELAJARAN & PIKET', () => {
+                addSection('I. JADWAL PELAJARAN & PIKET', () => {
                     finalY += 2;
                     let tableData = [];
                     for (const day of daysOfWeek) {
@@ -1927,23 +2173,23 @@
                     finalY = doc.autoTable.previous.finalY;
                 });
 
-                addSection('I. DOKUMENTASI KEGIATAN KELAS', () => {
+                addSection('J. DOKUMENTASI KEGIATAN KELAS', () => {
                     const head = [['Tanggal', 'Kegiatan', 'Deskripsi']];
                     const body = agenda.map(a => [new Date(a.date).toLocaleDateString('id-ID'), a.title, a.description]);
                     doc.autoTable({ startY: finalY, head, body });
                     finalY = doc.autoTable.previous.finalY;
                 });
 
-                addSection('J. JURNAL KELAS', () => {
+                addSection('K. JURNAL KELAS', () => {
                     const head = [['Tanggal', 'Catatan']];
                     const body = journals.map(j => [new Date(j.date).toLocaleDateString('id-ID'), j.note]);
                     if (body.length > 0) { doc.autoTable({ startY: finalY, head, body }); finalY = doc.autoTable.previous.finalY; } else { doc.text('Tidak ada catatan jurnal.', 16, finalY += 5); finalY += 5; }
                 });
             }
 
-            addSection('K. CATATAN KHUSUS WALI KELAS', () => {
+            addSection('L. CATATAN KHUSUS WALI KELAS', () => {
                 if (studentId) {
-                    const student = targetStudents[0];
+                    const student = allStudentsIncludingMutated.find(s => s.id === studentId);
                     doc.text(student.specialNotes || 'Tidak ada catatan khusus.', 16, finalY + 5, { maxWidth: 178 });
                     finalY += 15;
                 } else {
@@ -1963,14 +2209,14 @@
             doc.text(teacherInfo.name || '(Nama Wali Kelas)', 150, finalY);
             doc.text(`NIP. ${teacherInfo.nip || '(NIP Wali Kelas)'}`, 150, finalY + 5);
 
-            const fileName = studentId ? `laporan_${students.find(s=>s.id===studentId).name.replace(/\s/g, '_')}.pdf` : `laporan_kelas.pdf`;
+            const fileName = studentId ? `laporan_${allStudentsIncludingMutated.find(s=>s.id===studentId).name.replace(/\s/g, '_')}.pdf` : `laporan_kelas.pdf`;
             doc.save(fileName);
         }
 
         // Backup & Restore & Reset
         function backupData() {
             try {
-                const data = { students, attendance, achievements, violations, agenda, subjects, grades, classInfo, teacherInfo, workPlan, journals, lessonSchedule, piketSchedule, inventory, timestamp: new Date().toISOString() };
+                const data = { students, attendance, achievements, violations, agenda, subjects, grades, classInfo, teacherInfo, workPlan, journals, lessonSchedule, piketSchedule, inventory, studentMutations, timestamp: new Date().toISOString() };
                 const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
                 const a = document.createElement('a');
                 a.href = URL.createObjectURL(blob);
@@ -1999,7 +2245,7 @@
                         throw new Error("Format file tidak valid.");
                     }
                     showConfirm('warning', 'Impor Data?', 'Data saat ini akan ditimpa dengan data dari file. Yakin?', () => {
-                        Object.assign(window, { students: [], attendance: {}, achievements: [], violations: [], agenda: [], subjects: [], grades: {}, classInfo: {}, teacherInfo: {}, workPlan: [], journals: [], lessonSchedule: {}, piketSchedule: {}, inventory: [] });
+                        Object.assign(window, { students: [], attendance: {}, achievements: [], violations: [], agenda: [], subjects: [], grades: {}, classInfo: {}, teacherInfo: {}, workPlan: [], journals: [], lessonSchedule: {}, piketSchedule: {}, inventory: [], studentMutations: [] });
                         Object.assign(window, data);
                         saveData();
                         location.reload(); 
@@ -2079,6 +2325,7 @@
                 localStorage.setItem('lessonSchedule', JSON.stringify(lessonSchedule));
                 localStorage.setItem('piketSchedule', JSON.stringify(piketSchedule));
                 localStorage.setItem('inventory', JSON.stringify(inventory));
+                localStorage.setItem('studentMutations', JSON.stringify(studentMutations));
             } catch (e) {
                 if (e.name === 'QuotaExceededError') {
                     showAlert('error', 'Penyimpanan Penuh!', 'Gagal menyimpan data karena penyimpanan browser penuh. Ini mungkin disebabkan oleh terlalu banyak foto. Coba ekspor data, lalu reset aplikasi.');
@@ -2106,6 +2353,13 @@
         function populateIndividualStudentSelect() { const select = document.getElementById('individualStudentSelect'); select.innerHTML = '<option value="">Pilih Siswa</option>'; students.sort((a, b) => a.name.localeCompare(b.name)).forEach(student => { select.innerHTML += `<option value="${student.id}">${student.name}</option>`; }); }
         function populateReportStudentSelect() { const select = document.getElementById('reportStudentSelect'); select.innerHTML = '<option value="">Pilih Siswa</option>'; students.sort((a, b) => a.name.localeCompare(b.name)).forEach(student => { select.innerHTML += `<option value="${student.id}">${student.name}</option>`; }); }
         function populateDashboardStudentSelect() { const select = document.getElementById('dashboardStudentSelect'); select.innerHTML = '<option value="">Pilih Siswa</option>'; students.sort((a, b) => a.name.localeCompare(b.name)).forEach(student => { select.innerHTML += `<option value="${student.id}">${student.name}</option>`; }); }
+        function populateMutationStudentSelect() {
+            const select = document.getElementById('mutationStudent');
+            select.innerHTML = '<option value="" disabled selected>-- Pilih Siswa --</option>';
+            students.sort((a, b) => a.name.localeCompare(b.name)).forEach(student => {
+                select.innerHTML += `<option value="${student.id}">${student.name}</option>`;
+            });
+        }
         
         function showAlert(type, title, message) {
             const modal = document.getElementById('customAlertModal');
@@ -2246,6 +2500,7 @@
             lessonSchedule = {};
             piketSchedule = {};
             inventory = [];
+            studentMutations = [];
             saveData();
         }
 
