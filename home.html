@@ -3,23 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Administrasi Guru</title>
+    <title>Portal Administrasi Guru & Wali Kelas</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
         
         body {
             font-family: 'Inter', sans-serif;
+            /* Latar belakang yang lebih gelap */
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 10s ease infinite;
         }
         
         .title-font {
             font-family: 'Space Grotesk', sans-serif;
-        }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 25%, #4facfe 50%, #00f2fe 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 8s ease infinite;
         }
         
         @keyframes gradientShift {
@@ -29,17 +27,17 @@
         }
         
         .glass-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05); /* Sedikit lebih transparan untuk latar belakang yang lebih gelap */
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Border lebih tipis */
             border-radius: 24px;
         }
         
         .minimal-illustration {
-            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.05) 100%);
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%); /* Ilustrasi lebih gelap */
             border-radius: 20px;
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.05);
         }
         
         .subtle-float {
@@ -60,43 +58,43 @@
         }
         
         .modern-button {
-            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+            background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.04) 100%); /* Tombol lebih gelap */
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .modern-button:hover {
             transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-            background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.2) 100%);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
         }
         
         .green-accent {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            background: linear-gradient(135deg, #16a34a 0%, #15803d 100%); /* Warna hijau lebih dalam */
         }
         
         .orange-accent {
-            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%); /* Warna oranye lebih dalam */
         }
         
         .text-gradient {
-            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
     </style>
 </head>
-<body class="min-h-screen gradient-bg">
+<body class="min-h-screen">
     <!-- Header dengan Judul -->
     <div class="text-center pt-12 pb-8">
         <h1 class="title-font text-5xl sm:text-6xl md:text-8xl font-bold text-gradient mb-6 tracking-tight">
-            SMK JAYA
+            Sistem Informasi Manajemen
         </h1>
         <div class="glass-card inline-block px-6 py-3 sm:px-8 sm:py-4 mx-4">
             <p class="text-base sm:text-lg md:text-xl text-white font-medium tracking-wide">
-                Portal Administrasi Guru SMK JAYA
+                Portal Administrasi Guru & Wali kelas
             </p>
         </div>
     </div>
@@ -162,13 +160,6 @@
             </div>
         </div>
     </div>
-    
-    <!-- Video YouTube yang di-embed -->
-    <div class="max-w-4xl mx-auto px-4 mb-12 sm:mb-16">
-        <div class="aspect-w-16 aspect-h-9 glass-card p-4 sm:p-6">
-            <iframe class="w-full h-full rounded-xl" src="https://www.youtube.com/embed/yMYJCl9lKYY" title="SMK JAMIYATUL AULAD | MPLS 2025" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-    </div>
 
     <!-- Ilustrasi Sekolah Minimalis -->
     <div class="max-w-5xl mx-auto px-4 mb-12 sm:mb-16">
@@ -231,5 +222,46 @@
             </p>
         </div>
     </div>
+
+    <!-- Script JavaScript untuk mencegah klik kanan -->
+    <script>
+        document.addEventListener('contextmenu', event => {
+            event.preventDefault();
+            const message = "hmmm berjalan aja ga perlu di inspect";
+            
+            // Membuat dan menampilkan pesan pop-up kustom
+            const modal = document.createElement('div');
+            modal.style.position = 'fixed';
+            modal.style.top = '50%';
+            modal.style.left = '50%';
+            modal.style.transform = 'translate(-50%, -50%)';
+            modal.style.padding = '20px';
+            modal.style.backgroundColor = 'rgba(0, 0, 0, 0.75)';
+            modal.style.color = 'white';
+            modal.style.borderRadius = '10px';
+            modal.style.zIndex = '1000';
+            modal.style.textAlign = 'center';
+            modal.style.fontFamily = "'Inter', sans-serif";
+            modal.style.fontSize = '16px';
+            modal.textContent = message;
+
+            const closeButton = document.createElement('button');
+            closeButton.textContent = 'OK';
+            closeButton.style.marginTop = '10px';
+            closeButton.style.padding = '5px 15px';
+            closeButton.style.backgroundColor = '#4facfe';
+            closeButton.style.border = 'none';
+            closeButton.style.borderRadius = '5px';
+            closeButton.style.color = 'white';
+            closeButton.style.cursor = 'pointer';
+
+            closeButton.onclick = function() {
+                document.body.removeChild(modal);
+            };
+
+            modal.appendChild(closeButton);
+            document.body.appendChild(modal);
+        });
+    </script>
 </body>
 </html>
