@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Administrasi Guru & Wali Kelas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Latar belakang yang lebih gelap */
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 10s ease infinite;
+        }
+        
+        .title-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05); /* Sedikit lebih transparan untuk latar belakang yang lebih gelap */
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Border lebih tipis */
+            border-radius: 24px;
+        }
+        
+        .minimal-illustration {
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%); /* Ilustrasi lebih gelap */
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .subtle-float {
+            animation: subtleFloat 4s ease-in-out infinite;
+        }
+        
+        .subtle-float:nth-child(2) {
+            animation-delay: 1.5s;
+        }
+        
+        .subtle-float:nth-child(3) {
+            animation-delay: 3s;
+        }
+        
+        @keyframes subtleFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        
+        .modern-button {
+            background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.04) 100%); /* Tombol lebih gelap */
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .modern-button:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+        }
+        
+        .green-accent {
+            background: linear-gradient(135deg, #16a34a 0%, #15803d 100%); /* Warna hijau lebih dalam */
+        }
+        
+        .orange-accent {
+            background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%); /* Warna oranye lebih dalam */
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Header dengan Judul -->
+    <div class="text-center pt-12 pb-8">
+        <h1 class="title-font text-5xl sm:text-6xl md:text-8xl font-bold text-gradient mb-6 tracking-tight">
+            Sistem Informasi Manajemen
+        </h1>
+        <div class="glass-card inline-block px-6 py-3 sm:px-8 sm:py-4 mx-4">
+            <p class="text-base sm:text-lg md:text-xl text-white font-medium tracking-wide">
+                Portal Administrasi Guru & Wali kelas
+            </p>
+        </div>
+    </div>
+
+    <!-- Tombol Administrasi -->
+    <div class="max-w-4xl mx-auto px-4 mb-12 sm:mb-16">
+        <div class="grid grid-cols-2 gap-4 sm:gap-8 md:gap-12 max-w-sm sm:max-w-2xl md:max-w-3xl mx-auto">
+            <!-- Tombol Administrasi Guru -->
+            <div class="text-center">
+                <a href="https://admguru.github.io/admguru.html" 
+                   class="modern-button inline-flex flex-col items-center justify-center w-32 h-32 sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-2xl sm:rounded-3xl text-white font-semibold text-sm sm:text-base md:text-lg mx-auto block relative overflow-hidden group">
+                    <div class="green-accent absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl sm:rounded-3xl"></div>
+                    <div class="relative z-10 flex flex-col items-center">
+                        <svg width="24" height="24" viewBox="0 0 48 48" class="sm:w-8 sm:h-8 md:w-12 md:h-12 mb-2 sm:mb-3 md:mb-4 text-white">
+                            <rect x="8" y="12" width="32" height="24" fill="currentColor" rx="2" opacity="0.8"/>
+                            <rect x="12" y="16" width="24" height="1" fill="rgba(255,255,255,0.6)" rx="0.5"/>
+                            <rect x="12" y="20" width="20" height="1" fill="rgba(255,255,255,0.6)" rx="0.5"/>
+                            <rect x="12" y="24" width="18" height="1" fill="rgba(255,255,255,0.6)" rx="0.5"/>
+                            <rect x="12" y="28" width="16" height="1" fill="rgba(255,255,255,0.6)" rx="0.5"/>
+                            <circle cx="36" cy="20" r="6" fill="rgba(255,255,255,0.9)"/>
+                            <circle cx="36" cy="20" r="3" fill="rgba(16,185,129,0.8)"/>
+                        </svg>
+                        <div class="text-center leading-tight tracking-wide text-xs sm:text-sm md:text-base">
+                            Administrasi<br>Guru
+                        </div>
+                    </div>
+                </a>
+                <div class="glass-card inline-block px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-3 mt-3 sm:mt-4 md:mt-6">
+                    <p class="text-white text-xs sm:text-sm font-light">
+                        Kelola Adm guru
+                    </p>
+                </div>
+            </div>
+
+            <!-- Tombol Administrasi Guru BK KONSELOR -->
+            <div class="text-center">
+                <a href="https://gurubkkonselor.com/guru/login" 
+                   class="modern-button inline-flex flex-col items-center justify-center w-32 h-32 sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-2xl sm:rounded-3xl text-white font-semibold text-sm sm:text-base md:text-lg mx-auto block relative overflow-hidden group">
+                    <div class="orange-accent absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl sm:rounded-3xl"></div>
+                    <div class="relative z-10 flex flex-col items-center">
+                        <svg width="24" height="24" viewBox="0 0 48 48" class="sm:w-8 sm:h-8 md:w-12 md:h-12 mb-2 sm:mb-3 md:mb-4 text-white">
+                            <rect x="6" y="16" width="36" height="20" fill="currentColor" rx="3" opacity="0.8"/>
+                            <rect x="10" y="20" width="6" height="6" fill="rgba(255,255,255,0.6)" rx="1"/>
+                            <rect x="18" y="20" width="6" height="6" fill="rgba(255,255,255,0.6)" rx="1"/>
+                            <rect x="26" y="20" width="6" height="6" fill="rgba(255,255,255,0.6)" rx="1"/>
+                            <rect x="34" y="20" width="6" height="6" fill="rgba(255,255,255,0.6)" rx="1"/>
+                            <rect x="10" y="28" width="6" height="6" fill="rgba(255,255,255,0.6)" rx="1"/>
+                            <rect x="18" y="28" width="6" height="6" fill="rgba(255,255,255,0.6)" rx="1"/>
+                            <rect x="26" y="28" width="6" height="6" fill="rgba(255,255,255,0.6)" rx="1"/>
+                            <rect x="34" y="28" width="6" height="6" fill="rgba(255,255,255,0.6)" rx="1"/>
+                            <circle cx="24" cy="10" r="4" fill="rgba(255,255,255,0.9)"/>
+                        </svg>
+                        <div class="text-center leading-tight tracking-wide text-xs sm:text-sm md:text-base">
+                            Portal<br>GURU BK KONSELOR
+                        </div>
+                    </div>
+                </a>
+                <div class="glass-card inline-block px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-3 mt-3 sm:mt-4 md:mt-6">
+                    <p class="text-white text-xs sm:text-sm font-light">
+                        Kelola BP BK
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ilustrasi Sekolah Minimalis -->
+    <div class="max-w-5xl mx-auto px-4 mb-12 sm:mb-16">
+        <div class="minimal-illustration p-8 sm:p-12 mx-4">
+            <div class="flex justify-center items-center space-x-6 sm:space-x-12">
+                <!-- Ikon Minimalis Gedung -->
+                <div class="subtle-float">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
+                        <svg width="32" height="32" viewBox="0 0 40 40" class="sm:w-10 sm:h-10 text-white">
+                            <rect x="8" y="15" width="24" height="20" fill="currentColor" rx="2" opacity="0.8"/>
+                            <rect x="12" y="20" width="3" height="3" fill="rgba(255,255,255,0.6)" rx="1"/>
+                            <rect x="17" y="20" width="3" height="3" fill="rgba(255,255,255,0.6)" rx="1"/>
+                            <rect x="22" y="20" width="3" height="3" fill="rgba(255,255,255,0.6)" rx="1"/>
+                            <rect x="27" y="20" width="3" height="3" fill="rgba(255,255,255,0.6)" rx="1"/>
+                            <rect x="12" y="26" width="3" height="3" fill="rgba(255,255,255,0.6)" rx="1"/>
+                            <rect x="17" y="26" width="3" height="3" fill="rgba(255,255,255,0.6)" rx="1"/>
+                            <rect x="22" y="26" width="3" height="3" fill="rgba(255,255,255,0.6)" rx="1"/>
+                            <rect x="27" y="26" width="3" height="3" fill="rgba(255,255,255,0.6)" rx="1"/>
+                            <polygon points="6,15 20,8 34,15" fill="rgba(255,255,255,0.9)"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                <!-- Ikon Minimalis Pendidikan -->
+                <div class="subtle-float">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
+                        <svg width="32" height="32" viewBox="0 0 40 40" class="sm:w-10 sm:h-10 text-white">
+                            <circle cx="20" cy="12" r="8" fill="rgba(255,255,255,0.8)"/>
+                            <rect x="12" y="22" width="16" height="12" fill="rgba(255,255,255,0.6)" rx="2"/>
+                            <rect x="15" y="26" width="10" height="1" fill="rgba(255,255,255,0.8)" rx="0.5"/>
+                            <rect x="15" y="28" width="8" height="1" fill="rgba(255,255,255,0.8)" rx="0.5"/>
+                            <rect x="15" y="30" width="6" height="1" fill="rgba(255,255,255,0.8)" rx="0.5"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                <!-- Ikon Minimalis Teknologi -->
+                <div class="subtle-float">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
+                        <svg width="32" height="32" viewBox="0 0 40 40" class="sm:w-10 sm:h-10 text-white">
+                            <rect x="8" y="12" width="24" height="16" fill="rgba(255,255,255,0.8)" rx="2"/>
+                            <rect x="10" y="14" width="20" height="10" fill="rgba(255,255,255,0.3)" rx="1"/>
+                            <circle cx="20" cy="30" r="1" fill="rgba(255,255,255,0.8)"/>
+                            <rect x="18" y="28" width="4" height="1" fill="rgba(255,255,255,0.6)" rx="0.5"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center pb-12">
+        <div class="glass-card inline-block px-6 py-4 sm:px-8 sm:py-6 mx-4 mb-6">
+            <p class="text-white text-sm sm:text-base font-medium mb-2 tracking-wide">
+                Prototype demo System
+            </p>
+            <p class="text-white text-opacity-70 text-xs sm:text-sm font-light">
+                © oleh D. Ervan Fauzan, S.Sos. Gr.
+            </p>
+        </div>
+    </div>
+
+    <!-- Script JavaScript untuk mencegah klik kanan -->
+    <script>
+        document.addEventListener('contextmenu', event => {
+            event.preventDefault();
+            const message = "hmmm berjalan aja ga perlu di inspect";
+            
+            // Membuat dan menampilkan pesan pop-up kustom
+            const modal = document.createElement('div');
+            modal.style.position = 'fixed';
+            modal.style.top = '50%';
+            modal.style.left = '50%';
+            modal.style.transform = 'translate(-50%, -50%)';
+            modal.style.padding = '20px';
+            modal.style.backgroundColor = 'rgba(0, 0, 0, 0.75)';
+            modal.style.color = 'white';
+            modal.style.borderRadius = '10px';
+            modal.style.zIndex = '1000';
+            modal.style.textAlign = 'center';
+            modal.style.fontFamily = "'Inter', sans-serif";
+            modal.style.fontSize = '16px';
+            modal.textContent = message;
+
+            const closeButton = document.createElement('button');
+            closeButton.textContent = 'OK';
+            closeButton.style.marginTop = '10px';
+            closeButton.style.padding = '5px 15px';
+            closeButton.style.backgroundColor = '#4facfe';
+            closeButton.style.border = 'none';
+            closeButton.style.borderRadius = '5px';
+            closeButton.style.color = 'white';
+            closeButton.style.cursor = 'pointer';
+
+            closeButton.onclick = function() {
+                document.body.removeChild(modal);
+            };
+
+            modal.appendChild(closeButton);
+            document.body.appendChild(modal);
+        });
+    </script>
+</body>
+</html>
