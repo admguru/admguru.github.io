@@ -10,10 +10,10 @@
         
         body {
             font-family: 'Inter', sans-serif;
-            /* Latar belakang yang lebih gelap */
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            /* Latar belakang yang lebih gelap dan dramatis (Dark Abyss Gradient) */
+            background: linear-gradient(135deg, #000000 0%, #080d1a 50%, #000000 100%);
             background-size: 400% 400%;
-            animation: gradientShift 10s ease infinite;
+            animation: gradientShift 15s ease infinite; /* Kecepatan animasi sedikit melambat */
         }
 
         /* Gaya untuk elemen latar belakang animasi */
@@ -27,61 +27,63 @@
             z-index: -1;
         }
 
-        .worm-shape {
+        /* Gaya untuk naga (menggantikan worm-shape) */
+        .dragon-shape {
             position: absolute;
-            background: rgba(255, 255, 255, 0.08); /* Warna transparan untuk bentuk */
-            border-radius: 50%;
+            opacity: 0.15; /* Lebih transparan */
             animation-iteration-count: infinite;
             animation-timing-function: ease-in-out;
-            filter: blur(20px); /* Efek kabur agar terlihat lebih lembut */
+            filter: blur(10px); /* Efek kabur agar terlihat seperti hantu/bayangan */
+            color: #3b82f6; /* Warna biru untuk efek mistis */
         }
 
-        .worm-1 {
-            width: 300px;
-            height: 300px;
-            top: 15%;
-            left: 10%;
-            animation: moveWorm1 20s infinite;
-        }
-
-        .worm-2 {
+        .dragon-1 {
             width: 250px;
             height: 250px;
-            top: 60%;
-            left: 70%;
-            animation: moveWorm2 25s infinite;
+            top: 10%;
+            left: 5%;
+            animation: moveDragon1 25s infinite;
         }
 
-        .worm-3 {
-            width: 200px;
-            height: 200px;
-            top: 30%;
-            left: 40%;
-            animation: moveWorm3 18s infinite;
+        .dragon-2 {
+            width: 300px;
+            height: 300px;
+            top: 55%;
+            left: 65%;
+            animation: moveDragon2 30s infinite;
         }
 
-        @keyframes moveWorm1 {
-            0% { transform: translate(0, 0) scale(1.0); }
-            25% { transform: translate(150px, -80px) scale(1.1); }
-            50% { transform: translate(200px, 120px) scale(1.2); }
-            75% { transform: translate(50px, 100px) scale(1.1); }
-            100% { transform: translate(0, 0) scale(1.0); }
+        .dragon-3 {
+            width: 180px;
+            height: 180px;
+            top: 35%;
+            left: 30%;
+            animation: moveDragon3 20s infinite;
         }
 
-        @keyframes moveWorm2 {
-            0% { transform: translate(0, 0) scale(1.0); }
-            25% { transform: translate(-100px, 50px) scale(0.9); }
-            50% { transform: translate(-150px, -100px) scale(0.8); }
-            75% { transform: translate(-50px, -80px) scale(0.9); }
-            100% { transform: translate(0, 0) scale(1.0); }
+        /* Animasi Gerakan Naga */
+        @keyframes moveDragon1 {
+            0% { transform: translate(0, 0) rotate(0deg) scale(0.8); }
+            25% { transform: translate(120px, -50px) rotate(15deg) scale(0.9); }
+            50% { transform: translate(180px, 100px) rotate(0deg) scale(1.0); }
+            75% { transform: translate(40px, 80px) rotate(-15deg) scale(0.9); }
+            100% { transform: translate(0, 0) rotate(0deg) scale(0.8); }
         }
 
-        @keyframes moveWorm3 {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(100px, 50px) rotate(90deg); }
-            50% { transform: translate(50px, 150px) rotate(180deg); }
-            75% { transform: translate(120px, 80px) rotate(270deg); }
-            100% { transform: translate(0, 0) rotate(360deg); }
+        @keyframes moveDragon2 {
+            0% { transform: translate(0, 0) rotate(0deg) scale(1.0); }
+            25% { transform: translate(-80px, 40px) rotate(-10deg) scale(1.1); }
+            50% { transform: translate(-120px, -80px) rotate(0deg) scale(1.0); }
+            75% { transform: translate(-40px, -70px) rotate(10deg) scale(0.9); }
+            100% { transform: translate(0, 0) rotate(0deg) scale(1.0); }
+        }
+
+        @keyframes moveDragon3 {
+            0% { transform: translate(0, 0) rotate(0deg) scale(1.1); }
+            25% { transform: translate(80px, 40px) rotate(45deg) scale(1.0); }
+            50% { transform: translate(40px, 120px) rotate(90deg) scale(0.9); }
+            75% { transform: translate(100px, 60px) rotate(45deg) scale(1.0); }
+            100% { transform: translate(0, 0) rotate(0deg) scale(1.1); }
         }
         
         .title-font {
@@ -95,14 +97,14 @@
         }
         
         .glass-card {
-            background: rgba(255, 255, 255, 0.05); /* Sedikit lebih transparan untuk latar belakang yang lebih gelap */
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1); /* Border lebih tipis */
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 24px;
         }
         
         .minimal-illustration {
-            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%); /* Ilustrasi lebih gelap */
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
             border-radius: 20px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.05);
@@ -126,7 +128,7 @@
         }
         
         .modern-button {
-            background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.04) 100%); /* Tombol lebih gelap */
+            background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.04) 100%);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255,255,255,0.1);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -139,11 +141,15 @@
         }
         
         .green-accent {
-            background: linear-gradient(135deg, #16a34a 0%, #15803d 100%); /* Warna hijau lebih dalam */
+            background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
         }
         
         .orange-accent {
-            background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%); /* Warna oranye lebih dalam */
+            background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+        }
+
+        .purple-accent {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
         }
         
         .text-gradient {
@@ -157,9 +163,26 @@
 <body class="min-h-screen">
     <!-- Elemen animasi latar belakang -->
     <div class="animated-bg">
-        <div class="worm-shape worm-1"></div>
-        <div class="worm-shape worm-2"></div>
-        <div class="worm-shape worm-3"></div>
+        <!-- SVG Naga 1 -->
+        <svg class="dragon-shape dragon-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2.25c-5.38 0-9.75 4.37-9.75 9.75s4.37 9.75 9.75 9.75c2.02 0 3.89-.62 5.43-1.68l-1.07-1.78c-1.28.84-2.83 1.35-4.36 1.35-4.27 0-7.75-3.48-7.75-7.75S7.73 4.25 12 4.25c2.08 0 4.07.82 5.56 2.37l1.43-1.43C17.48 3.73 14.86 2.25 12 2.25zm6.81 7.25H21.5c.27 0 .5.23.5.5s-.23.5-.5.5h-2.69a.5.5 0 01-.5-.5v-.5zM12 7.25c.41 0 .75-.34.75-.75V3.5c0-.41-.34-.75-.75-.75s-.75.34-.75.75v3.25c0 .41.34.75.75.75zm3.75 8.75c0 .41-.34.75-.75.75h-6c-.41 0-.75-.34-.75-.75V15c0-.41.34-.75.75-.75h6c.41 0 .75.34.75.75v1z" fill="currentColor"/>
+            <path d="M12 11.25c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5-1.12-2.5-2.5-2.5z" fill="currentColor"/>
+            <path d="M19.75 14.5c0-.28.22-.5.5-.5h2.25v2.25h-2.25a.5.5 0 01-.5-.5v-1.25z" fill="currentColor"/>
+        </svg>
+
+        <!-- SVG Naga 2 -->
+        <svg class="dragon-shape dragon-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M11 2.25c-5.38 0-9.75 4.37-9.75 9.75s4.37 9.75 9.75 9.75c2.02 0 3.89-.62 5.43-1.68l-1.07-1.78c-1.28.84-2.83 1.35-4.36 1.35-4.27 0-7.75-3.48-7.75-7.75S6.73 4.25 11 4.25c2.08 0 4.07.82 5.56 2.37l1.43-1.43C16.48 3.73 13.86 2.25 11 2.25zm6.81 7.25H20.5c.27 0 .5.23.5.5s-.23.5-.5.5h-2.69a.5.5 0 01-.5-.5v-.5zM11 7.25c.41 0 .75-.34.75-.75V3.5c0-.41-.34-.75-.75-.75s-.75.34-.75.75v3.25c0 .41.34.75.75.75zm3.75 8.75c0 .41-.34.75-.75.75h-6c-.41 0-.75-.34-.75-.75V15c0-.41.34-.75.75-.75h6c.41 0 .75.34.75.75v1z" fill="currentColor"/>
+            <path d="M11 11.25c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5-1.12-2.5-2.5-2.5z" fill="currentColor"/>
+            <path d="M18.75 14.5c0-.28.22-.5.5-.5h2.25v2.25h-2.25a.5.5 0 01-.5-.5v-1.25z" fill="currentColor"/>
+        </svg>
+
+        <!-- SVG Naga 3 -->
+        <svg class="dragon-shape dragon-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M10 2.25c-5.38 0-9.75 4.37-9.75 9.75s4.37 9.75 9.75 9.75c2.02 0 3.89-.62 5.43-1.68l-1.07-1.78c-1.28.84-2.83 1.35-4.36 1.35-4.27 0-7.75-3.48-7.75-7.75S5.73 4.25 10 4.25c2.08 0 4.07.82 5.56 2.37l1.43-1.43C15.48 3.73 12.86 2.25 10 2.25zm6.81 7.25H19.5c.27 0 .5.23.5.5s-.23.5-.5.5h-2.69a.5.5 0 01-.5-.5v-.5zM10 7.25c.41 0 .75-.34.75-.75V3.5c0-.41-.34-.75-.75-.75s-.75.34-.75.75v3.25c0 .41.34.75.75.75zm3.75 8.75c0 .41-.34.75-.75.75h-6c-.41 0-.75-.34-.75-.75V15c0-.41.34-.75.75-.75h6c.41 0 .75.34.75.75v1z" fill="currentColor"/>
+            <path d="M10 11.25c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5 2.5-1.12 2.5-2.5-1.12-2.5-2.5-2.5z" fill="currentColor"/>
+            <path d="M17.75 14.5c0-.28.22-.5.5-.5h2.25v2.25h-2.25a.5.5 0 01-.5-.5v-1.25z" fill="currentColor"/>
+        </svg>
     </div>
 
     <!-- Header dengan Judul -->
@@ -176,13 +199,16 @@
 
     <!-- Tombol Administrasi -->
     <div class="max-w-4xl mx-auto px-4 mb-12 sm:mb-16">
-        <div class="grid grid-cols-2 gap-4 sm:gap-8 md:gap-12 max-w-sm sm:max-w-2xl md:max-w-3xl mx-auto">
-            <!-- Tombol Administrasi Guru -->
+        <!-- Grid layout responsif: 2 kolom di HP, 3 kolom di desktop -->
+        <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 md:gap-12 max-w-sm sm:max-w-3xl mx-auto">
+            
+            <!-- Tombol 1: Administrasi Guru -->
             <div class="text-center">
                 <a href="https://admguru.github.io/admguru.html" 
-                   class="modern-button inline-flex flex-col items-center justify-center w-32 h-32 sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-2xl sm:rounded-3xl text-white font-semibold text-sm sm:text-base md:text-lg mx-auto block relative overflow-hidden group">
+                   class="modern-button inline-flex flex-col items-center justify-center w-full aspect-square sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-2xl sm:rounded-3xl text-white font-semibold text-sm sm:text-base md:text-lg mx-auto block relative overflow-hidden group">
                     <div class="green-accent absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl sm:rounded-3xl"></div>
                     <div class="relative z-10 flex flex-col items-center">
+                        <!-- Ikon Administrasi Guru (Dokumen & Orang) -->
                         <svg width="24" height="24" viewBox="0 0 48 48" class="sm:w-8 sm:h-8 md:w-12 md:h-12 mb-2 sm:mb-3 md:mb-4 text-white">
                             <rect x="8" y="12" width="32" height="24" fill="currentColor" rx="2" opacity="0.8"/>
                             <rect x="12" y="16" width="24" height="1" fill="rgba(255,255,255,0.6)" rx="0.5"/>
@@ -204,12 +230,13 @@
                 </div>
             </div>
 
-            <!-- Tombol Administrasi Wali Kelas -->
+            <!-- Tombol 2: Administrasi Wali Kelas -->
             <div class="text-center">
                 <a href="https://admguru.github.io/WaliKelas.html" 
-                   class="modern-button inline-flex flex-col items-center justify-center w-32 h-32 sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-2xl sm:rounded-3xl text-white font-semibold text-sm sm:text-base md:text-lg mx-auto block relative overflow-hidden group">
+                   class="modern-button inline-flex flex-col items-center justify-center w-full aspect-square sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-2xl sm:rounded-3xl text-white font-semibold text-sm sm:text-base md:text-lg mx-auto block relative overflow-hidden group">
                     <div class="orange-accent absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl sm:rounded-3xl"></div>
                     <div class="relative z-10 flex flex-col items-center">
+                        <!-- Ikon Administrasi Wali Kelas (Sekolah/Kelas) -->
                         <svg width="24" height="24" viewBox="0 0 48 48" class="sm:w-8 sm:h-8 md:w-12 md:h-12 mb-2 sm:mb-3 md:mb-4 text-white">
                             <rect x="6" y="16" width="36" height="20" fill="currentColor" rx="3" opacity="0.8"/>
                             <rect x="10" y="20" width="6" height="6" fill="rgba(255,255,255,0.6)" rx="1"/>
@@ -233,6 +260,37 @@
                     </p>
                 </div>
             </div>
+
+            <!-- Tombol 3: Penilaian Kelompok Rubrik Projek -->
+            <div class="text-center col-span-2 lg:col-span-1 mx-auto lg:mx-0">
+                <a href="https://admguru.github.io/nilaiklmpk.html" 
+                   class="modern-button inline-flex flex-col items-center justify-center w-full aspect-square sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-2xl sm:rounded-3xl text-white font-semibold text-sm sm:text-base md:text-lg mx-auto block relative overflow-hidden group">
+                    <div class="purple-accent absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl sm:rounded-3xl"></div>
+                    <div class="relative z-10 flex flex-col items-center">
+                        <!-- Ikon Penilaian (Daftar/Rubrik) -->
+                        <svg width="24" height="24" viewBox="0 0 48 48" class="sm:w-8 sm:h-8 md:w-12 md:h-12 mb-2 sm:mb-3 md:mb-4 text-white">
+                            <path d="M12 42h24c2.2 0 4-1.8 4-4V14c0-2.2-1.8-4-4-4H12c-2.2 0-4 1.8-4 4v24c0 2.2 1.8 4 4 4z" fill="currentColor" opacity="0.8"/>
+                            <path d="M16 18h16" stroke="rgba(255,255,255,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M16 26h10" stroke="rgba(255,255,255,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M30 24l-4 4-2-2" stroke="rgba(255,255,255,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="30" cy="30" r="4" fill="#facc15"/>
+                        </svg>
+                        <div class="text-center leading-tight tracking-wide text-xs sm:text-sm md:text-base">
+                            Penilaian Kelompok<br>Rubrik Projek
+                        </div>
+                    </div>
+                </a>
+                <div class="glass-card inline-block px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-3 mt-3 sm:mt-4 md:mt-6">
+                    <p class="text-white text-xs sm:text-sm font-light">
+                        Penilaian Projek Kelompok
+                    </p>
+                </div>
+            </div>
+
+            <!-- Spacer untuk memastikan tata letak 3 kolom di desktop seimbang jika hanya ada 3 tombol.
+                 Jika Anda menambahkan tombol keempat, Anda bisa menghapus div ini. -->
+            <div class="hidden lg:block"></div>
+            <div class="hidden lg:block"></div>
         </div>
     </div>
 
