@@ -121,6 +121,12 @@
             margin-bottom: 25px;
             border-left: 5px solid #FF6B6B;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+        }
+        
+        .step:not(.hidden) {
+            border-left: 5px solid #4f46e5; /* Highlight active step */
+            box-shadow: 0 10px 40px rgba(79, 70, 229, 0.2);
         }
 
         .step h3 {
@@ -167,6 +173,13 @@
             border-color: #4f46e5;
             box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
         }
+        
+        /* Style for required/missing input */
+        .input-error {
+            border-color: #ef4444 !important;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+        }
+
 
         .btn {
             background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%);
@@ -251,6 +264,7 @@
             margin-top: 30px;
             border: 2px solid #4ECDC4;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
         }
 
         .results h3 {
@@ -545,7 +559,7 @@
        </tbody>
       </table>
      </div>
-     <div style="margin-top: 20px;"><button class="btn btn-success" onclick="downloadPDF()">📄 Download PDF</button> <button class="btn" onclick="backToMainMenu()">🏠 Kembali ke Menu Utama</button> <button class="btn btn-danger" onclick="resetAll()">🔄 Reset Semua</button>
+     <div style="margin-top: 20px;"><button class="btn btn-success" onclick="downloadPDF()">📄 Download PDF</button> <button class="btn" onclick="backToMainMenu()">🏠 Kembali ke Menu Utama</button> <button class="btn btn-danger" id="resetBtn">🔄 Reset Semua</button>
      </div>
     </div>
    </div><!-- Footer -->
@@ -638,6 +652,20 @@
             } catch (error) {
                 console.error('Initialization error:', error);
             }
+            // Ensure we start at step 1
+            showStep(1); 
+        }
+
+        // Helper function to handle input error visual feedback
+        function toggleError(elementId, isError) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                if (isError) {
+                    element.classList.add('input-error');
+                } else {
+                    element.classList.remove('input-error');
+                }
+            }
         }
 
         // Form handlers
@@ -647,9 +675,19 @@
             const className = document.getElementById('className').value.trim();
             const groupName = document.getElementById('groupName').value.trim();
             const memberCount = parseInt(document.getElementById('memberCount').value);
+            let hasError = false;
 
-            if (!className || !groupName || !memberCount) {
-                showToast('Mohon lengkapi semua data kelompok', 'error');
+            // Clear previous errors
+            toggleError('className', false);
+            toggleError('groupName', false);
+            toggleError('memberCount', false);
+
+            if (!className) { toggleError('className', true); hasError = true; }
+            if (!groupName) { toggleError('groupName', true); hasError = true; }
+            if (!memberCount || isNaN(memberCount)) { toggleError('memberCount', true); hasError = true; }
+
+            if (hasError) {
+                showToast('Mohon lengkapi semua data kelompok yang ditandai merah', 'error');
                 return;
             }
 
@@ -665,13 +703,27 @@
             e.preventDefault();
             
             const members = [];
+            let hasError = false;
+
+            // Clear previous errors
             for (let i = 1; i <= currentData.memberCount; i++) {
-                const memberName = document.getElementById(`member${i}`).value.trim();
+                toggleError(`member${i}`, false);
+            }
+
+            for (let i = 1; i <= currentData.memberCount; i++) {
+                const memberNameInput = document.getElementById(`member${i}`);
+                const memberName = memberNameInput ? memberNameInput.value.trim() : '';
+
                 if (!memberName) {
-                    showToast(`Mohon isi nama anggota ${i}`, 'error');
-                    return;
+                    toggleError(`member${i}`, true);
+                    hasError = true;
                 }
                 members.push(memberName);
+            }
+
+            if (hasError) {
+                showToast('Mohon isi semua nama anggota yang ditandai merah', 'error');
+                return;
             }
 
             currentData.members = members;
@@ -682,17 +734,62 @@
         document.getElementById('scoresForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
+            let hasError = false;
+            
+            // Clear previous group score errors
+            ['groupKerjasama', 'groupKreativitas', 'groupPresentasi', 'groupWaktu'].forEach(id => toggleError(id, false));
+
             // Validate group scores
             const groupKerjasama = parseInt(document.getElementById('groupKerjasama').value);
             const groupKreativitas = parseInt(document.getElementById('groupKreativitas').value);
             const groupPresentasi = parseInt(document.getElementById('groupPresentasi').value);
             const groupWaktu = parseInt(document.getElementById('groupWaktu').value);
 
-            if (!groupKerjasama || !groupKreativitas || !groupPresentasi || !groupWaktu) {
-                showToast('Mohon lengkapi semua nilai kelompok', 'error');
-                return;
+            if (!groupKerjasama) { toggleError('groupKerjasama', true); hasError = true; }
+            if (!groupKreativitas) { toggleError('groupKreativitas', true); hasError = true; }
+            if (!groupPresentasi) { toggleError('groupPresentasi', true); hasError = true; }
+            if (!groupWaktu) { toggleError('groupWaktu', true); hasError = true; }
+
+            // Validate individual scores
+            const scores = [];
+            for (let i = 0; i < currentData.members.length; i++) {
+                const pemahaman = parseInt(document.getElementById(`pemahaman${i}`).value);
+                const partisipasi = parseInt(document.getElementById(`partisipasi${i}`).value);
+                const penyampaian = parseInt(document.getElementById(`penyampaian${i}`).value);
+                const sikap = parseInt(document.getElementById(`sikap${i}`).value);
+                
+                // Clear previous individual score errors
+                toggleError(`pemahaman${i}`, false);
+                toggleError(`partisipasi${i}`, false);
+                toggleError(`penyampaian${i}`, false);
+                toggleError(`sikap${i}`, false);
+
+                if (!pemahaman) { toggleError(`pemahaman${i}`, true); hasError = true; }
+                if (!partisipasi) { toggleError(`partisipasi${i}`, true); hasError = true; }
+                if (!penyampaian) { toggleError(`penyampaian${i}`, true); hasError = true; }
+                if (!sikap) { toggleError(`sikap${i}`, true); hasError = true; }
+                
+                if (!hasError) {
+                    const rawTotal = pemahaman + partisipasi + penyampaian + sikap;
+                    const scoreScale100 = Math.round((rawTotal / 16) * 100);
+
+                    scores.push({
+                        name: currentData.members[i],
+                        pemahaman,
+                        partisipasi,
+                        penyampaian,
+                        sikap,
+                        total: rawTotal,
+                        scoreScale100: scoreScale100
+                    });
+                }
             }
 
+            if (hasError) {
+                showToast('Mohon lengkapi semua nilai yang ditandai merah sebelum melanjutkan', 'error');
+                return;
+            }
+            
             // Calculate group score
             const groupRawTotal = groupKerjasama + groupKreativitas + groupPresentasi + groupWaktu;
             const groupScoreScale100 = Math.round((groupRawTotal / 16) * 100);
@@ -706,37 +803,13 @@
                 scoreScale100: groupScoreScale100
             };
 
-            // Validate individual scores
-            const scores = [];
-            for (let i = 0; i < currentData.members.length; i++) {
-                const pemahaman = parseInt(document.getElementById(`pemahaman${i}`).value);
-                const partisipasi = parseInt(document.getElementById(`partisipasi${i}`).value);
-                const penyampaian = parseInt(document.getElementById(`penyampaian${i}`).value);
-                const sikap = parseInt(document.getElementById(`sikap${i}`).value);
-
-                if (!pemahaman || !partisipasi || !penyampaian || !sikap) {
-                    showToast(`Mohon lengkapi nilai untuk ${currentData.members[i]}`, 'error');
-                    return;
-                }
-
-                const rawTotal = pemahaman + partisipasi + penyampaian + sikap;
-                const scoreScale100 = Math.round((rawTotal / 16) * 100); // Convert from 16 max to 100 scale
-
-                scores.push({
-                    name: currentData.members[i],
-                    pemahaman,
-                    partisipasi,
-                    penyampaian,
-                    sikap,
-                    total: rawTotal,
-                    scoreScale100: scoreScale100
-                });
-            }
-
             currentData.scores = scores;
+
+            // Save and display results
             await saveAssessment();
             generateResults();
-            showStep(4);
+            showStep(4); // Show results
+            console.log("SUCCESS: Menampilkan hasil penilaian (Step 4)");
         });
 
         function generateMemberInputs() {
@@ -766,7 +839,7 @@
                     <div class="score-grid">
                         <div class="form-group">
                             <label for="pemahaman${index}">Pemahaman Materi (1-4)</label>
-                            <small style="color: #6b7280; display: block; margin-bottom: 8px;">Penguasaan konsep RPL, teori, dan implementasi teknis</small>
+                            <small style="color: #6b7280; display: block; margin-bottom: 8px;">Penguasaan konsep materi, pemahaman teori, dan implementasi projek</small>
                             <select id="pemahaman${index}" required>
                                 <option value="">Pilih nilai</option>
                                 <option value="1">1 - Kurang (Tidak paham konsep)</option>
@@ -815,7 +888,10 @@
         }
 
         async function saveAssessment() {
-            if (!window.dataSdk) return;
+            if (!window.dataSdk) {
+                console.warn("Data SDK is not available. Skipping save.");
+                return;
+            }
 
             if (allAssessments.length >= 999) {
                 showToast('Batas maksimum 999 penilaian telah tercapai. Mohon hapus beberapa data terlebih dahulu.', 'error');
@@ -829,7 +905,8 @@
                     class_name: currentData.className,
                     group_name: currentData.groupName,
                     member_count: currentData.memberCount,
-                    members: JSON.stringify(currentData.members),
+                    // Use JSON.stringify for complex data structures when saving to dataSdk
+                    members: JSON.stringify(currentData.members), 
                     scores: JSON.stringify(currentData.scores),
                     group_score: JSON.stringify(currentData.groupScore),
                     created_at: new Date().toISOString()
@@ -840,9 +917,11 @@
                 if (result.isOk) {
                     showToast('Data penilaian berhasil disimpan!');
                 } else {
+                    console.error('Data SDK Create Failed:', result.error);
                     showToast('Gagal menyimpan data penilaian', 'error');
                 }
             } catch (error) {
+                console.error('Terjadi kesalahan saat menyimpan data:', error);
                 showToast('Terjadi kesalahan saat menyimpan data', 'error');
             } finally {
                 showLoading(false);
@@ -920,7 +999,10 @@
                 document.getElementById('results').classList.remove('hidden');
             } else {
                 document.getElementById('results').classList.add('hidden');
-                document.getElementById(`step${step}`).classList.remove('hidden');
+                const nextStepElement = document.getElementById(`step${step}`);
+                if (nextStepElement) {
+                    nextStepElement.classList.remove('hidden');
+                }
             }
         }
 
@@ -933,6 +1015,12 @@
         }
 
         function backToMainMenu() {
+            resetData();
+            showStep(1);
+            showToast('Kembali ke menu utama');
+        }
+
+        function resetData() {
             currentData = {
                 className: '',
                 groupName: '',
@@ -953,38 +1041,18 @@
             document.getElementById('groupForm').reset();
             document.getElementById('membersContainer').innerHTML = '';
             document.getElementById('scoresContainer').innerHTML = '';
-
+            
+            // Clear all error highlights
+            const errorInputs = document.querySelectorAll('.input-error');
+            errorInputs.forEach(input => input.classList.remove('input-error'));
+        }
+        
+        // Use an event listener on a dedicated reset button (ID: resetBtn)
+        document.getElementById('resetBtn').addEventListener('click', function() {
+            showToast('Semua data berhasil direset dan kembali ke menu utama.', 'error');
+            resetData();
             showStep(1);
-            showToast('Kembali ke menu utama');
-        }
-
-        function resetAll() {
-            if (confirm('Apakah Anda yakin ingin menghapus semua data dan memulai ulang?')) {
-                currentData = {
-                    className: '',
-                    groupName: '',
-                    memberCount: 0,
-                    members: [],
-                    scores: [],
-                    groupScore: {
-                        kerjasama: 0,
-                        kreativitas: 0,
-                        presentasi: 0,
-                        waktu: 0,
-                        total: 0,
-                        scoreScale100: 0
-                    }
-                };
-
-                // Reset forms
-                document.getElementById('groupForm').reset();
-                document.getElementById('membersContainer').innerHTML = '';
-                document.getElementById('scoresContainer').innerHTML = '';
-
-                showStep(1);
-                showToast('Data berhasil direset');
-            }
-        }
+        });
 
         function downloadPDF() {
             try {
@@ -1005,15 +1073,14 @@
 
                 const totalAverage = currentData.scores.reduce((sum, score) => sum + score.scoreScale100, 0) / currentData.scores.length;
                 doc.text(`Rata-rata Individu: ${totalAverage.toFixed(1)}`, 20, 70);
-                doc.text(`Skor Kelompok: ${currentData.groupScore.scoreScale100} (${getKeterangan(currentData.groupScore.scoreScale100).text})`, 20, 80);
-
-                // Table data with group score first
-                const tableData = [];
                 
-                // Add group score row
-                tableData.push([
-                    'KELOMPOK',
-                    currentData.groupName,
+                const groupScoreText = `Skor Kelompok: ${currentData.groupScore.scoreScale100} (${getKeterangan(currentData.groupScore.scoreScale100).text})`;
+                doc.text(groupScoreText, 20, 80);
+
+                // --- 1. Tabel Skor Kelompok ---
+                const groupTableData = [];
+                groupTableData.push([
+                    'Kelompok',
                     currentData.groupScore.kerjasama,
                     currentData.groupScore.kreativitas,
                     currentData.groupScore.presentasi,
@@ -1022,9 +1089,22 @@
                     getKeterangan(currentData.groupScore.scoreScale100).text
                 ]);
 
-                // Add individual scores
+                doc.autoTable({
+                    head: [['Kategori', 'Kerja Sama', 'Kreativitas', 'Presentasi', 'Waktu', 'Skor (100)', 'Keterangan']],
+                    body: groupTableData,
+                    startY: 90,
+                    styles: { fontSize: 10, cellPadding: 2 },
+                    headStyles: { fillColor: [79, 70, 229] },
+                    didDrawPage: function(data) {
+                        doc.setFontSize(14);
+                        doc.text("A. SKOR KELOMPOK", data.settings.startY - 10, 85);
+                    }
+                });
+
+                // --- 2. Tabel Skor Individu ---
+                const tableDataIndividual = [];
                 currentData.scores.forEach((score, index) => {
-                    tableData.push([
+                    tableDataIndividual.push([
                         index + 1,
                         score.name,
                         score.pemahaman,
@@ -1036,16 +1116,18 @@
                     ]);
                 });
 
+                const individualStartY = doc.lastAutoTable.finalY + 15;
+
                 doc.autoTable({
-                    head: [['No', 'Nama', 'Kerjasama', 'Kreativitas', 'Presentasi', 'Waktu', 'Skor (100)', 'Keterangan']],
-                    body: tableData,
-                    startY: 90,
-                    styles: { fontSize: 10 },
+                    head: [['No', 'Nama', 'Pemahaman', 'Partisipasi', 'Komunikasi', 'Sikap', 'Skor (100)', 'Keterangan']],
+                    body: tableDataIndividual,
+                    startY: individualStartY,
+                    styles: { fontSize: 10, cellPadding: 2 },
                     headStyles: { fillColor: [79, 70, 229] },
-                    didParseCell: function (data) {
-                        if (data.row.index === 0 && data.section === 'body') {
-                            data.cell.styles.fillColor = [240, 249, 255];
-                            data.cell.styles.fontStyle = 'bold';
+                    didDrawPage: function(data) {
+                        if (data.pageNumber === 1) { // Only title on first page, after group table
+                            doc.setFontSize(14);
+                            doc.text("B. SKOR INDIVIDU", 20, individualStartY - 5);
                         }
                     }
                 });
@@ -1058,7 +1140,9 @@
                 doc.save(`Penilaian_${currentData.groupName.replace(/\s+/g, '_')}.pdf`);
                 showToast('PDF berhasil diunduh!');
             } catch (error) {
-                showToast('Gagal mengunduh PDF', 'error');
+                // Log error for debugging, but show generic message to user
+                console.error('PDF Download Error:', error);
+                showToast('Gagal mengunduh PDF. Cek console untuk detail error.', 'error');
             }
         }
 
@@ -1084,14 +1168,14 @@
             }, 3000);
         }
 
-        // Right-click protection
+        // Right-click protection (Retained from original code)
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
             showToast('Akses menu klik kanan diblokir untuk keamanan', 'error');
             return false;
         });
 
-        // Disable F12, Ctrl+Shift+I, Ctrl+U, Ctrl+Shift+J
+        // Disable F12, Ctrl+Shift+I, Ctrl+U, Ctrl+Shift+J (Retained from original code)
         document.addEventListener('keydown', function(e) {
             // F12
             if (e.keyCode === 123) {
@@ -1129,19 +1213,19 @@
             }
         });
 
-        // Disable text selection
+        // Disable text selection (Retained from original code)
         document.addEventListener('selectstart', function(e) {
             e.preventDefault();
             return false;
         });
 
-        // Disable drag
+        // Disable drag (Retained from original code)
         document.addEventListener('dragstart', function(e) {
             e.preventDefault();
             return false;
         });
 
-        // Console warning
+        // Console warning (Retained from original code)
         console.clear();
         console.log('%cSTOP!', 'color: red; font-size: 50px; font-weight: bold;');
         console.log('%cIni adalah fitur browser yang ditujukan untuk developer. Jika seseorang menyuruh Anda menyalin-tempel sesuatu di sini untuk mengaktifkan fitur atau "meretas" akun seseorang, itu adalah penipuan dan akan memberi mereka akses ke akun Anda.', 'color: red; font-size: 16px;');
@@ -1149,5 +1233,28 @@
         // Initialize app when page loads
         document.addEventListener('DOMContentLoaded', initializeApp);
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99e51ae515516598',t:'MTc2MzEwODU4OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>
+        // Closing the iframe script which was cut off previously
+        function c(){
+            var b=a.contentDocument||a.contentWindow.document;
+            if(b){
+                var d=b.createElement('script');
+                d.innerHTML="window.__CF$cv$params={r:'99e51ae515516598',t:'MTc2MzEwODU4OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+                b.getElementsByTagName('head')[0].appendChild(d)
+            }
+        }
+
+        var a=document.createElement('iframe');
+        a.height=1;
+        a.width=1;
+        a.style.position='absolute';
+        a.style.top=0;
+        a.style.left=0;
+        a.style.border='none';
+        a.style.visibility='hidden';
+        document.body.appendChild(a);
+
+        if('loading'!==document.readyState) c();
+    </script>
+ </body>
 </html>
